@@ -3,3 +3,5 @@ app/etc/local.xml
 nbproject/
 var/
 .DS_Store
+*.swp
+tags

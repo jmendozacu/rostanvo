@@ -56,14 +56,14 @@ $store_id = $this->helper('core')->getStoreId();
 	 
 <!-- siteNavigation $store_id == 1 -->
 <div class="siteNavigation" >
-	<ul><li class = "first <?=($activeSite==Mage::getBaseUrl()||$activeSite==$this->getUrl('home'))?"active":""?>"><a href = "<?php echo $this->getUrl('home')?>">Home</a></li>
+	<ul><li class = "first <?php echo($activeSite==Mage::getBaseUrl()||$activeSite==$this->getUrl('home'))?"active":""?>"><a href = "<?php echo $this->getUrl('home')?>">Home</a></li>
 
-	<li class = "<?=($activeSite==$this->getUrl('about-us'))?"active":""?>"><a href = "<?php echo $this->getUrl('about-us')?>">About</a></li>
+	<li class = "<?php echo($activeSite==$this->getUrl('about-us'))?"active":""?>"><a href = "<?php echo $this->getUrl('about-us')?>">About</a></li>
 	<li
 
 class = "
 
-<?=(
+<?php echo(
 $activeSite==$this->getUrl('resource/history-of-the-cello-string')||
 $activeSite==$this->getUrl('resource/how-to-choose-cello-strings')||
 $activeSite==$this->getUrl('resource/best-strings')||
@@ -78,14 +78,14 @@ $activeSite==$this->getUrl('how-to-string-a-cello')
 		<li><a href = "<?php echo $this->getUrl('resource/how-to-string-a-cello')?>">How to string a Cello</a></li>
 		</ul>
 	</li>
-	<li class = "<?=($activeSite==$this->getUrl('cello-news'))?"active":""?>"><a href = "<?php echo $this->getUrl('cello-news')?>">Cello News</a></li>
+	<li class = "<?php echo($activeSite==$this->getUrl('cello-news'))?"active":""?>"><a href = "<?php echo $this->getUrl('cello-news')?>">Cello News</a></li>
 
 
-	<li class = "<?=($activeSite==$this->getUrl('events'))?"active":""?>"><a href = "<?php echo $this->getUrl('events')?>">Events</a></li>
+	<li class = "<?php echo($activeSite==$this->getUrl('events'))?"active":""?>"><a href = "<?php echo $this->getUrl('events')?>">Events</a></li>
 
 
-	<li class = "<?=($activeSite==$this->getUrl('testimonials'))?"active":""?>"><a href = "<?php echo $this->getUrl('testimonials')?>">Testimonials</a></li>
-	<li class = "last <?=($activeSite==$this->getUrl('shop'))?"active":""?>"><a href = "<?php echo $this->getUrl('shop')?>">Shop</a></li>
+	<li class = "<?php echo($activeSite==$this->getUrl('testimonials'))?"active":""?>"><a href = "<?php echo $this->getUrl('testimonials')?>">Testimonials</a></li>
+	<li class = "last <?php echo($activeSite==$this->getUrl('shop'))?"active":""?>"><a href = "<?php echo $this->getUrl('shop')?>">Shop</a></li>
 	
 </ul>
 </div>
@@ -94,14 +94,14 @@ $activeSite==$this->getUrl('how-to-string-a-cello')
 
 <!-- siteNavigation $store_id == 2 -->
 <div class="siteNavigation navde" >
-	<ul><li class = "first <?=($activeSite==Mage::getBaseUrl()||$activeSite==$this->getUrl('home'))?"active":""?>"><a href = "<?php echo $this->getUrl('home')?>">Home</a></li>
+	<ul><li class = "first <?php echo($activeSite==Mage::getBaseUrl()||$activeSite==$this->getUrl('home'))?"active":""?>"><a href = "<?php echo $this->getUrl('home')?>">Home</a></li>
 
-	<li class = "<?=($activeSite==$this->getUrl('uber-uns'))?"active":""?>"><a href = "<?php echo $this->getUrl('uber-uns')?>">Über uns</a></li>
+	<li class = "<?php echo($activeSite==$this->getUrl('uber-uns'))?"active":""?>"><a href = "<?php echo $this->getUrl('uber-uns')?>">Über uns</a></li>
 	<li
 
 class = "
 
-<?=(
+<?php echo(
 $activeSite==$this->getUrl('resource/history-of-the-cello-string')||
 $activeSite==$this->getUrl('resource/how-to-choose-cello-strings')||
 $activeSite==$this->getUrl('resource/best-strings')||
@@ -116,14 +116,14 @@ $activeSite==$this->getUrl('how-to-string-a-cello')
 		<li><a href = "<?php echo $this->getUrl('resource/how-to-string-a-cello')?>">How to string a Cello</a></li>
 		</ul>
 	</li>
-	<li class = "<?=($activeSite==$this->getUrl('cello-news'))?"active":""?>"><a href = "<?php echo $this->getUrl('cello-news')?>">Cello News</a></li>
+	<li class = "<?php echo($activeSite==$this->getUrl('cello-news'))?"active":""?>"><a href = "<?php echo $this->getUrl('cello-news')?>">Cello News</a></li>
 
 
-	<li class = "<?=($activeSite==$this->getUrl('events'))?"active":""?>"><a href = "<?php echo $this->getUrl('events')?>">Events</a></li>
+	<li class = "<?php echo($activeSite==$this->getUrl('events'))?"active":""?>"><a href = "<?php echo $this->getUrl('events')?>">Events</a></li>
 
 
-	<li class = "<?=($activeSite==$this->getUrl('testimonials'))?"active":""?>"><a href = "<?php echo $this->getUrl('referenzen')?>">Referenzen</a></li>
-	<li class = "last <?=($activeSite==$this->getUrl('shop'))?"active":""?>"><a href = "<?php echo $this->getUrl('shop')?>">Shop</a></li>
+	<li class = "<?php echo($activeSite==$this->getUrl('testimonials'))?"active":""?>"><a href = "<?php echo $this->getUrl('referenzen')?>">Referenzen</a></li>
+	<li class = "last <?php echo($activeSite==$this->getUrl('shop'))?"active":""?>"><a href = "<?php echo $this->getUrl('shop')?>">Shop</a></li>
 	
 </ul>
 </div>
@@ -132,14 +132,14 @@ $activeSite==$this->getUrl('how-to-string-a-cello')
 
 <!-- siteNavigation $store_id == 3 -->
 <div class="siteNavigation" >
-	<ul><li class = "first <?=($activeSite==Mage::getBaseUrl()||$activeSite==$this->getUrl('home'))?"active":""?>"><a href = "<?php echo $this->getUrl('home')?>">Home</a></li>
+	<ul><li class = "first <?php echo($activeSite==Mage::getBaseUrl()||$activeSite==$this->getUrl('home'))?"active":""?>"><a href = "<?php echo $this->getUrl('home')?>">Home</a></li>
 
-	<li class = "<?=($activeSite==$this->getUrl('about-us'))?"active":""?>"><a href = "<?php echo $this->getUrl('about-us')?>">About</a></li>
+	<li class = "<?php echo($activeSite==$this->getUrl('about-us'))?"active":""?>"><a href = "<?php echo $this->getUrl('about-us')?>">About</a></li>
 	<li
 
 class = "
 
-<?=(
+<?php echo(
 $activeSite==$this->getUrl('resource/history-of-the-cello-string')||
 $activeSite==$this->getUrl('resource/how-to-choose-cello-strings')||
 $activeSite==$this->getUrl('resource/best-strings')||
@@ -154,14 +154,14 @@ $activeSite==$this->getUrl('how-to-string-a-cello')
 		<li><a href = "<?php echo $this->getUrl('resource/how-to-string-a-cello')?>">How to string a Cello</a></li>
 		</ul>
 	</li>
-	<li class = "<?=($activeSite==$this->getUrl('cello-news'))?"active":""?>"><a href = "<?php echo $this->getUrl('cello-news')?>">Cello News</a></li>
+	<li class = "<?php echo($activeSite==$this->getUrl('cello-news'))?"active":""?>"><a href = "<?php echo $this->getUrl('cello-news')?>">Cello News</a></li>
 
 
-	<li class = "<?=($activeSite==$this->getUrl('events'))?"active":""?>"><a href = "<?php echo $this->getUrl('events')?>">Events</a></li>
+	<li class = "<?php echo($activeSite==$this->getUrl('events'))?"active":""?>"><a href = "<?php echo $this->getUrl('events')?>">Events</a></li>
 
 
-	<li class = "<?=($activeSite==$this->getUrl('testimonials'))?"active":""?>"><a href = "<?php echo $this->getUrl('testimonials')?>">Testimonials</a></li>
-	<li class = "last <?=($activeSite==$this->getUrl('shop'))?"active":""?>"><a href = "<?php echo $this->getUrl('shop')?>">Shop</a></li>
+	<li class = "<?php echo($activeSite==$this->getUrl('testimonials'))?"active":""?>"><a href = "<?php echo $this->getUrl('testimonials')?>">Testimonials</a></li>
+	<li class = "last <?php echo($activeSite==$this->getUrl('shop'))?"active":""?>"><a href = "<?php echo $this->getUrl('shop')?>">Shop</a></li>
 	
 </ul>
 </div>
