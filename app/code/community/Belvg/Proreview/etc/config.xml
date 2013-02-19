@@ -1,0 +1,150 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * BelVG LLC.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://store.belvg.com/BelVG-LICENSE-COMMUNITY.txt
+ *
+ /***************************************
+ *         MAGENTO EDITION USAGE NOTICE *
+ *****************************************/
+ /* This package designed for Magento COMMUNITY edition
+ * BelVG does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * BelVG does not provide extension support in case of
+ * incorrect edition usage.
+ /***************************************
+ *         DISCLAIMER   *
+ *****************************************/
+ /* Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future.
+ *****************************************************
+ * @category   Belvg
+ * @package    Belvg_Proreview
+ * @copyright  Copyright (c) 2010 - 2011 BelVG LLC. (http://www.belvg.com)
+ * @license    http://store.belvg.com/BelVG-LICENSE-COMMUNITY.txt
+   */-->
+
+	<config>
+
+
+
+	<modules>
+		<Belvg_Proreview>
+			<version>1.2.1</version>
+		</Belvg_Proreview>
+	</modules>
+	<blocks>
+            <proreview><class>Belvg_Proreview_Block</class></proreview>
+        </blocks>
+	<admin>
+
+		<routers>
+			<proreview>
+				<use>admin</use>
+				<args>
+					<module>Belvg_Proreview</module>
+					<frontName>proreview</frontName>
+				</args>
+			</proreview>
+        </routers>
+
+	</admin>
+	<frontend>
+		<layout>
+		    <updates>
+			    <proreview>
+				    <file>proreview.xml</file>
+			    </proreview>
+		    </updates>
+           </layout>
+	</frontend>
+    <adminhtml>
+	    <layout>
+		    <updates>
+			    <proreview>
+				    <file>proreview.xml</file>
+			    </proreview>
+		    </updates>
+           </layout>
+		<menu>
+			
+
+		</menu>
+		<acl>
+			<resources>
+				<all>
+					<title>Allow Everything</title>
+				</all>
+				<admin>
+					<children>
+						<blog2>
+							<title>Proreview Module</title>
+							<sort_order>200</sort_order>
+						</blog2>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+
+
+    </adminhtml>
+    <global>
+	    <resources>
+            <proreview_setup>
+		<setup>
+			<module>Belvg_Proreview</module>
+		</setup>
+		<connection>
+			<use>core_setup</use>
+		</connection>
+            </proreview_setup>
+            <proreview_write>
+		<connection><use>core_write</use></connection>
+            </proreview_write>
+            <proreview_read>
+		<connection><use>core_read</use></connection>
+            </proreview_read>
+	</resources>
+	    <blocks>
+		    <proreview>
+			    <class>Belvg_Proreview_Block</class>
+		    </proreview>
+	    </blocks>
+	    <models>
+		    <proreview>
+			    <class>Belvg_Proreview_Model</class>
+			    <resourceModel>proreview_mysql4</resourceModel>
+		    </proreview>
+		    <proreview_mysql4>
+			    <class>Belvg_Proreview_Model_Mysql4</class>
+			    <entities>
+
+				    <state>
+					    <table>belvg_proreview</table>
+				    </state>
+                                     <category>
+					    <table>belvg_proreview_pages</table>
+				    </category>
+
+
+			    </entities>
+		    </proreview_mysql4>
+        </models>
+
+	    <helpers>
+		    <proreview>
+			    <class>Belvg_Proreview_Helper</class>
+		    </proreview>
+	    </helpers>
+          
+    </global>
+
+
+
+</config>

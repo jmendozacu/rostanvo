@@ -1,0 +1,24 @@
+<?php
+/**
+ * Payments history template
+ */
+?>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+
+<div class="page-title">
+	<h2><?php echo $this->__('Payments History') ?></h2>
+</div>
+
+<?php echo $this->getChildHtml('payment_miniform') ?>
+
+<?php if ($this->getCollection()->getSize()): ?>
+	<?php echo $this->getPagerHtml() ?>
+	<?php echo $this->getGridHtml() ?>
+	<?php echo $this->getPagerHtml() ?>
+<?php else: ?>
+<div>
+	<p class="note-msg">
+		<?php echo $this->__('There are no payments matching this selection.') ?>
+	</p>
+</div>
+<?php endif ?>

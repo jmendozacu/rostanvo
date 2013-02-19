@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * BelVG LLC.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://store.belvg.com/BelVG-LICENSE-COMMUNITY.txt
+ *
+ /***************************************
+ *         MAGENTO EDITION USAGE NOTICE *
+ *****************************************/
+ /* This package designed for Magento COMMUNITY edition
+ * BelVG does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * BelVG does not provide extension support in case of
+ * incorrect edition usage.
+ /***************************************
+ *         DISCLAIMER   *
+ *****************************************/
+ /* Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future.
+ *****************************************************
+ * @category   Belvg
+ * @package    Belvg_Proreview
+ * @copyright  Copyright (c) 2010 - 2011 BelVG LLC. (http://www.belvg.com)
+ * @license    http://store.belvg.com/BelVG-LICENSE-COMMUNITY.txt
+ */-->
+<layout version="0.1.0">
+        <default>
+            <reference name="head">
+                <action method="addCss"><stylesheet>css/review.css</stylesheet></action>
+            </reference>
+        </default>
+        <catalog_product_view translate="label">
+            <reference name="content">
+                <reference name="product.info">
+                  
+                    <reference name="product.info.additional">
+                           <block type="catalog/product_view" name="custom.proreview" template="proreview/main.phtml"/>
+                    </reference>
+                </reference>
+            </reference>
+        </catalog_product_view>
+
+
+
+</layout>

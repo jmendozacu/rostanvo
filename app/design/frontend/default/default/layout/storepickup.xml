@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+		<reference name="top.links">
+			<block type="storepickup/displayallstores" name="displayallstores" >
+            <action method="addTopLinkStores" />	
+			</block>	
+		</reference>
+		<reference name="footer_links">
+            <block type="storepickup/displayallstores" name="displayallstores" >
+            <action method="addFooterLinkStores" />	
+			</block>
+        </reference>
+		<reference name="head">
+			<action method="addJs"><script>magestore/storepickup.js</script></action>
+			<action method="addCss"><styleSheet>css/magestore/storepickup.css</styleSheet></action>
+		</reference>	
+    </default>
+	
+    <storepickup_index_index>
+		<reference name="root">
+			<action method="setTemplate"><template>page/1column.phtml</template></action>
+		</reference>
+        <reference name="content">
+            <block type="storepickup/allstores" name="allstores" template="storepickup/liststorepickup.phtml" >
+				<!--<block type="storepickup/storepickup" name="store_location" as="store_location" template="storepickup/store_location.phtml" />
+				<block type="storepickup/storepickup" name="page_store" as="page_store" template="storepickup/pagestore.phtml" />-->
+			</block>
+        </reference>
+    </storepickup_index_index>
+		
+	<storepickup_index_changesuburb>
+        <reference name="content">
+			<block type="storepickup/storepickup" name="list_store" as="list_store" template="storepickup/store.phtml" />
+        </reference>
+    </storepickup_index_changesuburb>
+	
+	<storepickup_index_changesuburbpagestore>
+        <reference name="content">
+			<block type="storepickup/storepickup" name="page_store" as="page_store" template="storepickup/pagestore.phtml" />
+        </reference>
+    </storepickup_index_changesuburbpagestore>
+	<checkout_cart_index>	
+		<reference name="head">
+			<action method="addJs"><script>calendar/calendar.js</script></action>
+			<action method="addJs"><script>calendar/calendar-setup.js</script></action>
+		</reference>	
+		<reference name="checkout.cart.shipping">
+			<action method="setTemplate"><template>storepickup/shippingtax.phtml</template></action>
+			<block type="storepickup/storepickup" name="storepickup" as="storepickup" >
+				<block type="storepickup/location" name="store_location" as="store_location" template="storepickup/store_location.phtml" />
+				<block type="storepickup/storepickup" name="list_store" as="list_store" template="storepickup/store.phtml" />
+			</block>
+		</reference>
+	</checkout_cart_index>
+	
+	<checkout_onepage_index>
+		<reference name="head">
+			<action method="addJs"><script>calendar/calendar.js</script></action>
+			<action method="addJs"><script>calendar/calendar-setup.js</script></action>
+		</reference>	
+		<reference name="checkout.onepage.billing">
+			<action method="setTemplate"><template>storepickup/billing.phtml</template></action>
+		</reference>		
+	</checkout_onepage_index>	
+	
+     <checkout_onepage_shippingmethod>		 
+		<reference name="root">
+			<action method="setTemplate"><template>storepickup/available.phtml</template></action>
+			<block type="storepickup/checkout_store" name="storepickup" as="storepickup" >
+				<block type="storepickup/location" name="store_location" as="store_location" template="storepickup/store_location.phtml" />
+				<block type="storepickup/checkout_store" name="list_store" as="list_store" template="storepickup/store.phtml" />
+			</block>
+		</reference>	
+	</checkout_onepage_shippingmethod>
+</layout> 

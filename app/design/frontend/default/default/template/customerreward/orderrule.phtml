@@ -1,0 +1,19 @@
+<?php
+	/**
+	 * Order rule template
+	 */
+?>
+<?php $collection = $this->getCollection() ?>
+<?php if ($collection->getSize()): ?>
+<p>
+	<strong><?php echo $this->__('Earn point(s) when purchase:') ?></strong>
+	<br />
+	<?php foreach($collection as $item): ?>
+		<?php echo $this->__(' Earn <strong class="customerreward-money">%s point(s)</strong> when the order meets the rule:"%s".',$item->getPointsEarned(),$item->getDescription()) ?>
+		<?php if ($item->getToDate()): ?>
+			<?php echo $this->__(' It\'s valid until <strong class="customerreward-money">%s</strong>. ',$this->formatDate($item->getToDate())) ?>
+		<?php endif ?>
+		<br />
+	<?php endforeach ?>
+</p>
+<?php endif ?>

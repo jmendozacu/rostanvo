@@ -1,0 +1,3 @@
+<?php /* Smarty version 2.6.18, created on 2012-05-29 03:59:45
+         compiled from sidebar_closed.tpl */ ?>
+<div class="SideBarArrow"></div>

@@ -1,0 +1,73 @@
+<?php
+/**
+ * Payments view miniform request template
+ */
+?>
+<?php $payment = $this->getPayment() ?>
+<?php $statusOption = $this->getStatusArray() ?>
+<?php $baseCurrency = Mage::app()->getStore()->getBaseCurrency() ?>
+
+<div class="page-title">
+	<h3><?php echo $this->__('Payment detail'); ?></h3>
+</div>
+<div class="box-info box-account">
+	<div class="box-head">
+		<h2><?php echo $this->__('Payment Information') ?></h2>
+	</div>
+	<ul class="form-list">
+		<li class="fields">
+			<div class="field">
+				<strong><?php echo $this->__('Status') ?></strong>
+			</div>
+			<div class="field">
+				<?php echo $statusOption[$payment->getStatus()] ?>
+			</div>
+		</li>
+		<li class="fields">
+			<div class="field">
+				<strong><?php echo $this->__('Requested Date') ?></strong>
+			</div>
+			<div class="field">
+				<?php echo $this->formatDate($payment->getRequestTime(),'medium',false) ?>
+			</div>
+		</li>
+		<li class="fields">
+			<div class="field">
+				<strong><?php echo $this->__('Amount') ?></strong>
+			</div>
+			<div class="field">
+				<?php echo $baseCurrency->format($payment->getAmount()) ?>
+			</div>
+		</li>
+		<li class="fields">
+			<div class="field">
+				<strong><?php echo $this->__('Fee') ?></strong>
+			</div>
+			<div class="field">
+				<?php if ($payment->getStatus() == 1): ?>
+					<?php echo $this->__('N/A') ?>
+				<?php elseif($payment->getIsPayerFee()): ?>
+					<?php echo $baseCurrency->format(0) ?>
+				<?php else: ?>
+					<?php echo $baseCurrency->format($payment->getFee()) ?>
+				<?php endif ?>
+			</div>
+		</li>
+		<li class="fields">
+			<div class="field">
+				<strong><?php echo $this->__('Payment Method') ?></strong>
+			</div>
+			<div class="field">
+				<?php echo $payment->getPaymentMethodHtml() ?>
+			</div>
+		</li>
+		<?php echo $this->getChildHtml('payment_method_info') ?>
+	</ul>
+</div>
+<div class="buttons-set">
+	<a class="left" href="javascript:history.go(-1)">
+		<button type="button" class="form-button button" onclick="javascript:history.go(-1)">
+			<span><?php echo $this->__('Back')?></span>
+		</button>
+	</a>
+</div>

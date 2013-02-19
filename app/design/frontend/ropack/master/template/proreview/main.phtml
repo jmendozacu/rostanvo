@@ -1,0 +1,228 @@
+<!--
+   /**
+    * BelVG LLC.
+    *
+    * NOTICE OF LICENSE
+    *
+    * This source file is subject to the EULA
+    * that is bundled with this package in the file LICENSE.txt.
+    * It is also available through the world-wide-web at this URL:
+    * http://store.belvg.com/BelVG-LICENSE-COMMUNITY.txt
+    *
+    /***************************************
+    *         MAGENTO EDITION USAGE NOTICE *
+    *****************************************/
+    /* This package designed for Magento COMMUNITY edition
+    * BelVG does not guarantee correct work of this extension
+    * on any other Magento edition except Magento COMMUNITY edition.
+    * BelVG does not provide extension support in case of
+    * incorrect edition usage.
+    /***************************************
+    *         DISCLAIMER   *
+    *****************************************/
+    /* Do not edit or add to this file if you wish to upgrade Magento to newer
+    * versions in the future.
+    *****************************************************
+    * @category   Belvg
+    * @package    Belvg_Proreview
+    * @copyright  Copyright (c) 2010 - 2011 BelVG LLC. (http://www.belvg.com)
+    * @license    http://store.belvg.com/BelVG-LICENSE-COMMUNITY.txt
+    */-->
+<?php $_product = $this->getProduct();
+   $reviewCollectin = Mage::getModel('review/review')->getCollection()
+       ->addStatusFilter('approved')
+       ->addEntityFilter('product', $_product->getId())
+       ->setDateOrder()
+       ->addRateVotes();
+   $ratings = Mage::getModel('rating/rating')
+       ->getResourceCollection()
+       ->addEntityFilter('product')
+       ->setPositionOrder()
+       ->addRatingPerStoreName(Mage::app()->getStore()->getId())
+       ->setStoreFilter(Mage::app()->getStore()->getId())
+       ->load()
+       ->addOptionToItems();
+   ?>
+<?php if (Mage::getStoreConfig('proreview/settings/enabled')):?>
+<script type="text/javascript">
+   function addReview(){
+       $('review_box').show();
+       $('add_rev').hide();
+       $('send_rev').show();
+   }
+   
+   function sendReview(){
+       new Ajax.Request('<?php echo $this->getBaseUrl()?>review/product/post/id/<?php echo $_product->getId()?>/',
+             {
+               method:'post',
+               parameters: $('review_form').serialize(true),
+               onLoading: function(){
+                   $('loading').show();
+                 
+               },
+               onSuccess: function(transport){
+                   $('review_box').hide();
+                   $('add_rev').show();
+                   $('send_rev').hide();
+                   $('loading').hide();
+                   $('ajax-msg').update('Your review has been accepted for moderation.');
+                   $('ajax-msg').innerHTML;
+                   $('msgs').show();
+               },
+               onFailure: function(){
+                   $('ajax-msg').update('Error while adding  product review.');
+                   $('ajax-msg').innerHTML;
+                   $('msgs').show();
+               }
+             });
+       
+   }
+   
+   function changePage(page){
+        new Ajax.Request('<?php echo $this->getBaseUrl()?>proreview/front/chpage/',
+             {
+               method:'post',
+               parameters: {'page':page,'product_id':<?php echo $_product->getId()?>},
+               onLoading: function(){
+                   $('loading').show();
+   
+               },
+               onSuccess: function(transport){                    
+                   $('loading').hide();
+                   $('product_review').update(transport.responseText);
+                   $('product_review').innerHTML;
+               },
+               onFailure: function(){
+   
+               }
+             });
+   }
+</script>
+<div class="box-collateral box-reviews" style="position:relative;">
+   <h2><?php echo $this->__('Reviews')?></h2>
+   <div id="loading" style="display:none;position: absolute;right:50%;"><img src="<?php echo $this->getSkinUrl()?>images/ajax-loader.gif" /></div>
+   <ul class="messages" style="display:none" id="msgs">
+      <li class="success-msg">
+         <ul>
+            <li><span id="ajax-msg"></span></li>
+         </ul>
+      </li>
+   </ul>
+   <div class="form-add">
+      <br />
+      <div class="input-box" id="review_box" style="display:none;">
+         <form action="<?php echo $this->getBaseUrl()?>review/product/post/id/<?php echo $_product->getId()?>/" method="POST" id="review_form">
+            <?php if( $ratings && $ratings->getSize()): ?>
+            <h4><?php echo $this->__('How do you rate this product?') ?> <em class="required">*</em></h4>
+            <span id="input-message-box"></span>
+            <table class="data-table" id="product-review-table">
+               <col />
+               <col width="1" />
+               <col width="1" />
+               <col width="1" />
+               <col width="1" />
+               <col width="1" />
+               <thead>
+                  <tr>
+                     <th>&nbsp;</th>
+                     <th><span class="nobr"><?php echo $this->__('1 star') ?></span></th>
+                     <th><span class="nobr"><?php echo $this->__('2 stars') ?></span></th>
+                     <th><span class="nobr"><?php echo $this->__('3 stars') ?></span></th>
+                     <th><span class="nobr"><?php echo $this->__('4 stars') ?></span></th>
+                     <th><span class="nobr"><?php echo $this->__('5 stars') ?></span></th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <?php foreach ($ratings as $_rating): ?>
+                  <tr>
+                     <th><?php echo $this->escapeHtml($_rating->getRatingCode()) ?></th>
+                     <?php foreach ($_rating->getOptions() as $_option): ?>
+                     <td class="value"><input type="radio" name="ratings[<?php echo $_rating->getId() ?>]" id="<?php echo $this->escapeHtml($_rating->getRatingCode()) ?>_<?php echo $_option->getValue() ?>" value="<?php echo $_option->getId() ?>" class="radio" /></td>
+                     <?php endforeach; ?>
+                  </tr>
+                  <?php endforeach; ?>
+               </tbody>
+            </table>
+            <input type="hidden" name="validate_rating" class="validate-rating" value="" />
+            <script type="text/javascript">decorateTable('product-review-table')</script>
+            <?php endif; ?>
+            <ul class="form-list">
+               <li>
+                  <label class="required" for="nickname_field"><em>*</em><?php echo $this->__('Nickname')?></label>
+                  <div class="input-box">
+                     <input type="text" value="" class="input-text required-entry" id="nickname_field" name="nickname" />
+                  </div>
+               </li>
+               <li>
+                  <label class="required" for="summary_field"><em>*</em><?php echo $this->__('Summary of Your Review')?></label>
+                  <div class="input-box">
+                     <input type="text" value="" class="input-text required-entry" id="summary_field" name="title" />
+                  </div>
+               </li>
+               <li>
+                  <label class="required" for="review_field"><em>*</em><?php echo $this->__('Review')?></label>
+                  <div class="input-box">
+                     <textarea class="required-entry" rows="3" cols="5" id="review_field" name="detail"></textarea>
+                  </div>
+               </li>
+            </ul>
+         </form>
+      </div>
+      <?php  if (Mage::getStoreConfig('catalog/review/allow_guest') || Mage::getSingleton('customer/session')->isLoggedIn()):?>
+      <button onclick="addReview();" class="button" title="<?php echo $this->__('Add Review')?>" type="button" id="add_rev">
+      <span>
+      <span><?php echo $this->__('Add Review')?></span>
+      </span>
+      </button>
+      <?php else:?>
+      <?php echo $this->__('Only registered users can write reviews.')?> Please, <a href="<?php echo Mage::getBaseUrl()?>customer/account/login/">log in</a> or <a href="<?php echo Mage::getBaseUrl()?>customer/account/create/">register</a>
+      <?php endif;?>
+      <button onclick="sendReview();" class="button" title="<?php echo $this->__('Submit Review')?>" type="button" id="send_rev" style="display:none;">
+      <span>
+      <span><?php echo $this->__('Submit Review')?></span>
+      </span>
+      </button>
+   </div>
+   <div id="product_review">
+      <?php foreach ($reviewCollectin->getItems() as $_review):?>
+      <div class="Reviews-box">
+         <div class="ratings">
+            <div class="rating-box">
+               <?php $_votes = $_review->getRatingVotes(); ?>
+               <?php if (count($_votes)): ?>
+               <?php foreach ($_votes as $_vote): ?>
+               <div class="rating" style="width:<?php echo $_vote->getPercent() ?>%;"></div>
+               <?php endforeach; ?>
+               <?php endif; ?>
+            </div>
+            <!--rating-box-->
+            <span class="drp"> <?php echo date("M d,Y",strtotime($_review->getCreatedAt())) ?> <?php echo $this->__('by')?> <?php echo $this->htmlEscape($_review->getNickname())?><br /> <b><?php echo $this->htmlEscape($_review->getTitle()) ?></b> </span>
+         </div>
+         <!--ratings-->
+         <div class="rev">
+            <p>
+               <?php echo nl2br($this->htmlEscape($_review->getDetail())) ?>
+<a href="<?php echo $this->getBaseUrl()?>reviews/<?php echo $_product->getUrlKey() ?>/<?php echo str_replace(" ", "-", $_review->getTitle()) ?>.html"> <?php echo $this->__('read more')?></a>
+            </p>
+         </div>
+         <!--rev-->
+      </div>
+      <?php endforeach; ?>
+      <?php if ($reviewCollectin->count() > 10):?>
+      <?php echo $this->__('Page')?>: <?php for ($i=1;$i<=ceil($reviewCollectin->count()/10);$i++){?>
+      <a <?php if ($i == 1) echo 'class="current"'?> href="javascript:void(0);" onclick="changePage(<?php echo $i?>)"><?php echo $i?></a>
+      <?php } ?>
+      <?php endif;?>
+   </div>
+   <?php $reviewUrl = Mage::getUrl('review/product/list', array(
+      'id'        => $_product->getId(),
+      'category'  => $_product->getCategoryId()
+      ));?>
+   <p><button id="all_rev" type="button" title="Add Review" class="button" onclick="location.href='<?php echo $reviewUrl?>';">
+      <span>
+      <span><?php echo $this->__('View all reviews')?></span>
+      </span>
+      </button>
+   </p>
+</div>
+<?php endif;?>

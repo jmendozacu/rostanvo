@@ -1,0 +1,1 @@
+ALTER TABLE `qu_pap_campaigns` ADD `linkingmethod` CHAR( 1 ) NOT NULL DEFAULT '0' AFTER `overwritecookie`; 

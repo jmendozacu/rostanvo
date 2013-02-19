@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <customerrewardadmin_adminhtml_rule_index>
+        <reference name="content">
+            <block type="customerreward/adminhtml_rule" name="customerreward_rule" />
+        </reference>
+    </customerrewardadmin_adminhtml_rule_index>
+    <customerrewardadmin_adminhtml_rate_index>
+		<reference name="content">
+            <block type="customerreward/adminhtml_rate" name="customerreward_rate" />
+        </reference>
+	</customerrewardadmin_adminhtml_rate_index>
+	<customerrewardadmin_adminhtml_transaction_index>
+		<reference name="content">
+            <block type="customerreward/adminhtml_transaction" name="customerreward_transaction" />
+        </reference>
+	</customerrewardadmin_adminhtml_transaction_index>
+	<customerrewardadmin_adminhtml_offer_index>
+		<reference name="content">
+            <block type="customerreward/adminhtml_offer" name="customerreward_offer" />
+        </reference>
+	</customerrewardadmin_adminhtml_offer_index>
+	<customerrewardadmin_adminhtml_offer_products>
+		<block type="core/text_list" name="root">
+			<block type="customerreward/adminhtml_offer_edit_tab_product" name="program.edit.tab.product"/>
+            <block type="adminhtml/widget_grid_serializer" name="related_grid_serializer">
+				<action method="initSerializerBlock">
+					<grid_block_name>program.edit.tab.product</grid_block_name>
+					<data_callback>getSelectedOfferProducts</data_callback>
+					<hidden_input_name>offer_product</hidden_input_name>
+					<reload_param_name>oproduct</reload_param_name>
+				</action>
+				<action method="addColumnInputName">
+					<input_name>position</input_name>
+				</action>
+            </block>
+		</block>
+	</customerrewardadmin_adminhtml_offer_products>
+	<customerrewardadmin_adminhtml_offer_productsgrid>
+		<block type="core/text_list" name="root">
+			<block type="customerreward/adminhtml_offer_edit_tab_product" name="program.edit.tab.product"/>
+		</block>
+	</customerrewardadmin_adminhtml_offer_productsgrid>
+	
+	<adminhtml_sales_order_view>
+		<reference name="order_totals">
+			<block type="customerreward/adminhtml_sales_order_totals" name="customerreward.sales.order.totals" />
+			<block type="customerreward/adminhtml_sales_order_offer" name="customerreward.sales.order.offer" />
+		</reference>
+	</adminhtml_sales_order_view>
+	
+	<adminhtml_sales_order_invoice_new>
+		<reference name="invoice_totals">
+			<block type="customerreward/adminhtml_sales_order_totals" name="customerreward.sales.order.totals" />
+			<block type="customerreward/adminhtml_sales_order_offer" name="customerreward.sales.order.offer" />
+		</reference>
+	</adminhtml_sales_order_invoice_new>
+	<adminhtml_sales_order_invoice_view>
+		<reference name="invoice_totals">
+			<block type="customerreward/adminhtml_sales_order_totals" name="customerreward.sales.order.totals" />
+			<block type="customerreward/adminhtml_sales_order_offer" name="customerreward.sales.order.offer" />
+		</reference>
+	</adminhtml_sales_order_invoice_view>
+	
+	<adminhtml_sales_order_creditmemo_view>
+		<reference name="creditmemo_totals">
+			<block type="customerreward/adminhtml_sales_order_totals" name="customerreward.sales.order.totals" />
+			<block type="customerreward/adminhtml_sales_order_offer" name="customerreward.sales.order.offer" />
+		</reference>
+	</adminhtml_sales_order_creditmemo_view>
+	
+	<adminhtml_customer_edit>
+		<reference name="customer_edit_tabs">
+			<action method="addTab"><name>customerreward_tab</name><block>customerreward/adminhtml_customer_tab_customerreward</block></action>
+		</reference>
+	</adminhtml_customer_edit>
+</layout>

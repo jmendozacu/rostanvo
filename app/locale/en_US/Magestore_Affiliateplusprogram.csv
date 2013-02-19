@@ -1,0 +1,108 @@
+No.,No.
+Program Name,Program Name
+Details,Details
+Created Date,Created Date
+Join Program,Join Program
+View Program Product List,View Program Product List
+Discount: ,Discount: 
+Commission: ,Commission: 
+Product,Product
+Price,Price
+Discount,Discount
+Commission,Commission
+View Product Detail,View Product Detail
+Joined On,Joined On
+Out Program,Out Program
+Program Manager,Program Manager
+Add Program,Add Program
+Save Program,Save Program
+Delete Program,Delete Program
+Save And Continue Edit,Save And Continue Edit
+Edit Program '%s',Edit Program '%s'
+ID,ID
+Number of Account,Number of Account
+Total Amount,Total Amount
+Status,Status
+Action,Action
+CSV,CSV
+XML,XML
+Edit,Edit
+Are you sure?,Are you sure?
+Delete,Delete
+Change status,Change status
+Program Information,Program Information
+Program Detail,Program Detail
+View Transactions,View Transactions
+Affiliate Accounts,Affiliate Accounts
+Categories,Categories
+Products,Products
+Name,Name
+Email,Email
+Balance,Balance
+Total Commission Received,Total Commission Received
+Total Paid,Total Paid
+Position,Position
+Program information,Program information
+-- Please Select --,-- Please Select --
+Use Default,Use Default
+STORE VIEW,STORE VIEW
+Commission Type,Commission Type
+Discount Type,Discount Type
+Expire Time,Expire Time
+Auto join Affiliate Account,Auto join Affiliate Account
+Apply to,Apply to
+Customer Groups,Customer Groups
+Show in Welcome page,Show in Welcome page
+Number of Affiliate Account,Number of Affiliate Account
+Total Sales Amount,Total Sales Amount
+Visibility,Visibility
+SKU,SKU
+Number of Accounts,Number of Accounts
+Affiliate Account,Affiliate Account
+Customer Email,Customer Email
+Order,Order
+Product Name,Product Name
+View Affiliate Account Detail,View Affiliate Account Detail
+"Program: ""%s""","Program: ""%s"""
+Program not found!,Program not found!
+"You have been out of program ""%s"" successfully!","You have been out of program ""%s"" successfully!"
+Program not joined!,Program not joined!
+Program joined already!,Program joined already!
+"You have joined program ""%s"" successfully!","You have joined program ""%s"" successfully!"
+Please select a program to join!,Please select a program to join!
+My Programs,My Programs
+All Programs,All Programs
+Programs Manager,Programs Manager
+Affiliateplus,Affiliateplus
+Manage Programs,Manage Programs
+New Program,New Program
+Program News,Program News
+Program does not exist,Program does not exist
+Program was successfully saved,Program was successfully saved
+Unable to find program to save,Unable to find program to save
+Program was successfully deleted,Program was successfully deleted
+Please select program(s),Please select program(s)
+Total of %d program(s) were successfully deleted,Total of %d program(s) were successfully deleted
+Total of %d program(s) were successfully updated,Total of %d program(s) were successfully updated
+Affiliate Program,Affiliate Program
+View Program Detail,View Program Detail
+View Program Configuration Detail,View Program Configuration Detail
+Default Program,Default Program
+Program(s),Program(s)
+Programs,Programs
+Global,Global
+Customer,Customer
+Enabled,Enabled
+Disabled,Disabled
+Product Categories,Product Categories
+Search,Search
+Reset,Reset
+Back,Back
+There are no programs matching this selection.,There are no programs matching this selection.
+Please select a program to join.,Please select a program to join.
+"'Products in program: ""%s""","'Products in program: ""%s"""
+ou always joined to our default program. The default program detail:,ou always joined to our default program. The default program detail:
+Join All Selected Program,Join All Selected Program
+Other Programs,Other Programs
+List All Programs,List All Programs
+Manage Programs,Manage Programs

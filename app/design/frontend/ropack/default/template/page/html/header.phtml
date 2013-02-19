@@ -1,0 +1,177 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     default_modern
+ * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+/**
+ * @var Mage_Page_Block_Html_Header $this
+ */
+?>
+<div class="header-container">
+    <div class="header">
+        <?php if ($this->getIsHomePage()):?>
+        <h1 class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a></h1>
+        <?php else:?>
+        <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a>
+        <?php endif?>
+        <?php echo $this->getChildHtml('topMenu') ?>
+    </div>
+    <div class="quick-access">
+        <?php echo $this->getChildHtml('store_language') ?>
+        <p class="welcome-msg"><?php echo $this->getWelcome()?></p>
+        <?php echo $this->getChildHtml('topLinks') ?>
+    </div>
+	 
+<?php
+$activeSite=$this->helper('core/url')->getCurrentUrl();
+?>
+
+<?php
+
+$store_id = $this->helper('core')->getStoreId();
+
+?>
+
+<?php if ($store_id == 1) { ?>
+	 
+<!-- siteNavigation $store_id == 1 -->
+<div class="siteNavigation" >
+	<ul><li class = "first <?=($activeSite==Mage::getBaseUrl()||$activeSite==$this->getUrl('home'))?"active":""?>"><a href = "<?php echo $this->getUrl('home')?>">Home</a></li>
+
+	<li class = "<?=($activeSite==$this->getUrl('about-us'))?"active":""?>"><a href = "<?php echo $this->getUrl('about-us')?>">About</a></li>
+	<li
+
+class = "
+
+<?=(
+$activeSite==$this->getUrl('resource/history-of-the-cello-string')||
+$activeSite==$this->getUrl('resource/how-to-choose-cello-strings')||
+$activeSite==$this->getUrl('resource/best-strings')||
+$activeSite==$this->getUrl('how-to-string-a-cello')
+)?"active":""?>">
+
+<a href = "<?php echo $this->getUrl('resource/history-of-the-cello-string')?>">Resource</a>
+		<ul>
+		<li><a href = "<?php echo $this->getUrl('resource/history-of-the-cello-string')?>">History of the Cello string</a></li>
+		<li><a href = "<?php echo $this->getUrl('resource/how-to-choose-cello-strings')?>">How to choose Cello strings</a></li>
+		<li><a href = "<?php echo $this->getUrl('resource/best-strings')?>">Why the best strings are important</a></li>
+		<li><a href = "<?php echo $this->getUrl('resource/how-to-string-a-cello')?>">How to string a Cello</a></li>
+		</ul>
+	</li>
+	<li class = "<?=($activeSite==$this->getUrl('cello-news'))?"active":""?>"><a href = "<?php echo $this->getUrl('cello-news')?>">Cello News</a></li>
+
+
+	<li class = "<?=($activeSite==$this->getUrl('events'))?"active":""?>"><a href = "<?php echo $this->getUrl('events')?>">Events</a></li>
+
+
+	<li class = "<?=($activeSite==$this->getUrl('testimonials'))?"active":""?>"><a href = "<?php echo $this->getUrl('testimonials')?>">Testimonials</a></li>
+	<li class = "last <?=($activeSite==$this->getUrl('shop'))?"active":""?>"><a href = "<?php echo $this->getUrl('shop')?>">Shop</a></li>
+	
+</ul>
+</div>
+
+<?php } elseif ($store_id == 2) {  ?>
+
+<!-- siteNavigation $store_id == 2 -->
+<div class="siteNavigation navde" >
+	<ul><li class = "first <?=($activeSite==Mage::getBaseUrl()||$activeSite==$this->getUrl('home'))?"active":""?>"><a href = "<?php echo $this->getUrl('home')?>">Home</a></li>
+
+	<li class = "<?=($activeSite==$this->getUrl('uber-uns'))?"active":""?>"><a href = "<?php echo $this->getUrl('uber-uns')?>">Über uns</a></li>
+	<li
+
+class = "
+
+<?=(
+$activeSite==$this->getUrl('resource/history-of-the-cello-string')||
+$activeSite==$this->getUrl('resource/how-to-choose-cello-strings')||
+$activeSite==$this->getUrl('resource/best-strings')||
+$activeSite==$this->getUrl('how-to-string-a-cello')
+)?"active":""?>">
+
+<a href = "<?php echo $this->getUrl('resource/history-of-the-cello-string')?>">Resource</a>
+		<ul>
+		<li><a href = "<?php echo $this->getUrl('resource/history-of-the-cello-string')?>">History of the Cello string</a></li>
+		<li><a href = "<?php echo $this->getUrl('resource/how-to-choose-cello-strings')?>">How to choose Cello strings</a></li>
+		<li><a href = "<?php echo $this->getUrl('resource/best-strings')?>">Why the best strings are important</a></li>
+		<li><a href = "<?php echo $this->getUrl('resource/how-to-string-a-cello')?>">How to string a Cello</a></li>
+		</ul>
+	</li>
+	<li class = "<?=($activeSite==$this->getUrl('cello-news'))?"active":""?>"><a href = "<?php echo $this->getUrl('cello-news')?>">Cello News</a></li>
+
+
+	<li class = "<?=($activeSite==$this->getUrl('events'))?"active":""?>"><a href = "<?php echo $this->getUrl('events')?>">Events</a></li>
+
+
+	<li class = "<?=($activeSite==$this->getUrl('testimonials'))?"active":""?>"><a href = "<?php echo $this->getUrl('referenzen')?>">Referenzen</a></li>
+	<li class = "last <?=($activeSite==$this->getUrl('shop'))?"active":""?>"><a href = "<?php echo $this->getUrl('shop')?>">Shop</a></li>
+	
+</ul>
+</div>
+
+<?php } elseif ($store_id == 3) {  ?>
+
+<!-- siteNavigation $store_id == 3 -->
+<div class="siteNavigation" >
+	<ul><li class = "first <?=($activeSite==Mage::getBaseUrl()||$activeSite==$this->getUrl('home'))?"active":""?>"><a href = "<?php echo $this->getUrl('home')?>">Home</a></li>
+
+	<li class = "<?=($activeSite==$this->getUrl('about-us'))?"active":""?>"><a href = "<?php echo $this->getUrl('about-us')?>">About</a></li>
+	<li
+
+class = "
+
+<?=(
+$activeSite==$this->getUrl('resource/history-of-the-cello-string')||
+$activeSite==$this->getUrl('resource/how-to-choose-cello-strings')||
+$activeSite==$this->getUrl('resource/best-strings')||
+$activeSite==$this->getUrl('how-to-string-a-cello')
+)?"active":""?>">
+
+<a href = "<?php echo $this->getUrl('resource/history-of-the-cello-string')?>">Resource</a>
+		<ul>
+		<li><a href = "<?php echo $this->getUrl('resource/history-of-the-cello-string')?>">History of the Cello string</a></li>
+		<li><a href = "<?php echo $this->getUrl('resource/how-to-choose-cello-strings')?>">How to choose Cello strings</a></li>
+		<li><a href = "<?php echo $this->getUrl('resource/best-strings')?>">Why the best strings are important</a></li>
+		<li><a href = "<?php echo $this->getUrl('resource/how-to-string-a-cello')?>">How to string a Cello</a></li>
+		</ul>
+	</li>
+	<li class = "<?=($activeSite==$this->getUrl('cello-news'))?"active":""?>"><a href = "<?php echo $this->getUrl('cello-news')?>">Cello News</a></li>
+
+
+	<li class = "<?=($activeSite==$this->getUrl('events'))?"active":""?>"><a href = "<?php echo $this->getUrl('events')?>">Events</a></li>
+
+
+	<li class = "<?=($activeSite==$this->getUrl('testimonials'))?"active":""?>"><a href = "<?php echo $this->getUrl('testimonials')?>">Testimonials</a></li>
+	<li class = "last <?=($activeSite==$this->getUrl('shop'))?"active":""?>"><a href = "<?php echo $this->getUrl('shop')?>">Shop</a></li>
+	
+</ul>
+</div>
+	 
+<?php };  ?>	 
+	 
+	 
+	 
+  <?php echo $this->getChildHtml('topBar') ?>
+    <?php echo $this->getChildHtml('topContainer'); ?>
+</div>
+
+

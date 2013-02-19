@@ -1,0 +1,17 @@
+<?php
+/**
+ * Paypal Payment Method Form template
+ */
+?>
+<?php $acount = $this->getAcount() ?>
+<ul>
+	<li class="fields">
+		<div class="field">
+			<label for="paypal_email" class="required"><?php echo $this->__('Paypal Email') ?></label>
+			<div class="input-box">
+				<input type="text" class="input-text required-entry validate-email" id="paypal_email" name="paypal_email" title="<?php echo $this->__('Paypal Email') ?>" value="<?php echo $acount->getPaypalEmail() ?>" />
+				<small><?php echo $this->__('This field will be updated to your profile!') ?></small>
+			</div>
+		</div>
+	</li>
+</ul>

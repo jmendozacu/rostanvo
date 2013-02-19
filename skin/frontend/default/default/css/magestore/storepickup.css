@@ -1,0 +1,165 @@
+
+#select-store {
+	margin:0 0 0 10px;
+}
+#shipping_date{
+	width:140px;
+	float:left;
+	margin:0 2px 5px 0;
+}
+#shipping_time{
+	width:146px;
+}
+#store_id{
+	width:146px;
+	float:left;
+}
+
+#date-notation, #store-notation,#shipping_date_trig{
+	float:left;
+}
+
+#date-notation, #store-notation{
+	margin:0 0 0 10px;
+	color:#FF0000;
+	font-weight:bold;
+}
+.storepickup-box{
+	margin:0 0 10px 20px;
+}
+
+/* Guide Text*/
+#storepickup-guid-text {
+	margin:0px 20px 10px 20px;
+	padding-bottom:10px;
+}
+#storepickup-guid-text ul {
+	list-style-type: disc;
+	list-style-position:inside;
+	margin:10px 20px 10px 20px;
+}	
+/* End Guide Text*/
+
+/*list Store */
+#head-list-store{
+	margin:10px 0 20px 40px;
+}
+#list-store.left_column
+{	
+	background-color:#F5F5F5;
+	padding:20px;
+}
+.dottedBox {
+	border-bottom:1px dotted #C8C8C8;
+}
+
+.result_store {
+	height: 500px;
+	overflow-x: scroll;
+	border-top: 1px solid #C8C8C8;
+}
+
+.searchform {
+	padding-bottom: 5px;
+}
+
+.search_store {
+	width:450px;
+	float:left;
+}
+
+#list-store .right_column
+{
+	border-left:1px solid #AAAAAA;
+	padding-left:15px;
+}
+
+.store-pickup-list select{margin-left:50px;}
+
+.store-pickup-list input{margin-left:10px;}
+.store-pickup-list-city input{margin-left:72px;}
+.store-pickup-list-name input{margin-left:26px;}
+
+#storepickup-form{
+	margin: 0 0 0 40px;
+}
+
+#storepickup-form label{
+	display:block;
+}
+#storepickup-form  select{
+	width:180px;
+	margin:0 20px 10px 0;
+}
+
+#list-store .title{
+	display:block;
+	font-weight:bold;
+}
+#list-store .store-address{
+	display:block;
+	margin:2px 0 0 20px;
+}
+
+
+#list-store .storepickup-nav{
+	margin: 20px 0 0 20px;
+}
+.part-left table td{padding: 0 2px!important;}
+/*End list Store */
+
+/*Shipping Method*/
+.storepickup-box label{
+	margin:10px 0 0 0;	
+	display:block;
+}
+
+#free-location-box #list-location{
+	width:300px;
+	float:left;
+}
+
+#free-location-box .location-box {
+	width:250px;
+}
+
+#free-location-box .location-box select{
+	width:146px;
+	margin:0 0 0 20px;
+}
+#free-location-box .location-box  label{
+	margin:10px 0 0 20px;	
+	display:block;
+}
+#free-location-box #store-location{
+	float:left;
+	width:300px;
+}
+
+#select-store{
+	width:200px;
+	float:left;
+	margin:0 0 0 10px;	
+}
+
+
+#store-info{float:left}
+.shipment-methods #store-info{
+	/*margin :20px 10px 0 40px;*/
+	float:left;
+	width:425px!important;
+}
+.shipment-methods #store-info .st_map{
+	float:left;
+	margin-left:30px;
+}
+
+#store-info .title{
+	display:block;
+	font-weight:bold;
+}
+#store-info .store-address{
+	display:block;
+	margin:2px 0 0 20px;
+}
+/*End Shipping Method*/

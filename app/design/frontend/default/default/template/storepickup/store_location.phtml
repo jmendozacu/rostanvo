@@ -1,0 +1,79 @@
+
+<?php $stores = $this->getPageStore()?>
+<?php $countries = $this->getListCountry()?>
+<?php $curr_country_id = $this->getCurrCountryId() ?>
+<?php $regions = $this->getListRegion()?>
+<?php $curr_region_id = $this->getCurrRegionId() ?>
+<?php $cities = $this->getListCity()?>
+<?php $curr_city_id = $this->getCurrCityId() ?>
+<?php $suburbs = $this->getListSuburb()?>
+<?php $curr_suburb_id = $this->getCurrSuburbId() ?>
+<div class="location-box">
+	<label for="date"><?php echo $this->__('Country') ?> </label>
+	<select class=" validate-select" name="country_id" id="store_country_id">
+		<option value="" selected><?php echo $this->__('Select Country')?></option>
+		<?php if(count($countries)): ?>
+			<?php foreach($countries as $country_id=>$country_name):?>
+				<?php $selected = '' ?>
+				<?php if($curr_country_id == $country_id) $selected="selected" ?>
+				<option value="<?php echo $country_id ?>" <?php echo $selected?> ><?php echo $country_name ?></option>
+			<?php endforeach;?>
+		<?php endif; ?>
+	</select>
+</div>
+<div class="location-box">
+	<label for="date"><?php echo $this->__('Region') ?> </label>
+	<select class=" validate-select" name="region_id" id="store_region_id">
+		<option value="" selected><?php echo $this->__('Select Region')?></option>
+		<?php if(count($regions)): ?>
+			<?php foreach($regions as $region_id=>$region_name):?>
+				<?php $selected = '' ?>
+				<?php if($curr_region_id == $region_id) $selected="selected" ?>
+				<option value="<?php echo $region_id ?>" <?php echo $selected?> ><?php echo $region_name ?></option>
+			<?php endforeach;?>
+		<?php endif; ?>
+	</select>
+</div>
+<div class="location-box">	
+	<label for="date"><?php echo $this->__('City') ?> </label>
+	<select class=" validate-select" name="city_id" id="store_city_id">
+		<option value="" selected><?php echo $this->__('Select City') ?></option>
+		<?php if(count($cities)): ?>
+			<?php foreach($cities as $city_id=>$city_name):?>
+				<?php $selected = '' ?>
+				<?php if($curr_city_id == $city_id) $selected="selected" ?>
+				<option value="<?php echo $city_id ?>" <?php echo $selected?> ><?php echo $city_name ?></option>
+			<?php endforeach;?>
+		<?php endif; ?>						
+	</select>
+</div>
+<div class="location-box">	
+	<label for="date"><?php echo $this->__('Suburb') ?> </label>
+	<select class=" validate-select" name="suburb_id" id="suburb_id">
+		<option value="" selected><?php echo $this->__('Select Suburb') ?></option>
+		<?php if(count($suburbs)): ?>
+			<?php foreach($suburbs as $suburb_id=>$suburb_name):?>
+				<?php $selected = '' ?>
+				<?php if($curr_suburb_id == $suburb_id) $selected="selected" ?>
+				<option value="<?php echo $suburb_id ?>" <?php echo $selected?> ><?php echo $suburb_name ?></option>
+			<?php endforeach;?>
+		<?php endif; ?>							
+	</select>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+	var storelocation = new StoreLocation('<?php echo $this->getUrl('storepickup/index/changeregion',array('_secure'=>true)) ?>');
+	
+	Event.observe('store_country_id', 'change', function(event){ 
+			storelocation.changecountry('<?php echo $this->getUrl('storepickup/index/changecountry',array('_secure'=>true)) ?>');
+	});
+	
+	Event.observe('store_region_id', 'change', function(event){ 
+			storelocation.changeregion('<?php echo $this->getUrl('storepickup/index/changeregion',array('_secure'=>true)) ?>');
+	});
+	
+	Event.observe('store_city_id', 'change', function(event){ 
+			storelocation.changecity('<?php echo $this->getUrl('storepickup/index/changecity',array('_secure'=>true)) ?>');
+	});	
+//]]>
+</script>

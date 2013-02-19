@@ -1,0 +1,1 @@
+ALTER TABLE qu_pap_banners ADD target VARCHAR( 10 ) NULL AFTER destinationurl;

@@ -1,0 +1,1 @@
+UPDATE qu_pap_transactions SET dateapproved = dateinserted WHERE (rtype = 'R' or rtype = 'H') and dateapproved < dateinserted;

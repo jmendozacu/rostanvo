@@ -1,0 +1,337 @@
+/**
+* Customer reward template
+*/
+.customerreward-money{
+	color: #3182be;
+	font-size: 13px;
+}
+
+#transactions-history .expiration-date{
+	color: #606060;
+}
+
+.customerreward-checkout-action{
+	background-color: #FFE8DB;
+	float: left;
+	margin: 2px 2px 7px 0px;
+	padding: 1px;
+	width: 172px;
+	text-align: left;
+}
+
+.sidebar .customerreward-icon{
+	display: inline !important;
+}
+
+.customerreward-checkout-action .customerreward-icon{
+	float: right !important;
+}
+
+.customerreward-offer{
+	width: 685px;
+	margin: 20px auto 20px auto;
+
+}
+
+.offer-head{
+
+}
+
+.offer-head h2{
+    color: #525252;
+    font-size: 25.05px;
+	padding-top: 41px;
+	
+}
+.box-customerreward-summary{
+	color:#333;
+	font-size: 13px;
+}
+.box-customerreward-summary .box-head h2 {background: url("../../images/customerreward/cup-gold.png") no-repeat scroll 0 0 transparent; padding-top:5px;}
+.box-customerreward h2{padding-left: 24px!important; color: #e75605!important; font-size: 14px!important;font-weight: normal!important;line-height: 27px;}
+.box-customerreward p{background: none transparent !important;padding:0!important;margin-bottom:17px!important;}
+.box-customerreward p.last{margin: 0 !important;}
+.box-customerreward .pager{background: url("../../images/customerreward/bg-body-box.gif") repeat-y scroll 0 0 transparent;padding:10px 21px 0; border-top: 0 none!important;}
+.box-customerreward-orderrule #transactions-orderrule, #transactions-links {background: url("../../images/customerreward/bg-body-box.gif") repeat-y scroll 0 0 transparent;}
+#transactions-history tbody td, #transactions-links tbody td, #transactions-orderrule tbody td{color: #343434;}
+#transactions-history thead th, #transactions-links thead th,  #transactions-orderrule thead th {
+    background: none repeat scroll 0 0 #FFE8DB;
+	border-right: 1px solid #cfcfcf;
+	border-bottom: 1px solid #cfcfcf!important;
+	color: #343434;
+}
+.box-customerreward-history .table-history, .box-customerreward-links .table-links, .box-customerreward-orderrule .table-orderrule{ background: url("../../images/customerreward/bg-body-box.gif") repeat-y scroll 0 0 transparent;padding: 5px 21px 0;}
+.box-customerreward-orderrule .pager strong{color: #343434}
+.box-customerreward .pager .amount {    
+	margin: 0 !important;
+    padding: 0 !important;
+}
+.box-customerreward-orderrule .pager{
+	border-top: 0 none!important;
+	padding: 5px 21px 0;
+}
+#transactions-history, #transactions-orderrule, #transactions-links{
+	background: none repeat scroll 0 0 #FFE8DB;
+	width: 640px!important;
+}
+
+#transactions-history .old, #transactions-links .odd, #transactions-orderrule .odd {
+    background: none repeat scroll 0 0 #FFFFFF;
+}
+.box-customerreward-orderrule .box-head h2 {background: url("../../images/customerreward/earn_point.png") no-repeat scroll 0 3px transparent;}
+.box-customerreward-history .box-head h2 {background: url("../../images/customerreward/icon-orderrule.png") no-repeat scroll 0 6px transparent;padding-top:5px;}
+.box-customerreward-links .box-head h2 {background: url("../../images/customerreward/icon-links.png") no-repeat scroll 0 5px transparent;padding-top:5px;}
+.offer-body{
+	font-size: 15px;
+	margin-top: 10px;
+}
+#transactions-links tbody td{}
+.offer-body .offer-description{
+    color: #454545;
+    font-size: 13px;
+    margin-bottom: 30px;
+	line-height: 17px;
+	text-align: justify;
+}
+
+#transactions-links a {
+    color: #2B618A;
+    font-size: 12px;
+    text-decoration: underline;
+}
+.offer-body{padding: 10px 40px!important;}
+.box-customerreward .info-summary, .offer-body{
+	background: url("../../images/customerreward/bg-body-box.gif") repeat-y scroll 0 0 transparent;
+	margin: 0;
+    padding: 10px 21px;
+	padding-bottom: 0 !important;
+}
+.box-customerreward .box-bottom, .customerreward-offer .box-bottom{
+	background: url("../../images/customerreward/bg-bottom.gif") no-repeat scroll 0 0 transparent;
+	height: 17px;
+}
+.offer-head{
+	background: url("../../images/customerreward/bg-header2.gif") no-repeat scroll 0 0 transparent;	     
+	height: 81px;	
+    padding: 0 40px;
+    
+}
+.box-customerreward .box-head{
+	background: url("../../images/customerreward/bg-header.gif") no-repeat scroll 0 0 transparent;	     
+    height: 28px;
+    padding: 15px 21px 0;
+	margin:0;
+	border: 0 none;
+}
+.box-customerreward{
+	border: 0 none;
+	padding: 0;
+	
+} 
+
+.offer-body .offer-share{
+	overflow: hidden;
+	background: url("../../images/customerreward/div-line.png") no-repeat scroll center -25px transparent;
+	_background: url("../../images/customerreward/bg-div-line.gif") no-repeat;
+	min-height: 275px;
+	_width: 610px;
+}
+
+.offer-body .offer-share-left{
+    float: left;
+    padding: 0 37px 37px 0;
+    text-align: center;
+    width: 266px;
+}
+
+.offer-body .offer-share-left img{
+	width: 200px;
+	max-height: 270px;
+}
+
+.offer-body .offer-share-right{
+	float: left;
+	padding-left: 37px;
+}
+
+.offer-body .offer-share-list li{
+	height: 52px;
+}
+
+.offer-body .offer-share-list li a{
+    color: #454545;
+    font-size: 18px;
+    font-weight: normal;
+    position: absolute;
+    text-decoration: none;
+}
+.share-link-title{
+	font-size: 15px!important;
+	color: #454545;
+	font-weight: normal;
+}
+.offer-earn{
+	color: #4d4d4d;
+	font-size: 12px;
+	text-align: justify;
+	
+}
+.offer-discount{
+	color: #4d4d4d;
+	font-size: 12px;
+	text-align: justify;
+	
+}
+.offer-body .offer-share-list li.share-link{
+	padding: 4px 1px 4px 60px;
+	background: url('../../images/customerreward/share.png') no-repeat left center;
+	_background: url('../../images/customerreward/share.gif') no-repeat left center;
+}
+.share-link input{
+    border: 1px solid #D8D8D8;
+    height: 27px;
+    padding-left: 5px;
+    width: 197px;
+	line-height: 27px;
+}
+
+.offer-body .offer-share-list li.share-facebook{
+	height: 60px;
+}
+.offer-body .offer-share-list li.share-facebook a{
+	height: 43px;
+	padding: 13px 1px 4px 60px;
+	background: url('../../images/customerreward/facebook.png') no-repeat left center;
+	_background: url('../../images/customerreward/facebook.gif') no-repeat left center;
+}
+
+.offer-body .offer-share-list li.share-twitter{
+	height: 60px;
+}
+.offer-body .offer-share-list li.share-twitter a{
+	height: 43px;
+	padding: 13px 1px 4px 60px;
+	background: url('../../images/customerreward/twitter.png') no-repeat left center;
+	_background: url('../../images/customerreward/twitter.gif') no-repeat left center;
+}
+
+.offer-body .offer-share-list li.share-mail{
+	height: 60px;
+}
+.offer-body .offer-share-list li.share-mail a{
+	height: 43px;
+	padding: 13px 1px 4px 60px;
+	background: url('../../images/customerreward/send_mail.png') no-repeat left center;
+	_background: url('../../images/customerreward/send_mail.gif') no-repeat left center;
+}
+
+.offer-body .offer-validate strong{
+	color: #747474;
+	font-weight: normal;
+}
+.offer-exchange-description p{
+	color: #4d4d4d;
+	font-size: 12px;
+	font-weight: normal;
+	text-align: justify;
+}
+.offer-exchange-description h3{
+	color: #e26703;
+	font-size: 15px;
+	font-weight: bold;
+	text-align:left;
+}
+.offer-body .offer-validate{
+    background: none repeat scroll 0 0 #FFEFE2;
+    color: #454545;
+    font-size: 14px;
+    font-weight: normal;
+    text-align: center;
+	width: 100%;
+}
+
+.offer-body .offer-warning{
+	background: url('../../images/customerreward/warning.png') no-repeat left center;
+	font-size: 21px;
+	color: #A01012;
+	padding-left: 60px;
+}
+
+.offer-overview{
+	overflow: hidden;
+}
+
+.offer-overview .offer-overview-img{
+	float: left !important;
+}
+
+.offer-overview .offer-rebate-img{
+	float: left !important;
+	max-width: 128px;
+}
+
+.offer-overview .offer-overview-description{
+	color: #525252;
+	width:60%;
+	margin: 0 0 0 10px;
+}
+
+.offer-overview .offer-rebate-description{
+	margin-left: 145px;
+	color: #525252;
+	font-size: 15px;
+}
+
+.offer-overview .offer-rebate-description h3{
+	font-size: 17px;
+}
+
+.offer-overview .offer-rebate-description ul.offer-discount,.customerreward-money p{
+	font-size: inherit !important;
+}
+
+.offer-overview .offer-overview-description .customerreward-money{
+	font-size: inherit !important;
+}
+
+.offer-overview .offer-overview-description p{
+	font-size: 24px;
+}
+
+.offer-howto{
+	overflow: hidden;
+	margin: 20px 0 20px 0;
+}
+
+.offer-howto h3{
+	font-size: 17px;
+}
+
+.offer-howto .offer-question{
+	float: left;
+	width: 50%;
+}
+
+.offer-howto .offer-contact{
+	margin: 0;
+}
+
+.offer-proceed{
+	font-size: 21px;
+	background-color: #E3E3E3;
+	border-bottom: 21px;
+	text-align: center;
+}
+
+.customerreward .fieldset .legend{
+	background:url(../../images/supportticket/submit-ticket.gif) top left no-repeat;
+	border:0 none;
+	width:185px;
+	height:29px; 
+	overflow:hidden;
+	padding:5px 0 0;
+	margin:-37px 0 0 -10px;
+	text-align:center;
+	color:#ffffff;
+	text-transform:uppercase;
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Customerssales
+ * Customers & Guests grid from sales_flat_order
+ *
+ * @author      Alexandr Martynov <joyview@gmail.com>
+ */ 
+ -->
+<config>
+    <modules>
+        <Domore_Customerssales>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Domore_Customerssales>
+	</modules>
+</config>

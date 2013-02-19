@@ -1,0 +1,98 @@
+<?php
+/**
+ * Banner view template
+ */
+?>
+
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+
+<?php $bannerCollection = $this->getBannerCollection() ?>
+<?php $typesLabel = $this->getTypesLabel() ?>
+
+<div class="page-title">
+	<h2><?php echo $this->__('Banners & Links') ?></h2>
+</div>
+
+<div class="banner-filter">
+	<strong><?php echo $this->__('Filter:') ?></strong>
+	<?php foreach ($this->getFilters() as $filter): ?>
+		<span>
+			<?php if ($filter['current']): ?>
+				<?php echo $filter['label'] ?>
+			<?php else: ?>
+				<a href="<?php echo $filter['url'] ?>" title="<?php echo $filter['label'] ?>"><?php echo $filter['label'] ?></a>
+			<?php endif ?>
+		</span>
+	<?php endforeach ?>
+</div>
+<br />
+
+<?php if ($bannerCollection->getSize()): ?>
+<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
+<script src="//platform.twitter.com/widgets.js" type="text/javascript"></script>
+<ul id="banner-view-list">
+	<?php foreach ($bannerCollection as $banner): ?>
+	<li class="banner-view-item">
+		<?php if ($banner->getTypeId() == '1')://Image ?>
+			<div class="banner-image-title">
+				<strong><?php echo $this->__('Title: %s',$banner->getTitle()) ?><br />
+				<?php echo $this->__('Type: Image') ?><br />
+				<?php echo $this->__('Size: %sx%s',$banner->getWidth(),$banner->getHeight()) ?><br />
+				<?php echo $this->__('Link: ') ?><a href="<?php echo $this->getBannerUrl($banner) ?>"><?php echo Mage::helper('core/string')->truncate($this->getBannerUrl($banner),100) ?></a></strong>
+			</div>
+			<div class="banner-image">
+				<?php $bannerHtml = '<a href="'.$this->getBannerUrl($banner).'" target="_blank"><img src="'.$this->getBannerSrc($banner).'" title="'.$banner->getTitle().'" width="'.$banner->getWidth().'" height="'.$banner->getHeight().'" /></a>' ?>
+				<?php echo $bannerHtml ?>
+			</div>
+			<br />
+		<?php elseif ($banner->getTypeId() == '2')://Flash ?>
+			<div class="banner-flash-title">
+				<strong><?php echo $this->__('Title: %s',$banner->getTitle()) ?><br />
+				<?php echo $this->__('Type: Flash') ?><br />
+				<?php echo $this->__('Size: %sx%s',$banner->getWidth(),$banner->getHeight()) ?><br />
+				<?php echo $this->__('Link: ') ?><a href="<?php echo $this->getBannerUrl($banner) ?>"><?php echo Mage::helper('core/string')->truncate($this->getBannerUrl($banner),100) ?></a></strong>
+			</div>
+			<div class="banner-flash">
+				<?php $bannerHtml = '<a href="'.$this->getBannerUrl($banner).'" target="_blank"><embed src="'.$this->getBannerSrc($banner).'" title="'.$banner->getTitle().'" width="'.$banner->getWidth().'" height="'.$banner->getHeight().'" type="application/x-shockwave-flash" wmode="transparent" quality="high" pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" /></a>' ?>
+				<?php echo $bannerHtml ?>
+			</div>
+			<br />
+		<?php elseif ($banner->getTypeId() == '3')://Text ?>
+			<div class="banner-text-title">
+				<strong><?php echo $this->__('Title: %s',$banner->getTitle()) ?><br />
+				<?php echo $this->__('Type: Text') ?><br />
+				<?php echo $this->__('Link: ') ?><a href="<?php echo $this->getBannerUrl($banner) ?>"><?php echo Mage::helper('core/string')->truncate($this->getBannerUrl($banner),100) ?></a></strong>
+			</div>
+			<div class="banner-text">
+				<?php $bannerHtml = '<a href="'.$this->getBannerUrl($banner).'" target="_blank" title="'.$banner->getTitle().'">'.$banner->getTitle().'</a>' ?>
+				<strong><?php echo $this->__('Preview: ') ?></strong><?php echo $bannerHtml ?>
+				<br />
+			</div>
+		<?php endif ?>
+		<div class="banner-share">
+			<p>
+				<?php echo $this->__('Copy/ paste this source code into your website/ forum.') ?>
+				<span class="share share_facebook"><a name="fb_share" share_url="<?php echo $this->htmlEscape($this->getBannerUrl($banner)) ?>"><?php echo $this->__('Share') ?></a></span>
+				<span class="share share_twitter"><a data-url="<?php echo $this->htmlEscape($this->getBannerUrl($banner)) ?>" class="twitter-share-button" data-count="horizontal" data-via="magestore"><?php echo $this->__('Tweet') ?></a></span>
+				<span class="share share_google"><g:plusone size="medium" href="<?php echo $this->htmlEscape($this->getBannerUrl($banner)) ?>"></g:plusone></span>
+			</p>
+			<p><textarea readonly="true" onclick="this.select();" class="banner-share-url" rows="4" style="width:100%"><?php echo $this->htmlEscape($bannerHtml) ?></textarea></p>
+		</div>
+	</li>
+	<?php endforeach ?>
+</ul>
+<script type="text/javascript">
+	decorateList('banner-view-list');
+	(function() {
+		var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+		po.src = 'https://apis.google.com/js/plusone.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+	})();
+</script>
+<?php else : ?>
+<div>
+	<p class="note-msg">
+		<?php echo $this->__('There are no banners matching the selection.') ?>
+	</p>
+</div>
+<?php endif ?>

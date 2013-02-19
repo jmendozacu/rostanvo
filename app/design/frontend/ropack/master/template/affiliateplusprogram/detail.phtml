@@ -1,0 +1,71 @@
+<?php
+/**
+ * Sales transaction history template
+ */
+?>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+
+<div class="page-title">
+	<h2><?php echo $this->__('Products in program: "%s"',$this->getProgram()->getName()) ?></h2>
+</div>
+
+<form id="affiliateplus_program_list_search" method="get">
+	<div class="affiliateplus-form-search">
+		<div class="input-box left">
+			<div class="label row left">
+				<label for="product_name">Product Name</label>
+			</div>
+			<div class="row left">
+				<input type="text" id="product_name" name="name" class="input-text" value="<?php echo $this->getRequest()->getParam('name') ?>" />
+			</div>
+		</div>
+		<div class="button-set">
+			<button class="form-button button" type="submit" style="margin-left:10px;">
+				<span>
+					<span><?php echo $this->__('Search') ?></span>
+				</span>
+			</button>
+			<button class="form-button button" type="button" onclick="setLocation('<?php echo $this->getUrl('affiliateplusprogram/index/detail',array('id' => $this->getProgram()->getId() )) ?>')" >
+				<span>
+					<span><?php echo $this->__('Reset') ?></span>
+				</span>
+			</button>
+		</div>
+	</div>
+	<div class="clear">&nbsp;</div>
+</form>
+
+<?php if ($this->getCollection()->getSize()): ?>
+	<?php echo $this->getPagerHtml() ?>
+	<?php echo $this->getGridHtml() ?>
+	<?php echo $this->getPagerHtml() ?>
+<?php else: ?>
+<div>
+	<p class="note-msg">
+		<?php echo $this->__('There are no programs matching this selection.') ?>
+	</p>
+</div>
+<?php endif ?>
+
+<div class="buttons-set">
+	<p class="back-link">
+		<a href="javascript:history.go(-1)">
+			<button type="button" class="form-button button" onclick="javascript:history.go(-1)">
+				<span><?php echo $this->__('Back')?></span>
+			</button>
+		</a>
+	</p>
+<?php if ($this->isJoined()): ?>
+	<button class="button" type="button" onclick='setLocation("<?php echo $this->getUrl('affiliateplusprogram/index/out',array('id' => $this->getProgram()->getId())) ?>")'>
+		<span>
+			<span><?php echo $this->__('Out Program') ?></span>
+		</span>
+	</button>
+<?php else: ?>
+	<button class="button" type="button" onclick='setLocation("<?php echo $this->getUrl('affiliateplusprogram/index/join',array('id' => $this->getProgram()->getId())) ?>")'>
+		<span>
+			<?php echo $this->__('Join Program') ?>
+		</span>
+	</button>
+<?php endif ?>
+</div>

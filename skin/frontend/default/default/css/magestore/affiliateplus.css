@@ -1,0 +1,27 @@
+/* Affiliateplus stylesheet */
+.affiliate_message { margin: 10px 0px 0px 0px; }
+
+/* Banner-Links */
+#banner-view-list li.banner-view-item{ border-top: 2px solid #CCCCCC; margin-bottom: 45px; }
+#banner-view-list li.banner-view-item span.share{ float: right; }
+
+/* Referer */
+#referer_grid thead th a { color: #0A263C; }
+#referer_grid thead th a:hover{ color: #0A263C; }
+
+/* Miniform request money */
+.affiliateplus_form_request { overflow: hidden; margin-bottom: 10px; }
+
+/* Tiers */
+#tiers_grid thead th a { color: #0A263C; }
+#tiers_grid thead th a:hover{ color: #0A263C; }
+
+/* Payment Method */
+li.payment_method_form { margin-left: 21px; }
+#affiliateplus_payment_request_form input.radio { float:left; margin: 3px 5px 0px 0px; }
+
+/*  Contact Group */
+#group-table tr { cursor:pointer;}
+#group-table tr:hover{ background-color:#FCF5DD}
+
+/* End */

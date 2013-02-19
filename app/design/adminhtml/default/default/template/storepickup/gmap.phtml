@@ -1,0 +1,112 @@
+<script src="http://maps.google.com/maps?file=api&v=2&key=<?php echo $this->getGKey()?>" type="text/javascript"></script>
+<?php $store = $this->getStore() ?>
+<?php $coordinates['lat'] = $store->getStoreLatitude()?>
+<?php $coordinates['lng'] = $store->getStoreLongitude()?>
+<?php $zoom = 2?>
+<?php if($coordinates['lat'] == '0.000' && $coordinates['lat'] == '0.000'):?>
+	<?php $coordinates = $this->getCoordinates() ?>
+<?php endif;?>
+<?php if($coordinates['lat'] == '0.000' && $coordinates['lat'] == '0.000'):?>
+	<?php $zoom = 12?>
+<?php endif;?>
+<?php $address = $store->getFormatedAddress()?>
+<div id="map" style="width: 600px; height: 400px"></div>
+<script type="text/javascript">
+//<![CDATA[
+var geocoder = new GClientGeocoder();
+var setLat = <?php echo $coordinates['lat'] ?>;
+var setLon = <?php echo $coordinates['lng'] ?>; 
+
+function argItems (theArgName) {
+	sArgs = location.search.slice(1).split('&');
+		r = '';
+		for (var i = 0; i < sArgs.length; i++) {
+			if (sArgs[i].slice(0,sArgs[i].indexOf('=')) == theArgName) {
+					r = sArgs[i].slice(sArgs[i].indexOf('=')+1);
+					break;
+			}
+		}
+	return (r.length > 0 ? unescape(r).split(',') : '')
+}
+
+function getCoordForAddress(response) {
+
+	if (!response || response.Status.code != 200) {
+		alert("Sorry, we were unable to geocode that address\n\n Sorry, dat adres bestaat blijkbaar niet!");
+	} else {
+		place = response.Placemark[0];
+		setLat = place.Point.coordinates[1];
+		setLon = place.Point.coordinates[0];
+		setLat = setLat.toFixed(6);
+		setLon = setLon.toFixed(6);
+		$('store_latitude').value = setLat; 
+		$('store_longtitude').value = setLon; 
+	}
+	placeMarker(setLat, setLon)
+}
+
+var preMarked =null ;
+var store_info = '<?php echo Mage::helper('storepickup')->jsQuoteEscape($store->getStoreName()) ?><br/><?php echo str_replace("\n","",str_replace("\r","",Mage::helper('storepickup')->jsQuoteEscape($address))); ?>';
+function placeMarker(setLat, setLon) {
+	var message = "geotagged geo:lat=" + setLat + " geo:lon=" + setLon + " "; 
+	var messageRoboGEO = setLat + ";" + setLon + ""; 
+	var map = new GMap(document.getElementById("map"));
+	
+	map.addControl(new GSmallMapControl()); // added
+	map.addControl(new GMapTypeControl()); // added
+	map.centerAndZoom(new GPoint(setLon, setLat), <?php echo $zoom?>);
+	
+	var point = new GPoint(setLon, setLat);
+	var marker = new GMarker(point);
+	map.addOverlay(marker);
+	
+	preMarked = marker;
+	
+	GEvent.addListener(map, 'click', function(overlay, point) {
+		
+		if(preMarked != null)
+		{
+			map.removeOverlay(preMarked);
+		}
+		
+		if (overlay) {
+			map.removeOverlay(overlay);
+		} else if (point) {
+			
+			map.recenterOrPanToLatLng(point);
+			var marker = new GMarker(point);
+			
+			preMarked = marker;
+			
+			map.addOverlay(marker);
+			var matchll = /\(([-.\d]*), ([-.\d]*)/.exec( point );
+			if ( matchll ) { 
+				var lat = parseFloat( matchll[1] );
+				var lon = parseFloat( matchll[2] );
+				lat = lat.toFixed(6);
+				lon = lon.toFixed(6);
+				var message = "geotagged geo:lat=" + lat + " geo:lon=" + lon + " "; 
+				var messageRoboGEO = lat + ";" + lon + ""; 
+				
+				$('store_latitude').value = lat; 
+				$('store_longitude').value = lon; 
+				
+			} else { 
+				var message = "<b>Error extracting info from</b>:" + point + ""; 
+				var messagRoboGEO = message;
+			}
+			marker.openInfoWindowHtml(store_info);
+		}
+	});
+}
+if (argItems("lat") == '' || argItems("lon") == '') {
+	placeMarker(setLat, setLon);
+} else {
+	var setLat = parseFloat( argItems("lat") );
+	var setLon = parseFloat( argItems("lon") );
+	setLat = setLat.toFixed(6);
+	setLon = setLon.toFixed(6);
+	placeMarker(setLat, setLon);
+}
+//]]>
+</script>  

@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<config>
+	<menu>
+		<customerreward module="customerreward">
+			<title>Customer Reward</title>
+			<sort_order>71</sort_order>
+			<children>
+				<rule module="customerreward">
+					<title>Manage rule</title>
+					<sort_order>0</sort_order>
+					<action>customerrewardadmin/adminhtml_rule</action>
+				</rule>
+				<rate module="customerreward">
+					<title>Manage rate</title>
+					<sort_order>10</sort_order>
+					<action>customerrewardadmin/adminhtml_rate</action>
+				</rate>
+				<offer module="customerreward">
+					<title>Manage offer</title>
+					<sort_order>20</sort_order>
+					<action>customerrewardadmin/adminhtml_offer</action>
+				</offer>
+				<transaction module="customerreward">
+					<title>Transaction</title>
+					<sort_order>30</sort_order>
+					<action>customerrewardadmin/adminhtml_transaction</action>
+				</transaction>
+				<setting module="customerreward">
+					<title>Setting</title>
+					<sort_order>40</sort_order>
+					<action>adminhtml/system_config/edit/section/customerreward</action>
+				</setting>
+			</children>
+		</customerreward>
+	</menu>
+	<acl>
+		<resources>
+			<all>
+				<title>Allow Everything</title>
+			</all>
+			<admin>
+				<children>
+					<system>
+						<children>
+							<config>
+								<children>
+									<customerreward translate="title">
+										<title>Customer Reward</title>
+										<sort_order>40</sort_order>
+									</customerreward>
+								</children>
+							</config>
+						</children>
+					</system>				
+					<customerreward>
+						<title>Customer Reward</title>
+						<sort_order>10</sort_order>
+						<children>
+							<rule module="customerreward">
+								<title>Manage rule</title>
+								<sort_order>0</sort_order>
+								<action>customerrewardadmin/adminhtml_rule</action>
+							</rule>
+							<rate module="customerreward">
+								<title>Manage rate</title>
+								<sort_order>10</sort_order>
+								<action>customerrewardadmin/adminhtml_rate</action>
+							</rate>
+							<offer module="customerreward">
+								<title>Manage offer</title>
+								<sort_order>20</sort_order>
+								<action>customerrewardadmin/adminhtml_offer</action>
+							</offer>
+							<transaction module="customerreward">
+								<title>Transaction</title>
+								<sort_order>30</sort_order>
+								<action>customerrewardadmin/adminhtml_transaction</action>
+							</transaction>
+							<setting module="customerreward">
+								<title>Setting</title>
+								<sort_order>40</sort_order>
+								<action>adminhtml/system_config/edit/section/customerreward</action>
+							</setting>				
+						</children>
+					</customerreward>
+				</children>
+			</admin>
+		</resources>
+	</acl>
+</config>

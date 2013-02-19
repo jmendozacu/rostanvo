@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+		<reference name="head">
+			<action method="addCss">
+                <styleSheet>magestore/storepickup.css</styleSheet>
+            </action>
+        </reference>	
+    </default>
+	
+    <storepickup_adminhtml_store_index>
+        <reference name="content">
+            <block type="storepickup/adminhtml_store" name="store" />
+        </reference>
+    </storepickup_adminhtml_store_index>
+	
+    <storepickup_adminhtml_holiday_index>
+        <reference name="content">
+            <block type="storepickup/adminhtml_holiday" name="holiday" />
+        </reference>
+    </storepickup_adminhtml_holiday_index>
+	
+    <adminhtml_sales_order_view>
+        <reference name="sales_order_tabs">
+            <action method="addTab">
+                <name>storepickup</name>
+                <block>storepickup/adminhtml_sales_tab_storepickup</block>
+            </action>
+        </reference>
+    </adminhtml_sales_order_view>	
+	<adminhtml_sales_order_create_index>
+		<reference name="head">
+			<action method="addJs"><script>magestore/storepickup.js</script></action>		
+		</reference>
+		<reference name="shipping_method">
+			<action method="setTemplate"><template>storepickup/abstract.phtml</template></action>
+		</reference>
+	</adminhtml_sales_order_create_index>
+	<!-- Rel@ted Orders -->
+    <storepickup_adminhtml_store_relatedorders>
+        <block type="core/text_list" name="root">
+            <block type="storepickup/adminhtml_store_edit_tab_relatedorders" name="storepickup.edit.tab.relatedorders"/>
+            <block type="adminhtml/widget_grid_serializer" name="related_grid_serializer">
+                <action method="initSerializerBlock">
+                    <grid_block_name>storepickup.edit.tab.relatedorders</grid_block_name>
+                    <data_callback>getSelectedRelatedOrders</data_callback>
+                    <hidden_input_name>storepickup_relatedorders</hidden_input_name><!-- -->
+                    <reload_param_name>relatedorders</reload_param_name><!-- reload goi productGrid-->
+                </action>
+                <action method="addColumnInputName">
+                    <input_name>position</input_name>
+                </action>
+            </block>
+        </block>	
+    </storepickup_adminhtml_store_relatedorders>
+    <storepickup_adminhtml_store_relatedordersgrid>
+        <block type="core/text_list" name="root">
+            <block type="storepickup/adminhtml_store_edit_tab_relatedorders" name="storepickup.edit.tab.relatedorders"/>
+        </block>
+    </storepickup_adminhtml_store_relatedordersgrid>
+</layout>

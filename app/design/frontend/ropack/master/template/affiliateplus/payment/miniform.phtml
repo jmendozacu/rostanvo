@@ -1,0 +1,32 @@
+<?php
+/**
+ * Payments miniform request template
+ */
+?>
+<form id="affiliateplus_payment_request_miniform" action="<?php echo $this->getFormActionUrl() ?>" method="post">
+	<div class="affiliateplus_form_request">
+		<div class="left">
+			<strong><?php echo $this->__('My Balance: ') ?></strong>
+			<?php echo $this->getFormatedBalance() ?>
+		</div>
+		<div class="input_fields_form right">
+			<button class="button right" title="<?php echo $this->__('Request Payment') ?>" type="submit">
+				<span><span><?php echo $this->__('Request Payment') ?></span></span>
+			</button>
+			<label for="request_amount" class="left"><strong><?php echo $this->__('') ?></strong></label>
+			<input id="request_amount" name="amount" class="input-text required-entry validate-greater-than-zero" type="text" onchange="checkAmountBalance(this);" />
+		</div>
+	</div>
+</form>
+<script type="text/javascript">
+//<![CDATA[
+	var affiliateplusPaymentRequestMiniform = new VarienForm('affiliateplus_payment_request_miniform',true);
+	var request_amount_max = <?php echo $this->getBalance() ?>;
+	function checkAmountBalance(el){
+		el.value = parseFloat(el.value);
+		if (el.value < 0) el.value = 0;
+		else if (el.value > request_amount_max || el.value == 'NaN') el.value = request_amount_max;
+	}
+//]]>
+</script>
+<div class="clear"></div>

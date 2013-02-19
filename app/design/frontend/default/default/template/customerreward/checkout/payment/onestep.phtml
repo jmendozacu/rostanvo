@@ -1,0 +1,107 @@
+<?php
+	/**
+	 * Payment method for one step checkout template 
+	 */
+?>
+<div class="onestepcheckout-payment-methods">
+	<dl class="sp-methods" id="checkout-payment-method-load">
+	
+	<?php $customerrewardEnabled = $this->customerrewardEnabled() && count($this->getMethods()) ?>
+	<?php if ($customerrewardEnabled): ?>
+		<dt>
+			<input type="checkbox" name="payment[use_point]" id="use_point" checked="checked" onclick="usePointCheck();" />
+			<label for="use_point"><?php echo $this->__('Use my point(s) balance') ?></label>
+		</dt>
+		<dt>
+			<input type="text" name="payment[point_amount]" id="point_amount" onchange="pointAmountChange();" />
+			<label for="point_amount"><?php echo $this->__('of %s point(s) %s available.',$this->getBalance(),$this->getMoneyBalance()) ?></label>
+		</dt>
+	<?php endif //end ?>
+	
+	<?php foreach ($this->getMethods() as $_method): $_code = $_method->getCode() ?>
+		<dt>
+		<?php if( sizeof($this->getMethods()) > 1 ): ?>			
+				<input id="p_method_<?php echo $_code ?>" value="<?php echo $_code ?>" type="radio" name="payment[method]" title="<?php echo $this->htmlEscape($_method->getTitle()) ?>" onclick="save_shipping_method(shipping_method_url);" <?php if($this->getSelectedMethodCode()==$_code): ?> checked="checked"<?php endif; ?> class="radio" />
+		<?php else: ?>
+				<span class="no-display"><input id="p_method_<?php echo $_code ?>" value="<?php echo $_code ?>" type="radio" name="payment[method]" checked="checked" class="radio" onclick="save_shipping_method(shipping_method_url);" /></span>
+		<?php endif; ?>
+				<label for="p_method_<?php echo $_code ?>"><?php echo $this->getMethodTitle($_method) ?> <?php echo $this->getMethodLabelAfterHtml($_method) ?></label>
+		</dt>
+		<?php if ($html = $this->getPaymentMethodFormHtml($_method)): ?>
+		<dd id="container_payment_method_<?php echo $_code; ?>" class="payment-method">
+				<?php echo $html; ?>
+		</dd>
+		<?php endif; ?>
+	<?php endforeach; ?>
+	</dl>
+</div>
+<div class="tool-tip" id="payment-tool-tip" style="display:none;">
+	<div class="btn-close"><a href="#" id="payment-tool-tip-close" title="<?php echo $this->__('Close') ?>"><?php echo $this->__('Close') ?></a></div>
+	<div class="tool-tip-content"><img src="<?php echo $this->getSkinUrl('images/cvv.gif') ?>" alt="<?php echo $this->__('Card Verification Number Visual Reference') ?>" title="<?php echo $this->__('Card Verification Number Visual Reference') ?>" /></div>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+$$('#checkout-payment-method-load dt input').invoke('observe', 'click', function(e) {
+    var element = e.element();
+    var name = 'payment_form_' + element.value;
+    
+    /* Hide all other forms */
+    $$('dd.payment-method').invoke('hide');
+    
+    if(element.checked) {
+        var form = $(name);
+        var container = $('container_payment_method_' + element.value);
+
+        if(element !== null && container !== null)    {
+            container.show();
+            $(name).show();
+        }
+    }    
+});
+//]]>
+</script>
+<script type="text/javascript">
+//<![CDATA[
+	function toggleToolTip(event){
+		if($('payment-tool-tip')){
+			$('payment-tool-tip').setStyle({
+				top: (Event.pointerY(event)-560)+'px'//,
+				//left: (Event.pointerX(event)+100)+'px'
+			})
+			$('payment-tool-tip').toggle();
+		}
+		Event.stop(event);
+	}
+	if($('payment-tool-tip-close')){
+		Event.observe($('payment-tool-tip-close'), 'click', toggleToolTip);
+	}
+	
+	initWhatIsCvvListeners();	
+//]]>
+</script>
+<script type="text/javascript">
+//<![CDATA[
+<?php if ($customerrewardEnabled): ?>
+	var usePointCheck = function (){
+		checked = $('use_point').checked;
+		if (checked)
+			$('point_amount').disabled = false;
+		else
+			$('point_amount').value = 0;
+		save_shipping_method(shipping_method_url);
+		if (!checked)
+			$('point_amount').disabled = true;
+	}
+	var maxPointsForOrder = <?php echo $this->getMaxPointsForOrder() ?>;
+	$('point_amount').value = maxPointsForOrder;
+	var pointAmountChange = function(){
+		if (isNaN($('point_amount').value) || $('point_amount').value < 0 ) $('point_amount').value = 0;
+		if ($('point_amount').value > maxPointsForOrder) $('point_amount').value = maxPointsForOrder;
+		save_shipping_method(shipping_method_url);
+	}
+	$('use_point').disabled = false;
+	usePointCheck();
+	save_shipping_method(shipping_method_url);
+<?php endif ?>
+//]]>
+</script>

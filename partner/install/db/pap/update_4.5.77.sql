@@ -1,0 +1,1 @@
+ALTER TABLE `qu_pap_coupons` ADD `usecount` INT NULL;

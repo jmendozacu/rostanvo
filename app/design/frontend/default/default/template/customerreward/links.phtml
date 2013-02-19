@@ -1,0 +1,70 @@
+<?php
+	/**
+	 * Transaction history template
+	 */
+?>
+<?php $collection = $this->getCollection() ?>
+<?php if ($collection->getSize()): ?>
+<?php $isCouponUsed = Mage::helper('customerreward')->getReferConfig('coupon') ?>
+<div class="box-account box-info box-customerreward-links">
+	<div class="box-head">
+		<h2><?php echo $isCouponUsed ? $this->__('My Coupons') : $this->__('My Links') ?></h2>
+	</div>
+	<?php echo $this->getPagerHtml() ?>
+	<div class="">
+	<table class="data-table" id="transactions-links-new">
+		<col class="id" />
+		<col class="url" />
+		<col class="visits" />
+		<col class="uniqueclicks" />
+		<col class="is_active" />
+		<col class="from_date" />
+		<col class="to_date" />
+		<thead>
+			<tr>
+				<th><?php echo $this->__('ID') ?></th>
+			<?php if ($isCouponUsed): ?>
+				<th><?php echo $this->__('Coupon Code') ?></th>
+				<th><?php echo $this->__('Uses') ?></th>
+				<th><?php echo $this->__('Uses per Customer') ?></th>
+				<th><?php echo $this->__('Max uses') ?></th>
+			<?php else: ?>
+				<th><?php echo $this->__('Url') ?></th>
+				<th><?php echo $this->__('Visit(s)') ?></th>
+				<th><?php echo $this->__('Unique <br /> click(s)') ?></th>
+			<?php endif ?>
+				<th><?php echo $this->__('Active') ?></th>
+				<th><?php echo $this->__('Validate from') ?></th>
+				<th><?php echo $this->__('Expired at') ?></th>
+			</tr>
+			<tbody>
+				<?php foreach($collection as $item): ?>
+				<tr>
+					<td><?php echo $item->getId() ?></td>
+				<?php if ($isCouponUsed): ?>
+					<td><?php echo $item->getCoupon() ?></td>
+					<td><?php echo $item->getUsed() ?></td>
+					<td><?php echo $item->getUsesPerCustomer() ? $item->getUsesPerCustomer() : $this->__('Unlimited') ?></td>
+					<td><?php echo $item->getUsesPerCoupon() ? $item->getUsesPerCoupon() : $this->__('Unlimited') ?></td>
+				<?php else: ?>
+					<?php $url = $this->getShareUrl($item->getKey()) ?>
+					<td><?php echo $this->__('<a href="%s" title="%s">%s</a>',$url,$url,Mage::helper('core/string')->truncate($url,36)) ?></td>
+					<td><?php echo $item->getVisitCount() ?></td>
+					<td><?php echo $item->getUniqueClick() ?></td>
+				<?php endif ?>
+					<td><?php echo $item->getIsActive()?$this->__('Yes'):$this->__('No') ?></td>
+					<td><?php echo $item->getFromDate()?$this->getDayFormat($item->getFromDate()):'' ?></td>
+					<td><?php echo $item->getToDate()?$this->getDayFormat($item->getToDate()):'' ?></td>
+				</tr>
+				<?php endforeach ?>
+			</tbody>
+		</thead>
+	</table>
+	<script type="text/javascript">decorateTable('transactions-links-new');</script>
+	
+	</div>
+	<?php echo $this->getPagerHtml() ?>
+	<div class="box-bottom">		
+	</div>
+</div>
+<?php endif ?>

@@ -1,0 +1,1 @@
+ALTER TABLE `qu_pap_impressions1` ADD `rstatus` CHAR( 1 ) NULL DEFAULT 'U' AFTER `date`;

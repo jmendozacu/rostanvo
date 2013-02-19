@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<config>
+  <menu>
+    <storepickup module="storepickup">
+		<title>Storepickup</title>
+		<sort_order>70</sort_order>               
+		<children>
+			<stores module="storepickup">
+			    <title>Manage Stores</title>
+			    <sort_order>0</sort_order>
+			    <action>storepickup/adminhtml_store</action>
+			</stores>					
+			<holidays module="storepickup">
+				<title>Manage Holidays</title>
+				<sort_order>2</sort_order>
+				<action>storepickup/adminhtml_holiday</action>
+			</holidays>
+		</children>
+    </storepickup>
+  </menu>
+  <acl>
+    <resources>
+		<all>
+			<title>Allow Everything</title>
+		</all>
+		<admin>
+		    <children>
+				<storepickup module="storepickup">
+					<title>Storepickup</title>
+					<sort_order>70</sort_order>               
+					<children>
+						<stores module="storepickup">
+							<title>Manage Stores</title>
+							<sort_order>0</sort_order>			
+							<action>storepickup/adminhtml_store</action>
+						</stores>					
+						<holidays module="storepickup">
+							<title>Manage Holidays</title>
+							<sort_order>1</sort_order>
+							<action>storepickup/adminhtml_holiday</action>
+						</holidays>
+					</children>
+				</storepickup>				
+			</children>
+		</admin>
+    </resources>
+  </acl>			
+</config>

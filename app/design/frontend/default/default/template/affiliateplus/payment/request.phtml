@@ -1,0 +1,105 @@
+<?php
+/**
+ * Request Payment Method Form template
+ */
+?>
+<?php $paymentMethods = $this->getAllPaymentMethod() ?>
+
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+
+<div class="page-title">
+	<h3><?php echo $this->__('Request payment'); ?></h3>
+</div>
+
+<form id="affiliateplus_payment_request_form" action="<?php echo $this->getFormActionUrl() ?>" method="post">
+	<div class="fieldset">
+		<h2 class="legend"><?php echo $this->__('Request Information') ?></h2>
+		<ul class="form-list">
+			<li class="fields">
+				<div class="field">
+					<label for="amount" class="required"><em>*</em><?php echo $this->__('Request Amount') ?></label>
+					<div class="input-box">
+						<input id="amount" type="text" name="amount" class="input-text required-entry validate-greater-than-zero" onchange="checkAmountBalance(this);" value="<?php echo $this->getAmount() ?>" />
+					</div>
+				</div>
+				<div class="field">
+					<label for="balance"><?php echo $this->__('My Balance') ?></label>
+					<div class="input-box">
+						<strong id="balance"><?php echo $this->getFormatedBalance() ?></strong>
+					</div>
+				</div>
+			</li>
+		<?php if (count($paymentMethods) == 1): ?>
+			<?php foreach ($paymentMethods as $code => $method): ?>
+				<li class="wide">
+					<input type="hidden" id="payment_method_<?php echo $code ?>" value="<?php echo $code ?>" name="payment_method" />
+				</li>
+				<li id="payment_method_<?php echo $code ?>_form">
+					<?php echo $this->getChildHtml("payment_method_form_$code") ?>
+				</li>
+			<?php endforeach ?>
+		<?php else: ?>
+			<?php $isFirst = true ?>
+			<?php foreach ($paymentMethods as $code => $method): ?>
+				<li class="wide">
+					<input type="radio" id="payment_method_<?php echo $code ?>" value="<?php echo $code ?>" name="payment_method" title="<?php echo $method->getLabel() ?>" class="radio" onchange="changeMethod();" <?php if ($isFirst): ?>checked<?php endif ?> />
+					<label for="payment_method_<?php echo $code ?>" style="float:center;"><?php echo $method->getLabel() ?></label>
+				</li>
+				<li class="payment_method_form" id="payment_method_<?php echo $code ?>_form" <?php if ($isFirst) $isFirst=false; else echo 'style="display:none"'; ?>>
+					<?php echo $this->getChildHtml("payment_method_form_$code") ?>
+				</li>
+			<?php endforeach ?>
+		<?php endif ?>
+		</ul>
+	</div>
+	<div class="clear"></div>
+	<div class="buttons-set">
+		<p class="required">* <?php echo $this->__('Required Fields'); ?></p>
+		<button class="button" title="<?php echo $this->__('Send Request'); ?>" type="button" onclick="submitPayment();">
+			<span>
+				<span>
+					<?php echo $this->__('Send Request'); ?>
+				</span>
+			</span>
+		</button>
+		<a class="left" href="javascript:history.go(-1)">
+			<button type="button" class="form-button button" onclick="javascript:history.go(-1)">
+				<span><?php echo $this->__('Back')?></span>
+			</button>
+		</a>
+	</div>
+</form>
+
+<script type="text/javascript">
+//<![CDATA[
+	var affiliateplusPaymentRequestForm = new VarienForm('affiliateplus_payment_request_form',true);
+	
+	function submitPayment(){
+	<?php if (count($paymentMethods) == 1): ?>
+		affiliateplusPaymentRequestForm.submit();
+	<?php else: ?>
+		if ($$('input:checked[type="radio"][name="payment_method"]').pluck('value')[0])
+			affiliateplusPaymentRequestForm.submit();
+		else
+			alert('<?php echo $this->__('Please specify payment method') ?>');
+	<?php endif ?>
+	}
+	
+	function changeMethod(){
+		$$('input[type="radio"][name="payment_method"]').each(function(el){
+			if (el.checked){
+				$('payment_method_'+el.value+'_form').show();
+			}else{
+				$('payment_method_'+el.value+'_form').hide();
+			}
+		});
+	}
+	
+	var request_amount_max = <?php echo $this->getBalance() ?>;
+	function checkAmountBalance(el){
+		el.value = parseFloat(el.value);
+		if (el.value < 0) el.value = 0;
+		else if (el.value > request_amount_max || el.value == 'NaN') el.value = request_amount_max;
+	}
+//]]>
+</script>

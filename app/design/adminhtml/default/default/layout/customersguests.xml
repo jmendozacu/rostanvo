@@ -1,0 +1,7 @@
+<layout>
+	<customersguests_adminhtml_index_index>
+		<reference name="content">
+			<block type="customersguests/map" name="customersguests.map" />
+		</reference>
+	</customersguests_adminhtml_index_index>
+</layout>

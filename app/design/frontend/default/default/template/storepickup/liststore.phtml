@@ -1,0 +1,46 @@
+<?php $modelshipping = Mage::getModel('storepickup/shipping_storepickup')?>
+<?php $present_text = $modelshipping->getConfigData('present_text') ?>
+<?php $is_search = $this->isSearch() ?>
+<div id="list-store">
+<div id="head-list-store">
+	<h2><?php echo $this->__('Our Retailers')?> </h2>
+</div>
+<form action="<?php echo $this->getUrl('storepickup/index',array())?>" method="post" name="storeform" id="storeform" >
+	<table width="98%" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td width="18%" valign="top" class="left_column">	
+				<div id="storepickup-form">
+					<?php echo $this->getChildHtml('store_location') ?>
+					<br/>
+					<button  type="submit" class="form-button-alt left">
+						<span><?echo $this->__('GO')?></span>
+					</button>
+				</div>
+			</td>
+			<td class="right_column" width="78%" valign="top">	
+				<div id="page-store">
+					<?php if(!$is_search):?>
+						<div id="storepickup-guid-text">
+							<?php echo $present_text ?>
+						</div>	
+					<?php else: ?>
+						<?php echo $this->getChildHtml('page_store') ?>
+					<?php endif; ?>
+				</div>
+			</td>
+		</tr>
+	</table>
+	<input type="hidden" name="is_search" value="1" />
+</form>
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+	var storelocation4 = new StoreLocation('');
+
+	Event.observe('suburb_id', 'change', function(event){ 
+			storelocation4.changesuburbPagestore('<?php echo $this->getUrl('storepickup/index/changesuburbpagestore',array()) ?>');
+	});		
+	
+//]]>
+</script>
