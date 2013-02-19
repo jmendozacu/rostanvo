@@ -2,3 +2,4 @@
 app/etc/local.xml
 nbproject/
 var/
+.DS_Store
