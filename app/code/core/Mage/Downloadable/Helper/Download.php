@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Downloadable
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -246,6 +246,13 @@ class Mage_Downloadable_Helper_Download extends Mage_Core_Helper_Abstract
      */
     public function setResource($resourceFile, $linkType = self::LINK_TYPE_FILE)
     {
+        if (self::LINK_TYPE_FILE == $linkType) {
+            //check LFI protection
+            /** @var $helper Mage_Core_Helper_Data */
+            $helper = Mage::helper('core');
+            $helper->checkLfiProtection($resourceFile);
+        }
+
         $this->_resourceFile    = $resourceFile;
         $this->_linkType        = $linkType;
 

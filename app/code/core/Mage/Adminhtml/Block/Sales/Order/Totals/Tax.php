@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Adminhtml
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -40,28 +40,40 @@ class Mage_Adminhtml_Block_Sales_Order_Totals_Tax extends Mage_Tax_Block_Sales_O
      */
     public function getFullTaxInfo()
     {
+        /** @var $source Mage_Sales_Model_Order */
         $source = $this->getOrder();
-        $info = array();
+
+        $taxClassAmount = array();
         if ($source instanceof Mage_Sales_Model_Order) {
-            $rates = Mage::getModel('sales/order_tax')->getCollection()->loadByOrder($source)->toArray();
-            $info  = Mage::getSingleton('tax/calculation')->reproduceProcess($rates['items']);
+            $taxClassAmount = Mage::helper('tax')->getCalculatedTaxes($source);
+            if (empty($taxClassAmount)) {
+                $rates = Mage::getModel('sales/order_tax')->getCollection()->loadByOrder($source)->toArray();
+                $taxClassAmount =  Mage::getSingleton('tax/calculation')->reproduceProcess($rates['items']);
+            } else {
+                $shippingTax    = Mage::helper('tax')->getShippingTax($source);
+                $taxClassAmount = array_merge($shippingTax, $taxClassAmount);
+            }
         }
-        
-        return $info;
+
+        return $taxClassAmount;
     }
 
     /**
-     * Display tax abount
+     * Display tax amount
      *
      * @return string
      */
     public function displayAmount($amount, $baseAmount)
     {
-        return Mage::helper('adminhtml/sales')->displayPrices($this->getSource(), $baseAmount, $amount, false, '<br />');
+        return Mage::helper('adminhtml/sales')->displayPrices(
+            $this->getSource(), $baseAmount, $amount, false, '<br />'
+        );
     }
 
     /**
      * Get store object for process configuration settings
+     *
+     * @return Mage_Core_Model_Store
      */
     public function getStore()
     {

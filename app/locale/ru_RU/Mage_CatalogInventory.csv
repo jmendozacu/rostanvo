@@ -12,6 +12,7 @@
 "Cannot specify product identifier for the order item.","Невозможно указать идентификатор товара для элемента заказа."
 "Catalog Inventory","Товары каталога"
 "Decrease Stock When Order is Placed","Уменьшать количество товара в момент оформления заказа"
+"Display Out of Stock Products","Показывать товары, которых нет в наличии"
 "Enable Qty Increments","Включить шаг количества"
 "In Stock","в наличии"
 "Index Product Stock Status","Создать индекс статусов наличия товара"

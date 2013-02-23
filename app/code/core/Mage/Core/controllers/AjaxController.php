@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Core
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -41,7 +41,16 @@ class Mage_Core_AjaxController extends Mage_Core_Controller_Front_Action
     {
         $translation = $this->getRequest()->getPost('translate');
         $area = $this->getRequest()->getPost('area');
-        echo Mage::helper('core/translate')->apply($translation, $area);
-        exit();
+
+        //filtering
+        /** @var $filter Mage_Core_Model_Input_Filter_MaliciousCode */
+        $filter = Mage::getModel('core/input_filter_maliciousCode');
+        foreach ($translation as &$item) {
+            $item['custom'] = $filter->filter($item['custom']);
+        }
+
+        $response = Mage::helper('core/translate')->apply($translation, $area);
+        $this->getResponse()->setBody($response);
+        $this->setFlag('', self::FLAG_NO_POST_DISPATCH, true);
     }
 }

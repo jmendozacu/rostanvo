@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Authorizenet
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -32,7 +32,8 @@ require_once 'Mage/Adminhtml/controllers/Sales/Order/CreateController.php';
  * @package    Mage_DirtectPost
  * @author     Magento Core Team <core@magentocommerce.com>
  */
-class Mage_Authorizenet_Adminhtml_Authorizenet_Directpost_PaymentController extends Mage_Adminhtml_Sales_Order_CreateController
+class Mage_Authorizenet_Adminhtml_Authorizenet_Directpost_PaymentController
+    extends Mage_Adminhtml_Sales_Order_CreateController
 {
     /**
      * Get session model
@@ -73,7 +74,7 @@ class Mage_Authorizenet_Adminhtml_Authorizenet_Directpost_PaymentController exte
         $paymentParam = $this->getRequest()->getParam('payment');
         $controller = $this->getRequest()->getParam('controller');
         $this->getRequest()->setPost('collect_shipping_rates', 1);
-        $this->_processData();
+        $this->_processActionData('save');
 
         //get confirmation by email flag
         $orderData = $this->getRequest()->getPost('order');
@@ -119,7 +120,9 @@ class Mage_Authorizenet_Adminhtml_Authorizenet_Directpost_PaymentController exte
 
                     $adminUrl = Mage::getSingleton('adminhtml/url');
                     if ($adminUrl->useSecretKey()) {
-                        $requestToPaygate->setKey($adminUrl->getSecretKey('authorizenet_directpost_payment', 'redirect'));
+                        $requestToPaygate->setKey(
+                            $adminUrl->getSecretKey('authorizenet_directpost_payment','redirect')
+                        );
                     }
                     $result['directpost'] = array('fields' => $requestToPaygate->getData());
                 }
@@ -142,7 +145,7 @@ class Mage_Authorizenet_Adminhtml_Authorizenet_Directpost_PaymentController exte
             if ($isError) {
                 $result['success'] = 0;
                 $result['error'] = 1;
-                $result['redirect'] = Mage::getSingleton('adminhtml/url')->getUrl('*/*/');
+                $result['redirect'] = Mage::getSingleton('adminhtml/url')->getUrl('*/sales_order_create/');
             }
 
             $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($result));

@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Adminhtml
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -115,18 +115,27 @@ class Mage_Adminhtml_Block_Customer_Edit_Tab_Addresses extends Mage_Adminhtml_Bl
         );
 
         $addressModel = Mage::getModel('customer/address');
-        /* @var $addressForm Mage_Customer_Model_Form */
+        $addressModel->setCountryId(Mage::helper('core')->getDefaultCountry($customer->getStore()));
+        /** @var $addressForm Mage_Customer_Model_Form */
         $addressForm = Mage::getModel('customer/form');
         $addressForm->setFormCode('adminhtml_customer_address')
-            ->setEntity($addressModel);
+            ->setEntity($addressModel)
+            ->initDefaultValues();
 
         $attributes = $addressForm->getAttributes();
+        if(isset($attributes['street'])) {
+            Mage::helper('adminhtml/addresses')
+                ->processStreetAttribute($attributes['street']);
+        }
         foreach ($attributes as $attribute) {
+            /* @var $attribute Mage_Eav_Model_Entity_Attribute */
+            $attribute->setFrontendLabel(Mage::helper('customer')->__($attribute->getFrontend()->getLabel()));
             $attribute->unsIsVisible();
         }
         $this->_setFieldset($attributes, $fieldset);
 
         $regionElement = $form->getElement('region');
+        $regionElement->setRequired(true);
         if ($regionElement) {
             $regionElement->setRenderer(Mage::getModel('adminhtml/customer_renderer_region'));
         }
@@ -150,9 +159,43 @@ class Mage_Adminhtml_Block_Customer_Edit_Tab_Addresses extends Mage_Adminhtml_Bl
             }
         }
 
+        $customerStoreId = null;
+        if ($customer->getId()) {
+            $customerStoreId = Mage::app()->getWebsite($customer->getWebsiteId())->getDefaultStore()->getId();
+        }
+
+        $prefixElement = $form->getElement('prefix');
+        if ($prefixElement) {
+            $prefixOptions = $this->helper('customer')->getNamePrefixOptions($customerStoreId);
+            if (!empty($prefixOptions)) {
+                $fieldset->removeField($prefixElement->getId());
+                $prefixField = $fieldset->addField($prefixElement->getId(),
+                    'select',
+                    $prefixElement->getData(),
+                    '^'
+                );
+                $prefixField->setValues($prefixOptions);
+            }
+        }
+
+        $suffixElement = $form->getElement('suffix');
+        if ($suffixElement) {
+            $suffixOptions = $this->helper('customer')->getNameSuffixOptions($customerStoreId);
+            if (!empty($suffixOptions)) {
+                $fieldset->removeField($suffixElement->getId());
+                $suffixField = $fieldset->addField($suffixElement->getId(),
+                    'select',
+                    $suffixElement->getData(),
+                    $form->getElement('lastname')->getId()
+                );
+                $suffixField->setValues($suffixOptions);
+            }
+        }
+
         $addressCollection = $customer->getAddresses();
         $this->assign('customer', $customer);
         $this->assign('addressCollection', $addressCollection);
+        $form->setValues($addressModel->getData());
         $this->setForm($form);
 
         return $this;
@@ -196,9 +239,39 @@ class Mage_Adminhtml_Block_Customer_Edit_Tab_Addresses extends Mage_Adminhtml_Bl
         $websites = Mage::getSingleton('adminhtml/system_store')->getWebsiteValuesForForm(false, true);
         $result = array();
         foreach ($websites as $website) {
-            $result[$website['value']] = Mage::app()->getWebsite($website['value'])->getConfig(Mage_Core_Helper_Data::XML_PATH_DEFAULT_COUNTRY);
+            $result[$website['value']] = Mage::app()->getWebsite($website['value'])->getConfig(
+                Mage_Core_Helper_Data::XML_PATH_DEFAULT_COUNTRY
+            );
         }
 
         return Mage::helper('core')->jsonEncode($result);
+    }
+
+    /**
+     * Add specified values to name prefix element values
+     *
+     * @param string|int|array $values
+     * @return Mage_Adminhtml_Block_Customer_Edit_Tab_Addresses
+     */
+    public function addValuesToNamePrefixElement($values)
+    {
+        if ($this->getForm() && $this->getForm()->getElement('prefix')) {
+            $this->getForm()->getElement('prefix')->addElementValues($values);
+        }
+        return $this;
+    }
+
+    /**
+     * Add specified values to name suffix element values
+     *
+     * @param string|int|array $values
+     * @return Mage_Adminhtml_Block_Customer_Edit_Tab_Addresses
+     */
+    public function addValuesToNameSuffixElement($values)
+    {
+        if ($this->getForm() && $this->getForm()->getElement('suffix')) {
+            $this->getForm()->getElement('suffix')->addElementValues($values);
+        }
+        return $this;
     }
 }

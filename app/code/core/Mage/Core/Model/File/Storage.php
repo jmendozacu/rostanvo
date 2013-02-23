@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Core
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -45,6 +45,9 @@ class Mage_Core_Model_File_Storage extends Mage_Core_Model_Abstract
      */
     const XML_PATH_STORAGE_MEDIA            = 'default/system/media_storage_configuration/media_storage';
     const XML_PATH_STORAGE_MEDIA_DATABASE   = 'default/system/media_storage_configuration/media_database';
+    const XML_PATH_MEDIA_RESOURCE_WHITELIST = 'default/system/media_storage_configuration/allowed_resources';
+    const XML_PATH_MEDIA_UPDATE_TIME        = 'system/media_storage_configuration/configuration_update_time';
+
 
     /**
      * Prefix of model events names
@@ -60,8 +63,9 @@ class Mage_Core_Model_File_Storage extends Mage_Core_Model_Abstract
      * @param  Mage_Core_Model_Abstract $destinationModel
      * @return bool
      */
-    protected function _synchronizeHasErrors(Mage_Core_Model_Abstract $sourceModel, Mage_Core_Model_Abstract $destinationModel)
-    {
+    protected function _synchronizeHasErrors(Mage_Core_Model_Abstract $sourceModel,
+        Mage_Core_Model_Abstract $destinationModel
+    ) {
         if (!$sourceModel || !$destinationModel) {
             return true;
         }
@@ -204,5 +208,25 @@ class Mage_Core_Model_File_Storage extends Mage_Core_Model_Abstract
         }
 
         return $this;
+    }
+
+    /**
+     * Return current media directory, allowed resources for get.php script, etc.
+     *
+     * @return array
+     */
+    public static function getScriptConfig()
+    {
+        $config = array();
+        $config['media_directory'] = Mage::getBaseDir('media');
+
+        $allowedResources = (array) Mage::app()->getConfig()->getNode(self::XML_PATH_MEDIA_RESOURCE_WHITELIST);
+        foreach ($allowedResources as $key => $allowedResource) {
+            $config['allowed_resources'][] = $allowedResource;
+        }
+
+        $config['update_time'] = Mage::getStoreConfig(self::XML_PATH_MEDIA_UPDATE_TIME);
+
+        return $config;
     }
 }

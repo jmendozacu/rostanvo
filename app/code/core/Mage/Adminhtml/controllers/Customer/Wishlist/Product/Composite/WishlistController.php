@@ -20,19 +20,19 @@
  *
  * @category    Mage
  * @package     Mage_Adminhtml
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
 /**
  * Catalog composite product configuration controller
  *
- * @category   Mage
- * @package    Mage_Adminhtml
+ * @category    Mage
+ * @package     Mage_Adminhtml
  * @author      Magento Core Team <core@magentocommerce.com>
  */
-
-class Mage_Adminhtml_Customer_Wishlist_Product_Composite_WishlistController extends Mage_Adminhtml_Controller_Action
+class Mage_Adminhtml_Customer_Wishlist_Product_Composite_WishlistController
+    extends Mage_Adminhtml_Controller_Action
 {
      /**
      * Wishlist we're working with
@@ -48,7 +48,7 @@ class Mage_Adminhtml_Customer_Wishlist_Product_Composite_WishlistController exte
      */
     protected $_wishlistItem = null;
 
-    /*
+    /**
      * Loads wishlist and wishlist item
      *
      * @return Mage_Adminhtml_Customer_Wishlist_Product_Composite_WishlistController
@@ -76,7 +76,7 @@ class Mage_Adminhtml_Customer_Wishlist_Product_Composite_WishlistController exte
         return $this;
     }
 
-    /*
+    /**
      * Ajax handler to response configuration fieldset of composite product in customer's wishlist
      *
      * @return Mage_Adminhtml_Customer_Wishlist_Product_Composite_WishlistController
@@ -105,7 +105,7 @@ class Mage_Adminhtml_Customer_Wishlist_Product_Composite_WishlistController exte
         return $this;
     }
 
-    /*
+    /**
      * IFrame handler for submitted configuration for wishlist item
      *
      * @return false
@@ -118,11 +118,9 @@ class Mage_Adminhtml_Customer_Wishlist_Product_Composite_WishlistController exte
             $this->_initData();
 
             $buyRequest = new Varien_Object($this->getRequest()->getParams());
-            $qty = $buyRequest->getQty() ? $buyRequest->getQty() : 0;
 
             $this->_wishlist
                 ->updateItem($this->_wishlistItem->getId(), $buyRequest)
-                ->setQty($qty)
                 ->save();
 
             $updateResult->setOk(true);
@@ -135,5 +133,15 @@ class Mage_Adminhtml_Customer_Wishlist_Product_Composite_WishlistController exte
         $this->_redirect('*/catalog_product/showUpdateResult');
 
         return false;
+    }
+
+    /**
+     * Check the permission to Manage Customers
+     *
+     * @return bool
+     */
+    protected function _isAllowed()
+    {
+        return Mage::getSingleton('admin/session')->isAllowed('customer/manage');
     }
 }

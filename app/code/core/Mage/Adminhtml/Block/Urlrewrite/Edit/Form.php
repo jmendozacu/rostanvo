@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Adminhtml
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -55,7 +55,13 @@ class Mage_Adminhtml_Block_Urlrewrite_Edit_Form extends Mage_Adminhtml_Block_Wid
         $product  = Mage::registry('current_product');
         $category = Mage::registry('current_category');
 
-        $form = new Varien_Data_Form(array('id' => 'edit_form', 'action' => $this->getData('action'), 'method' => 'post'));
+        $form = new Varien_Data_Form(
+            array(
+                'id' => 'edit_form',
+                'action' => $this->getData('action'),
+                'method' => 'post'
+            )
+        );
 
         // set form data either from model values or from session
         $formValues = array(
@@ -91,6 +97,7 @@ class Mage_Adminhtml_Block_Urlrewrite_Edit_Form extends Mage_Adminhtml_Block_Wid
             'value'     => $model->getIsSystem()
         ));
 
+        $isFilterAllowed = false;
         // get store switcher or a hidden field with its id
         if (!Mage::app()->isSingleStoreMode()) {
             $stores  = Mage::getSingleton('adminhtml/system_store')->getStoreValuesForForm();
@@ -102,30 +109,34 @@ class Mage_Adminhtml_Block_Urlrewrite_Edit_Form extends Mage_Adminhtml_Block_Wid
                 $entityStores = $product->getStoreIds() ? $product->getStoreIds() : array();
                 if  (!$entityStores) {
                     $stores = array(); //reset the stores
-                    $noStoreError = $this->__('Chosen product does not associated with any website, ') .
-                        $this->__('so url rewrite is not possible.');
+                    $noStoreError = $this->__('Chosen product does not associated with any website, so url rewrite is not possible.');
                 }
                 //if category is chosen, reset stores which are not related with this category
                 if ($category && $category->getId()) {
                     $categoryStores = $category->getStoreIds() ? $category->getStoreIds() : array();
                     $entityStores = array_intersect($entityStores, $categoryStores);
+
                 }
+                $isFilterAllowed = true;
             } elseif ($category && $category->getId()) {
                 $entityStores = $category->getStoreIds() ? $category->getStoreIds() : array();
                 if  (!$entityStores) {
                     $stores = array(); //reset the stores
-                    $noStoreError = $this->__('Chosen category does not associated with any website, ') .
-                        $this->__('so url rewrite is not possible.');
+                    $noStoreError = $this->__('Chosen category does not associated with any website, so url rewrite is not possible.');
                 }
+                $isFilterAllowed = true;
             }
 
-            if ($stores) {
+            /*
+             * Stores should be filtered only if product and/or category is specified.
+             * If we use custom rewrite, all stores are accepted.
+             */
+            if ($stores && $isFilterAllowed) {
                 foreach ($stores as $i => $store) {
                     if (isset($store['value']) && $store['value']) {
                         $found = false;
                         foreach ($store['value'] as $_k => $_v) {
-                         // if (isset($_v['value']) && in_array($_v['value'], $entityStores)) {
-	    				  if (isset($_v['value']) && ( count($entityStores) == 0 || in_array($_v['value'], $entityStores))) { 	
+                            if (isset($_v['value']) && in_array($_v['value'], $entityStores)) {
                                $found = true;
                             } else {
                                 unset($stores[$i]['value'][$_k]);
@@ -147,6 +158,8 @@ class Mage_Adminhtml_Block_Urlrewrite_Edit_Form extends Mage_Adminhtml_Block_Wid
                 'disabled'  => true,
                 'value'     => $formValues['store_id'],
             ));
+            $renderer = $this->getLayout()->createBlock('adminhtml/store_switcher_form_renderer_fieldset_element');
+            $element->setRenderer($renderer);
             if ($noStoreError) {
                 $element->setAfterElementHtml($noStoreError);
             }
@@ -186,7 +199,7 @@ class Mage_Adminhtml_Block_Urlrewrite_Edit_Form extends Mage_Adminhtml_Block_Wid
             'value'     => $formValues['target_path'],
         ));
 
-        // auto-generate paths for new urlrewrites
+        // auto-generate paths for new url rewrites
         if (!$model->getId()) {
             $_product  = null;
             $_category = null;

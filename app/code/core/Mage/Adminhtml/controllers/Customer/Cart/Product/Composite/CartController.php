@@ -20,18 +20,17 @@
  *
  * @category    Mage
  * @package     Mage_Adminhtml
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
 /**
  * Catalog composite product configuration controller
  *
- * @category   Mage
- * @package    Mage_Adminhtml
+ * @category    Mage
+ * @package     Mage_Adminhtml
  * @author      Magento Core Team <core@magentocommerce.com>
  */
-
 class Mage_Adminhtml_Customer_Cart_Product_Composite_CartController extends Mage_Adminhtml_Controller_Action
 {
     /**
@@ -55,7 +54,7 @@ class Mage_Adminhtml_Customer_Cart_Product_Composite_CartController extends Mage
      */
     protected $_quoteItem = null;
 
-    /*
+    /**
      * Loads customer, quote and quote item by request params
      *
      * @return Mage_Adminhtml_Customer_Cart_Product_Composite_CartController
@@ -85,7 +84,7 @@ class Mage_Adminhtml_Customer_Cart_Product_Composite_CartController extends Mage
         return $this;
     }
 
-    /*
+    /**
      * Ajax handler to response configuration fieldset of composite product in customer's cart
      *
      * @return Mage_Adminhtml_Customer_Cart_Product_Composite_CartController
@@ -120,7 +119,7 @@ class Mage_Adminhtml_Customer_Cart_Product_Composite_CartController extends Mage
         return $this;
     }
 
-    /*
+    /**
      * IFrame handler for submitted configuration for quote item
      *
      * @return Mage_Adminhtml_Customer_Cart_Product_Composite_CartController
@@ -147,5 +146,15 @@ class Mage_Adminhtml_Customer_Cart_Product_Composite_CartController extends Mage
         $this->_redirect('*/catalog_product/showUpdateResult');
 
         return $this;
+    }
+
+    /**
+     * Check the permission to Manage Customers
+     *
+     * @return bool
+     */
+    protected function _isAllowed()
+    {
+        return Mage::getSingleton('admin/session')->isAllowed('customer/manage');
     }
 }

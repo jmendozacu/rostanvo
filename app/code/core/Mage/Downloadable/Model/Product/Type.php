@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Downloadable
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -338,9 +338,18 @@ class Mage_Downloadable_Model_Product_Type extends Mage_Catalog_Model_Product_Ty
         if ($option instanceof Mage_Sales_Model_Quote_Item_Option) {
             $buyRequest = new Varien_Object(unserialize($option->getValue()));
             if (!$buyRequest->hasLinks()) {
-                Mage::throwException(
-                    Mage::helper('downloadable')->__('Please specify product link(s).')
-                );
+                if (!$product->getLinksPurchasedSeparately()) {
+                    $allLinksIds = Mage::getModel('downloadable/link')
+                        ->getCollection()
+                        ->addProductToFilter($product->getId())
+                        ->getAllIds();
+                    $buyRequest->setLinks($allLinksIds);
+                    $product->addCustomOption('info_buyRequest', serialize($buyRequest->getData()));
+                } else {
+                    Mage::throwException(
+                        Mage::helper('downloadable')->__('Please specify product link(s).')
+                    );
+                }
             }
         }
         return $this;
@@ -403,11 +412,6 @@ class Mage_Downloadable_Model_Product_Type extends Mage_Catalog_Model_Product_Ty
             }
         }
 
-        /*
-         * After "Downloadable Information" tab was made non-ajax we should
-         * set this flag "true" to force saving of 'required_options' attribute
-         */
-        $this->getProduct($product)->setCanSaveCustomOptions(true);
         $this->getProduct($product)->setTypeHasOptions($linksExist);
         $this->getProduct($product)->setLinksExist($linksExist);
     }

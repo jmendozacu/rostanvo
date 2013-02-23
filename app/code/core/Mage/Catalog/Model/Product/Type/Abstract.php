@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Catalog
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -109,9 +109,23 @@ abstract class Mage_Catalog_Model_Product_Type_Abstract
 
     /**
      * Process modes
+     *
+     * Full validation - all required options must be set, whole configuration
+     * must be valid
      */
-    const PROCESS_MODE_FULL = 'full'; // Full validation - all required options must be set, whole configuration must be valid
-    const PROCESS_MODE_LITE = 'lite'; // Lite validation - only received options are validated
+    const PROCESS_MODE_FULL = 'full';
+
+    /**
+     * Process modes
+     *
+     * Lite validation - only received options are validated
+     */
+    const PROCESS_MODE_LITE = 'lite';
+
+    /**
+     * Item options prefix
+     */
+    const OPTION_PREFIX = 'option_';
 
     /**
      * Specify type instance product
@@ -287,7 +301,7 @@ abstract class Mage_Catalog_Model_Product_Type_Abstract
             $salable = null;
         }
 
-        return $salable;
+        return (boolean) (int) $salable;
     }
 
     /**
@@ -348,7 +362,7 @@ abstract class Mage_Catalog_Model_Product_Type_Abstract
             $optionIds = array_keys($options);
             $product->addCustomOption('option_ids', implode(',', $optionIds));
             foreach ($options as $optionId => $optionValue) {
-                $product->addCustomOption('option_'.$optionId, $optionValue);
+                $product->addCustomOption(self::OPTION_PREFIX . $optionId, $optionValue);
             }
         }
 
@@ -369,7 +383,8 @@ abstract class Mage_Catalog_Model_Product_Type_Abstract
      * @param string $processMode
      * @return array|string
      */
-    public function processConfiguration(Varien_Object $buyRequest, $product = null, $processMode = self::PROCESS_MODE_LITE)
+    public function processConfiguration(Varien_Object $buyRequest, $product = null,
+        $processMode = self::PROCESS_MODE_LITE)
     {
         $_products = $this->_prepareProduct($buyRequest, $product, $processMode);
 
@@ -415,7 +430,7 @@ abstract class Mage_Catalog_Model_Product_Type_Abstract
      */
     public function processFileQueue()
     {
-        if (empty ($this->_fileQueue)) {
+        if (empty($this->_fileQueue)) {
             return $this;
         }
 
@@ -425,6 +440,7 @@ abstract class Mage_Catalog_Model_Product_Type_Abstract
                     case 'receive_uploaded_file':
                         $src = isset($queueOptions['src_name']) ? $queueOptions['src_name'] : '';
                         $dst = isset($queueOptions['dst_name']) ? $queueOptions['dst_name'] : '';
+                        /** @var $uploader Zend_File_Transfer_Adapter_Http */
                         $uploader = isset($queueOptions['uploader']) ? $queueOptions['uploader'] : null;
 
                         $path = dirname($dst);
@@ -464,7 +480,10 @@ abstract class Mage_Catalog_Model_Product_Type_Abstract
 
     /**
      * Add file to File Queue
-     * @param array $queueOptions Array of File Queue (eg. ['operation'=>'move', 'src_name'=>'filename', 'dst_name'=>'filename2'])
+     * @param array $queueOptions   Array of File Queue
+     *                              (eg. ['operation'=>'move',
+     *                                    'src_name'=>'filename',
+     *                                    'dst_name'=>'filename2'])
      */
     public function addFileQueue($queueOptions)
     {
@@ -554,12 +573,15 @@ abstract class Mage_Catalog_Model_Product_Type_Abstract
     {
         if (!$this->getProduct($product)->getSkipCheckRequiredOption()) {
             foreach ($this->getProduct($product)->getOptions() as $option) {
-                if ($option->getIsRequire() && (!$this->getProduct($product)->getCustomOption('option_'.$option->getId())
-                || strlen($this->getProduct($product)->getCustomOption('option_'.$option->getId())->getValue()) == 0)) {
-                    $this->getProduct($product)->setSkipCheckRequiredOption(true);
-                    Mage::throwException(
-                        Mage::helper('catalog')->__('The product has required options')
-                    );
+                if ($option->getIsRequire()) {
+                    $customOption = $this->getProduct($product)
+                        ->getCustomOption(self::OPTION_PREFIX . $option->getId());
+                    if (!$customOption || strlen($customOption->getValue()) == 0) {
+                        $this->getProduct($product)->setSkipCheckRequiredOption(true);
+                        Mage::throwException(
+                            Mage::helper('catalog')->__('The product has required options')
+                        );
+                    }
                 }
             }
         }
@@ -585,7 +607,8 @@ abstract class Mage_Catalog_Model_Product_Type_Abstract
             foreach (explode(',', $optionIds->getValue()) as $optionId) {
                 if ($option = $this->getProduct($product)->getOptionById($optionId)) {
 
-                    $confItemOption = $this->getProduct($product)->getCustomOption('option_'.$option->getId());
+                    $confItemOption = $this->getProduct($product)
+                        ->getCustomOption(self::OPTION_PREFIX . $option->getId());
 
                     $group = $option->groupFactory($option->getType())
                         ->setOption($option)
@@ -724,11 +747,11 @@ abstract class Mage_Catalog_Model_Product_Type_Abstract
             foreach (explode(',', $optionIds->getValue()) as $optionId) {
                 if ($option = $this->getProduct($product)->getOptionById($optionId)) {
 
-                    $confItemOption = $this->getProduct($product)->getCustomOption('option_'.$optionId);
+                    $confItemOption = $this->getProduct($product)->getCustomOption(self::OPTION_PREFIX . $optionId);
 
                     $group = $option->groupFactory($option->getType())
                         ->setOption($option)->setListener(new Varien_Object());
-                    
+
                     if ($optionSku = $group->getOptionSku($confItemOption->getValue(), $skuDelimiter)) {
                         $sku .= $skuDelimiter . $optionSku;
                     }
@@ -967,5 +990,17 @@ abstract class Mage_Catalog_Model_Product_Type_Abstract
         }
 
         return $errors;
+    }
+
+    /**
+     * Check if Minimum advertise price is enabled at least in one option
+     *
+     * @param Mage_Catalog_Model_Product $product
+     * @param int $visibility
+     * @return bool
+     */
+    public function isMapEnabledInOptions($product, $visibility = null)
+    {
+        return false;
     }
 }

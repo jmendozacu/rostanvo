@@ -24,6 +24,7 @@
 "Unable to proceed. Please, try again.","Невозможно продолжить. Пожалуйста, повторите попытку позже."
 "Update Frequency","Периодичность обновлений"
 "Use HTTPS to Get Feed","Использовать HTTPS для получения сообщений"
+"Wrong message type","Неверный тип сообщения"
 "critical","критично"
 "major","важно"
 "minor","обычно"

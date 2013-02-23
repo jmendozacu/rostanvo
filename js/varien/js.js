@@ -19,7 +19,7 @@
  *
  * @category    Varien
  * @package     js
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 function popWin(url,win,para) {
@@ -198,8 +198,8 @@ function decorateDataList(list) {
  * Parse SID and produces the correct URL
  */
 function parseSidUrl(baseUrl, urlExt) {
-    sidPos = baseUrl.indexOf('/?SID=');
-    sid = '';
+    var sidPos = baseUrl.indexOf('/?SID=');
+    var sid = '';
     urlExt = (urlExt != undefined) ? urlExt : '';
 
     if(sidPos > -1) {
@@ -219,18 +219,20 @@ function parseSidUrl(baseUrl, urlExt) {
  */
 
 function formatCurrency(price, format, showPlus){
-    precision = isNaN(format.precision = Math.abs(format.precision)) ? 2 : format.precision;
-    requiredPrecision = isNaN(format.requiredPrecision = Math.abs(format.requiredPrecision)) ? 2 : format.requiredPrecision;
+    var precision = isNaN(format.precision = Math.abs(format.precision)) ? 2 : format.precision;
+    var requiredPrecision = isNaN(format.requiredPrecision = Math.abs(format.requiredPrecision)) ? 2 : format.requiredPrecision;
 
     //precision = (precision > requiredPrecision) ? precision : requiredPrecision;
     //for now we don't need this difference so precision is requiredPrecision
     precision = requiredPrecision;
 
-    integerRequired = isNaN(format.integerRequired = Math.abs(format.integerRequired)) ? 1 : format.integerRequired;
+    var integerRequired = isNaN(format.integerRequired = Math.abs(format.integerRequired)) ? 1 : format.integerRequired;
 
-    decimalSymbol = format.decimalSymbol == undefined ? "," : format.decimalSymbol;
-    groupSymbol = format.groupSymbol == undefined ? "." : format.groupSymbol;
-    groupLength = format.groupLength == undefined ? 3 : format.groupLength;
+    var decimalSymbol = format.decimalSymbol == undefined ? "," : format.decimalSymbol;
+    var groupSymbol = format.groupSymbol == undefined ? "." : format.groupSymbol;
+    var groupLength = format.groupLength == undefined ? 3 : format.groupLength;
+
+    var s = '';
 
     if (showPlus == undefined || showPlus == true) {
         s = price < 0 ? "-" : ( showPlus ? "+" : "");
@@ -238,10 +240,9 @@ function formatCurrency(price, format, showPlus){
         s = '';
     }
 
-    i = parseInt(price = Math.abs(+price || 0).toFixed(precision)) + "";
-    pad = (i.length < integerRequired) ? (integerRequired - i.length) : 0;
+    var i = parseInt(price = Math.abs(+price || 0).toFixed(precision)) + "";
+    var pad = (i.length < integerRequired) ? (integerRequired - i.length) : 0;
     while (pad) { i = '0' + i; pad--; }
-
     j = (j = i.length) > groupLength ? j % groupLength : 0;
     re = new RegExp("(\\d{" + groupLength + "})(?=\\d)", "g");
 
@@ -250,8 +251,8 @@ function formatCurrency(price, format, showPlus){
      * when Math.abs(0).toFixed() executed on "0" number.
      * Result is "0.-0" :(
      */
-    r = (j ? i.substr(0, j) + groupSymbol : "") + i.substr(j).replace(re, "$1" + groupSymbol) + (precision ? decimalSymbol + Math.abs(price - i).toFixed(precision).replace(/-/, 0).slice(2) : "")
-
+    var r = (j ? i.substr(0, j) + groupSymbol : "") + i.substr(j).replace(re, "$1" + groupSymbol) + (precision ? decimalSymbol + Math.abs(price - i).toFixed(precision).replace(/-/, 0).slice(2) : "")
+    var pattern = '';
     if (format.pattern.indexOf('{sign}') == -1) {
         pattern = s + format.pattern;
     } else {
@@ -407,7 +408,7 @@ Varien.DateElement.prototype = {
             this.month  = $(content + 'month');
             this.year   = $(content + 'year');
             this.full   = $(content + 'full');
-            this.advice = $(content + 'advice');
+            this.advice = $(content + 'date-advice');
         } else if (type == 'container') {
             // content must be container with data
             this.day    = content.day;
@@ -421,7 +422,7 @@ Varien.DateElement.prototype = {
 
         this.required = required;
         this.format   = format;
-        
+
         this.day.addClassName('validate-custom');
         this.day.validate = this.validate.bind(this);
         this.month.addClassName('validate-custom');
@@ -429,12 +430,16 @@ Varien.DateElement.prototype = {
         this.year.addClassName('validate-custom');
         this.year.validate = this.validate.bind(this);
 
+        this.setDateRange(false, false);
         this.year.setAttribute('autocomplete','off');
 
         this.advice.hide();
     },
     validate: function() {
-        var error = false, day = parseInt(this.day.value) || 0, month = parseInt(this.month.value) || 0, year = parseInt(this.year.value) || 0;
+        var error = false,
+            day = parseInt(this.day.value.replace(/^0*/, '')) || 0,
+            month = parseInt(this.month.value.replace(/^0*/, '')) || 0,
+            year = parseInt(this.year.value) || 0;
         if (!day && !month && !year) {
             if (this.required) {
                 error = 'This date is a required value.';
@@ -444,20 +449,17 @@ Varien.DateElement.prototype = {
         } else if (!day || !month || !year) {
             error = 'Please enter a valid full date.';
         } else {
-            var date = new Date, curyear = date.getFullYear(), countDaysInMonth = 0, errorType = null;
-            date.setYear(year); date.setMonth(month-1); date.setDate(32);
+            var date = new Date, countDaysInMonth = 0, errorType = null;
+            date.setYear(year);date.setMonth(month-1);date.setDate(32);
             countDaysInMonth = 32 - date.getDate();
             if(!countDaysInMonth || countDaysInMonth>31) countDaysInMonth = 31;
-             
+
             if (day<1 || day>countDaysInMonth) {
                 errorType = 'day';
                 error = 'Please enter a valid day (1-%d).';
             } else if (month<1 || month>12) {
                 errorType = 'month';
                 error = 'Please enter a valid month (1-12).';
-            } else if (year<1900 || year>curyear) {
-                errorType = 'year';
-                error = 'Please enter a valid year (1900-%d).';
             } else {
                 if(day % 10 == day) this.day.value = '0'+day;
                 if(month % 10 == month) this.month.value = '0'+month;
@@ -466,7 +468,15 @@ Varien.DateElement.prototype = {
                 var test = new Date(testFull);
                 if (isNaN(test)) {
                     error = 'Please enter a valid date.';
+                } else {
+                    this.setFullDate(test);
                 }
+            }
+            var valueError = false;
+            if (!error && !this.validateData()){//(year<1900 || year>curyear) {
+                errorType = this.validateDataErrorType;//'year';
+                valueError = this.validateDataErrorText;//'Please enter a valid year (1900-%d).';
+                error = valueError;
             }
         }
 
@@ -475,18 +485,40 @@ Varien.DateElement.prototype = {
                 error = Translator.translate(error);
             }
             catch (e) {}
-            this.advice.innerHTML = error.replace('%d', errorType == 'day' ? countDaysInMonth : curyear);
+            if (!valueError) {
+                this.advice.innerHTML = error.replace('%d', countDaysInMonth);
+            } else {
+                this.advice.innerHTML = this.errorTextModifier(error);
+            }
             this.advice.show();
             return false;
         }
-        
+
         // fixing elements class
         this.day.removeClassName('validation-failed');
         this.month.removeClassName('validation-failed');
         this.year.removeClassName('validation-failed');
-        
+
         this.advice.hide();
         return true;
+    },
+    validateData: function() {
+        var year = this.fullDate.getFullYear();
+        var date = new Date;
+        this.curyear = date.getFullYear();
+        return (year>=1900 && year<=this.curyear);
+    },
+    validateDataErrorType: 'year',
+    validateDataErrorText: 'Please enter a valid year (1900-%d).',
+    errorTextModifier: function(text) {
+        return text.replace('%d', this.curyear);
+    },
+    setDateRange: function(minDate, maxDate) {
+        this.minDate = minDate;
+        this.maxDate = maxDate;
+    },
+    setFullDate: function(date) {
+        this.fullDate = date;
     }
 };
 
@@ -500,17 +532,65 @@ Varien.DOB.prototype = {
         container.year      = Element.select(el, '.dob-year input')[0];
         container.full      = Element.select(el, '.dob-full input')[0];
         container.advice    = Element.select(el, '.validation-advice')[0];
-        
+
         new Varien.DateElement('container', container, required, format);
     }
 };
+
+Varien.dateRangeDate = Class.create();
+Varien.dateRangeDate.prototype = Object.extend(new Varien.DateElement(), {
+    validateData: function() {
+        var validate = true;
+        if (this.minDate || this.maxValue) {
+            if (this.minDate) {
+                this.minDate = new Date(this.minDate);
+                this.minDate.setHours(0);
+                if (isNaN(this.minDate)) {
+                    this.minDate = new Date('1/1/1900');
+                }
+                validate = validate && (this.fullDate >= this.minDate)
+            }
+            if (this.maxDate) {
+                this.maxDate = new Date(this.maxDate)
+                this.minDate.setHours(0);
+                if (isNaN(this.maxDate)) {
+                    this.maxDate = new Date();
+                }
+                validate = validate && (this.fullDate <= this.maxDate)
+            }
+            if (this.maxDate && this.minDate) {
+                this.validateDataErrorText = 'Please enter a valid date between %s and %s';
+            } else if (this.maxDate) {
+                this.validateDataErrorText = 'Please enter a valid date less than or equal to %s';
+            } else if (this.minDate) {
+                this.validateDataErrorText = 'Please enter a valid date equal to or greater than %s';
+            } else {
+                this.validateDataErrorText = '';
+            }
+        }
+        return validate;
+    },
+    validateDataErrorText: 'Date should be between %s and %s',
+    errorTextModifier: function(text) {
+        if (this.minDate) {
+            text = text.sub('%s', this.dateFormat(this.minDate));
+        }
+        if (this.maxDate) {
+            text = text.sub('%s', this.dateFormat(this.maxDate));
+        }
+        return text;
+    },
+    dateFormat: function(date) {
+        return (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
+    }
+});
 
 Varien.FileElement = Class.create();
 Varien.FileElement.prototype = {
     initialize: function (id) {
         this.fileElement = $(id);
         this.hiddenElement = $(id + '_value');
-        
+
         this.fileElement.observe('change', this.selectFile.bind(this));
     },
     selectFile: function(event) {
@@ -554,6 +634,7 @@ Element.addMethods({
     }
 });
 
+/*
 if (!("console" in window) || !("firebug" in console))
 {
     var names = ["log", "debug", "info", "warn", "error", "assert", "dir", "dirxml",
@@ -563,6 +644,7 @@ if (!("console" in window) || !("firebug" in console))
     for (var i = 0; i < names.length; ++i)
         window.console[names[i]] = function() {}
 }
+*/
 
 /**
  * Executes event handler on the element. Works with event handlers attached by Prototype,
@@ -572,16 +654,51 @@ if (!("console" in window) || !("firebug" in console))
  *
  * @example fireEvent($('my-input', 'click'));
  */
-function fireEvent(element, event){
-    if (document.createEventObject){
-        // dispatch for IE
-        var evt = document.createEventObject();
-        return element.fireEvent('on'+event,evt)
-    }
-    else{
-        // dispatch for firefox + others
+function fireEvent(element, event) {
+    if (document.createEvent) {
+        // dispatch for all browsers except IE before version 9
         var evt = document.createEvent("HTMLEvents");
-        evt.initEvent(event, true, true ); // event type,bubbling,cancelable
-        return !element.dispatchEvent(evt);
+        evt.initEvent(event, true, true ); // event type, bubbling, cancelable
+        return element.dispatchEvent(evt);
+    } else {
+        // dispatch for IE before version 9
+        var evt = document.createEventObject();
+        return element.fireEvent('on' + event, evt)
     }
+}
+
+/**
+ * Returns more accurate results of floating-point modulo division
+ * E.g.:
+ * 0.6 % 0.2 = 0.19999999999999996
+ * modulo(0.6, 0.2) = 0
+ *
+ * @param dividend
+ * @param divisor
+ */
+function modulo(dividend, divisor)
+{
+    var epsilon = divisor / 10000;
+    var remainder = dividend % divisor;
+
+    if (Math.abs(remainder - divisor) < epsilon || Math.abs(remainder) < epsilon) {
+        remainder = 0;
+    }
+
+    return remainder;
+}
+
+/**
+ * createContextualFragment is not supported in IE9. Adding its support.
+ */
+if ((typeof Range != "undefined") && !Range.prototype.createContextualFragment)
+{
+    Range.prototype.createContextualFragment = function(html)
+    {
+        var frag = document.createDocumentFragment(),
+        div = document.createElement("div");
+        frag.appendChild(div);
+        div.outerHTML = html;
+        return frag;
+    };
 }

@@ -30,7 +30,7 @@
  *
  * @category   Varien
  * @package    Varien_Data
- * @author      Magento Core Team <core@magentocommerce.com>
+ * @author     Magento Core Team <core@magentocommerce.com>
  */
 abstract class Varien_Data_Form_Element_Abstract extends Varien_Data_Form_Abstract
 {
@@ -185,13 +185,18 @@ abstract class Varien_Data_Form_Element_Abstract extends Varien_Data_Form_Abstra
         return $this->getData('after_element_html');
     }
 
+    /**
+     * Render HTML for element's label
+     *
+     * @param string $idSuffix
+     * @return string
+     */
     public function getLabelHtml($idSuffix = '')
     {
         if (!is_null($this->getLabel())) {
-            $html = '<label for="'.$this->getHtmlId() . $idSuffix . '">'.$this->getLabel()
-                . ( $this->getRequired() ? ' <span class="required">*</span>' : '' ).'</label>'."\n";
-        }
-        else {
+            $html = '<label for="'.$this->getHtmlId() . $idSuffix . '">' . $this->_escape($this->getLabel())
+                  . ( $this->getRequired() ? ' <span class="required">*</span>' : '' ) . '</label>' . "\n";
+        } else {
             $html = '';
         }
         return $html;
@@ -245,18 +250,6 @@ abstract class Varien_Data_Form_Element_Abstract extends Varien_Data_Form_Abstra
         return parent::serialize($attributes, $valueSeparator, $fieldSeparator, $quote);
     }
 
-    public function setReadonly($readonly, $useDisabled = false)
-    {
-        if ($useDisabled) {
-            $this->setDisabled($readonly);
-            $this->setData('readonly_disabled', $readonly);
-        } else {
-            $this->setData('readonly', $readonly);
-        }
-
-        return $this;
-    }
-
     public function getReadonly()
     {
         if ($this->hasData('readonly_disabled')) {
@@ -274,5 +267,35 @@ abstract class Varien_Data_Form_Element_Abstract extends Varien_Data_Form_Abstra
             return $idPrefix . $this->getId();
         }
         return '';
+    }
+
+    /**
+     * Add specified values to element values
+     *
+     * @param string|int|array $values
+     * @param bool $overwrite
+     * @return Varien_Data_Form_Element_Abstract
+     */
+    public function addElementValues($values, $overwrite = false)
+    {
+        if (empty($values) || (is_string($values) && trim($values) == '')) {
+            return $this;
+        }
+        if (!is_array($values)) {
+            $values = Mage::helper('core')->escapeHtml(trim($values));
+            $values = array($values => $values);
+        }
+        $elementValues = $this->getValues();
+        if (!empty($elementValues)) {
+            foreach ($values as $key => $value) {
+                if ((isset($elementValues[$key]) && $overwrite) || !isset($elementValues[$key])) {
+                    $elementValues[$key] = Mage::helper('core')->escapeHtml($value);
+                }
+            }
+            $values = $elementValues;
+        }
+        $this->setValues($values);
+
+        return $this;
     }
 }

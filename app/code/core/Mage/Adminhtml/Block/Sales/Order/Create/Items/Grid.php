@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Adminhtml
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -178,9 +178,26 @@ class Mage_Adminhtml_Block_Sales_Order_Create_Items_Grid extends Mage_Adminhtml_
         }
     }
 
+    /**
+     * Define if specified item has already applied custom price
+     *
+     * @param Mage_Sales_Model_Quote_Item $item
+     * @return bool
+     */
     public function usedCustomPriceForItem($item)
     {
         return $item->hasCustomPrice();
+    }
+
+    /**
+     * Define if custom price can be applied for specified item
+     *
+     * @param Mage_Sales_Model_Quote_Item $item
+     * @return bool
+     */
+    public function canApplyCustomPrice($item)
+    {
+        return !$item->isChildrenCalculated();
     }
 
     public function getQtyTitle($item)
@@ -304,14 +321,12 @@ class Mage_Adminhtml_Block_Sales_Order_Create_Items_Grid extends Mage_Adminhtml_
     {
         $product = $item->getProduct();
 
-        $options = array(
-            'label' => Mage::helper('sales')->__('Configure'),
-            'title' => Mage::helper('sales')->__('This product does not have any configurable options.')
-        );
+        $options = array('label' => Mage::helper('sales')->__('Configure'));
         if ($product->canConfigure()) {
             $options['onclick'] = sprintf('order.showQuoteItemConfiguration(%s)', $item->getId());
         } else {
             $options['class'] = ' disabled';
+            $options['title'] = Mage::helper('sales')->__('This product does not have any configurable options');
         }
 
         return $this->getLayout()->createBlock('adminhtml/widget_button')
@@ -341,5 +356,17 @@ class Mage_Adminhtml_Block_Sales_Order_Create_Items_Grid extends Mage_Adminhtml_
     public function isMoveToWishlistAllowed($item)
     {
         return $item->getProduct()->isVisibleInSiteVisibility();
+    }
+
+
+    /**
+     * Retrieve collection of customer wishlists
+     *
+     * @return Mage_Wishlist_Model_Resource_Wishlist_Collection
+     */
+    public function getCustomerWishlists()
+    {
+        return Mage::getModel("wishlist/wishlist")->getCollection()
+            ->filterByCustomerId($this->getCustomerId());
     }
 }

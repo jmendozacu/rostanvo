@@ -69,6 +69,7 @@
 "Failed to load node %s from config","Не удаётся загрузить узел %s из конфигурации"
 "Failed to load node %s from config.","Не удаётся загрузить узел %s из конфигурации."
 "For internal use. Must be unique with no spaces","Для внутреннего использования. Должно быть уникальным, без пробелов"
+"For internal use. Must be unique with no spaces. Maximum length of attribute code must be less then %s symbols","Для внутреннего использования. Должно быть уникальным, без пробелов. Максимальная длина кода атрибута должна быть меньше %s символов."
 "Form Element with the same attribute","Элемент формы с таким же атрибутом"
 "Form Fieldset with the same code","Fieldset формы с таким же кодом"
 "Form Type with the same code","Тип формы с таким же кодом"
@@ -149,4 +150,3 @@
 "Wrong type definition for %s","Wrong type definition for %s"
 "Yes","Да"
 "Yes/No","Да/Нет"
-"For internal use. Must be unique with no spaces. Maximum length of attribute code must be less then %s symbols","Для внутреннего использования. Должно быть уникальным, без пробелов. Максимальная длина кода атрибута должна быть меньше %s символов."

@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Adminhtml
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -242,7 +242,11 @@ class Mage_Adminhtml_Sales_Order_InvoiceController extends Mage_Adminhtml_Contro
                 }
 
                 if (!empty($data['comment_text'])) {
-                    $invoice->addComment($data['comment_text'], isset($data['comment_customer_notify']), isset($data['is_visible_on_front']));
+                    $invoice->addComment(
+                        $data['comment_text'],
+                        isset($data['comment_customer_notify']),
+                        isset($data['is_visible_on_front'])
+                    );
                 }
 
                 $invoice->register();
@@ -267,7 +271,9 @@ class Mage_Adminhtml_Sales_Order_InvoiceController extends Mage_Adminhtml_Contro
                 }
                 $transactionSave->save();
 
-                if (!empty($data['do_shipment'])) {
+                if (isset($shippingResponse) && $shippingResponse->hasErrors()) {
+                    $this->_getSession()->addError($this->__('The invoice and the shipment  have been created. The shipping label cannot be created at the moment.'));
+                } elseif (!empty($data['do_shipment'])) {
                     $this->_getSession()->addSuccess($this->__('The invoice and shipment have been created.'));
                 } else {
                     $this->_getSession()->addSuccess($this->__('The invoice has been created.'));
@@ -380,9 +386,12 @@ class Mage_Adminhtml_Sales_Order_InvoiceController extends Mage_Adminhtml_Contro
                 Mage::throwException($this->__('The Comment Text field cannot be empty.'));
             }
             $invoice = $this->_initInvoice();
-            $invoice->addComment($data['comment'], isset($data['is_customer_notified']), isset($data['is_visible_on_front']));
+            $invoice->addComment(
+                $data['comment'],
+                isset($data['is_customer_notified']),
+                isset($data['is_visible_on_front'])
+            );
             $invoice->sendUpdateEmail(!empty($data['is_customer_notified']), $data['comment']);
-            $invoice->_hasDataChanges = true;
             $invoice->save();
 
             $this->loadLayout();
@@ -469,6 +478,15 @@ class Mage_Adminhtml_Sales_Order_InvoiceController extends Mage_Adminhtml_Contro
             }
             return false;
         }
+    }
+
+    /**
+     * Create pdf for current invoice
+     */
+    public function printAction()
+    {
+        $this->_initInvoice();
+        parent::printAction();
     }
 
 }

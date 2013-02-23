@@ -20,13 +20,14 @@
  *
  * @category    Mage
  * @package     Mage_Paypal
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
 /**
  * Fieldset renderer for PayPal global settings
  * @author      Magento Core Team <core@magentocommerce.com>
+ * @deprecated  since 1.7.0.1
  */
 class Mage_Paypal_Block_Adminhtml_System_Config_Fieldset_Global
     extends Mage_Adminhtml_Block_Abstract
@@ -74,6 +75,20 @@ class Mage_Paypal_Block_Adminhtml_System_Config_Fieldset_Global
     public function getElements()
     {
         return $this->_elements;
+    }
+
+    /**
+     * Get element by id
+     *
+     * @param string $elementId
+     * @return Varien_Data_Form_Element_Abstract
+     */
+    public function getElement($elementId)
+    {
+        if (isset($this->_elements[$elementId])) {
+            return $this->_elements[$elementId];
+        }
+        return false;
     }
 
     /**
@@ -197,5 +212,30 @@ class Mage_Paypal_Block_Adminhtml_System_Config_Fieldset_Global
             $element->getDefaultValue(),
             Mage::helper('adminhtml')->__('Use Default')
         );
+    }
+
+    /**
+     * Return element label with tag SPAN
+     *
+     * @param Varien_Data_Form_Element_Abstract $element
+     * @return string
+     */
+    public function getElementLabelTextHtml(Varien_Data_Form_Element_Abstract $element)
+    {
+        return sprintf('<span id="%s">%s</span>',
+            $element->getHtmlId() . '_label_text',
+            $this->escapeHtml($this->getElementLabel($element))
+        );
+    }
+
+    /**
+     * Return backend config for element like JSON
+     *
+     * @param Varien_Data_Form_Element_Abstract $element
+     * @return string
+     */
+    public function getElementBackendConfig(Varien_Data_Form_Element_Abstract $element)
+    {
+        return Mage::helper('paypal')->getElementBackendConfig($element);
     }
 }

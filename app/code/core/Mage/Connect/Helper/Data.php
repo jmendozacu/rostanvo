@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Connect
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -120,6 +120,9 @@ class Mage_Connect_Helper_Data extends Mage_Core_Helper_Data
      */
     public function loadLocalPackage($packageName)
     {
+        //check LFI protection
+        $this->checkLfiProtection($packageName);
+
         $path = $this->getLocalPackagesPath();
         $xmlFile = $path . $packageName . '.xml';
         $serFile = $path . $packageName . '.ser';

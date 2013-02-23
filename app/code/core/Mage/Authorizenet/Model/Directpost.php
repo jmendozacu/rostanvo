@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Authorizenet
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -168,10 +168,9 @@ class Mage_Authorizenet_Model_Directpost extends Mage_Paygate_Model_Authorizenet
                     if ($result->getTransactionId() != $payment->getParentTransactionId()) {
                         $payment->setTransactionId($result->getTransactionId());
                     }
-                    $shouldCloseCaptureTransaction = !(bool)$payment->getOrder()->canCreditmemo();
                     $payment
                         ->setIsTransactionClosed(1)
-                        ->setShouldCloseParentTransaction($shouldCloseCaptureTransaction)
+                        ->setShouldCloseParentTransaction(1)
                         ->setTransactionAdditionalInfo($this->_realTransactionIdKey, $result->getTransactionId());
                     return $this;
                 }
@@ -294,6 +293,9 @@ class Mage_Authorizenet_Model_Directpost extends Mage_Paygate_Model_Authorizenet
      */
     public function getRelayUrl($storeId = null)
     {
+        if ($storeId == null && $this->getStore()) {
+            $storeId = $this->getStore();
+        }
         return Mage::app()->getStore($storeId)
             ->getBaseUrl(Mage_Core_Model_Store::URL_TYPE_LINK).
             'authorizenet/directpost_payment/response';
@@ -387,7 +389,9 @@ class Mage_Authorizenet_Model_Directpost extends Mage_Paygate_Model_Authorizenet
     {
         $response = $this->getResponse();
         //md5 check
-        if (!$response->isValidHash($this->getConfigData('trans_md5'), $this->getConfigData('login'))) {
+        if (!$this->getConfigData('trans_md5') || !$this->getConfigData('login') ||
+            !$response->isValidHash($this->getConfigData('trans_md5'), $this->getConfigData('login'))
+        ) {
             Mage::throwException(
                 Mage::helper('authorizenet')->__('Response hash validation failed. Transaction declined.')
             );
@@ -617,7 +621,8 @@ class Mage_Authorizenet_Model_Directpost extends Mage_Paygate_Model_Authorizenet
                 if ($order->getState() == Mage_Sales_Model_Order::STATE_PROCESSING) {
                     $orderStatus = $this->getConfigData('order_status');
                     if (!$orderStatus || $order->getIsVirtual()) {
-                        $orderStatus = $order->getConfig()->getStateDefaultStatus(Mage_Sales_Model_Order::STATE_PROCESSING);
+                        $orderStatus = $order->getConfig()
+                                ->getStateDefaultStatus(Mage_Sales_Model_Order::STATE_PROCESSING);
                     }
                     if ($orderStatus) {
                         $order->setStatus($orderStatus);

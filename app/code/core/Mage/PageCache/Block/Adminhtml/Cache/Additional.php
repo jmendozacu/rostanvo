@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_PageCache
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -50,6 +50,6 @@ class Mage_PageCache_Block_Adminhtml_Cache_Additional extends Mage_Adminhtml_Blo
      */
     public function canShowButton()
     {
-        return Mage::helper('pagecache')->isEnabled();
+        return Mage::helper('pagecache')->isEnabled() && Mage::getSingleton('admin/session')->isAllowed('page_cache');
     }
 }

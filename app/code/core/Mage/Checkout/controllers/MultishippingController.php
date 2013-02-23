@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Checkout
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -82,6 +82,10 @@ class Mage_Checkout_MultishippingController extends Mage_Checkout_Controller_Act
     {
         parent::preDispatch();
 
+        if ($this->getFlag('', 'redirectLogin')) {
+            return $this;
+        }
+
         $action = $this->getRequest()->getActionName();
 
         $checkoutSessionQuote = $this->_getCheckoutSession()->getQuote();
@@ -107,6 +111,8 @@ class Mage_Checkout_MultishippingController extends Mage_Checkout_Controller_Act
             }
 
             if (!Mage::helper('checkout')->isMultishippingCheckoutAvailable()) {
+                $error = $this->_getCheckout()->getMinimumAmountError();
+                $this->_getCheckoutSession()->addError($error);
                 $this->_redirectUrl($this->_getHelper()->getCartUrl());
                 $this->setFlag('', self::FLAG_NO_DISPATCH, true);
                 return $this;
@@ -503,19 +509,22 @@ class Mage_Checkout_MultishippingController extends Mage_Checkout_Controller_Act
             }
             $this->_redirect('*/*/billing');
         } catch (Mage_Checkout_Exception $e) {
-            Mage::helper('checkout')->sendPaymentFailedEmail($this->_getCheckout()->getQuote(), $e->getMessage(), 'multi-shipping');
+            Mage::helper('checkout')
+                ->sendPaymentFailedEmail($this->_getCheckout()->getQuote(), $e->getMessage(), 'multi-shipping');
             $this->_getCheckout()->getCheckoutSession()->clear();
             $this->_getCheckoutSession()->addError($e->getMessage());
             $this->_redirect('*/cart');
         }
         catch (Mage_Core_Exception $e){
-            Mage::helper('checkout')->sendPaymentFailedEmail($this->_getCheckout()->getQuote(), $e->getMessage(), 'multi-shipping');
+            Mage::helper('checkout')
+                ->sendPaymentFailedEmail($this->_getCheckout()->getQuote(), $e->getMessage(), 'multi-shipping');
             $this->_getCheckoutSession()->addError($e->getMessage());
             $this->_redirect('*/*/billing');
-        }
-        catch (Exception $e){
-            Mage::helper('checkout')->sendPaymentFailedEmail($this->_getCheckout()->getQuote(), $e->getMessage(), 'multi-shipping');
-            $this->_getCheckoutSession()->addError('Order place error.');
+        } catch (Exception $e){
+            Mage::logException($e);
+            Mage::helper('checkout')
+                ->sendPaymentFailedEmail($this->_getCheckout()->getQuote(), $e->getMessage(), 'multi-shipping');
+            $this->_getCheckoutSession()->addError($this->__('Order place error.'));
             $this->_redirect('*/*/billing');
         }
     }
@@ -537,4 +546,22 @@ class Mage_Checkout_MultishippingController extends Mage_Checkout_Controller_Act
         $this->renderLayout();
     }
 
+    /**
+     * Redirect to login page
+     *
+     */
+    public function redirectLogin()
+    {
+        $this->setFlag('', 'no-dispatch', true);
+        Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl('*/*', array('_secure'=>true)));
+
+        $this->getResponse()->setRedirect(
+            Mage::helper('core/url')->addRequestParam(
+                $this->_getHelper()->getMSLoginUrl(),
+                array('context' => 'checkout')
+            )
+        );
+
+        $this->setFlag('', 'redirectLogin', true);
+    }
 }
