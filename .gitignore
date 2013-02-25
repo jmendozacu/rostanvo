@@ -5,3 +5,4 @@ var/
 .DS_Store
 *.swp
 tags
+.htaccess
