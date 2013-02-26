@@ -1847,3 +1847,20 @@ filter: progid:DXImageTransform.Microsoft.Shadow(color='#ebebeb', Direction=135,
     height: 15px;
     overflow: hidden;
 }
+.tobasket {
+	margin-top: 10px;
+	text-align: center;
+}
+
+.fb_button_ps img {
+	width: 263px;
+	margin-top: 5px;
+}
+
+.checkout-onepage-index .fb_button_ps img {
+	float: left;
+}
+
+.cms-page-view .sidebar .selected {
+	color: #AF3209;
+}

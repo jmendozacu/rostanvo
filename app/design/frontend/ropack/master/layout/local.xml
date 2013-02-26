@@ -1,5 +1,8 @@
 <?xml version="1.0"?>
 <layout version="0.1.0">
 	<default>
+		<reference name="cart_sidebar">
+			<block type="checkout/onepage_link" name="checkout_button" template="iz/checkout_button.phtml"/>
+		</reference>
 	</default>
 </layout>

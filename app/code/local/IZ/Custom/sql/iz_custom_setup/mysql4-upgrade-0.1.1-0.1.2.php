@@ -7,36 +7,37 @@ try{
 
     $content = <<<EOD
 <!--add homepage-->
+<p>{{block type="cms/block" block_id="header_banner" template="cms/content.phtml"}}</p>
+<p>{{block type="cms/block" block_id="strings" template="cms/content.phtml"}}</p>
 <!--end of page-->
 EOD;
 
-	$root_template = 'two_columns_left';
+	$root_template = 'one_column';
 
-	$title = 'Water Filters Blog';
+	$title = 'Rostanvo - best cello strings to improve your tonal range, tuning and volume';
 
-	$identifier = 'water-filters-blog.html';
+	$identifier = 'home';
 
 	$layout_update = <<<EOD
+<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('featured_links')->toHtml() ?>
 <reference name="left">
-<block type="cms/block" name="water.university.navigation">
-    <action method="setBlockId"><block_id>water-university-navigation </block_id></action>
-</block> 
-</reference>
-<reference name="head">
-	<action method="addCss"><stylesheet>css/cmspage.css</stylesheet></action>
+  <!--<block type="cms/block" name="leaf-corner" before="-">
+    <action method="setBlockId"><block_id>leaf_corner</block_id></action>
+  </block>-->
+ <!-- <block type="cms/block" name="featured-pages" before="-">
+    <action method="setBlockId"><block_id>featured_links</block_id></action>
+  </block>-->
+<action method="unsetChild"><name>cart_sidebar</name></action>
+<action method="unsetChild"><name>catalog.compare.sidebar</name></action>
 </reference>
 EOD;
 
 	$meta_keywords = <<<EOD
-	Water Filters for Charity, Improving Water and the World, water charity,
-    charity: water, corporate philanthropy, social entrepeneur, safe water,
-    clean water, water education, servant leadership, water quality
+cello strings, accessories, violoncello, tuning, range
 EOD;
 
 	$meta_description = <<<EOD
-	Water Filters for Charity Improves Water and the World with a Ripple Effect
-    of WaterFilters.NET serving customers and coworkers as well as people in
-    need
+Ultimate handmade cello strings, designed to maximise tonal range, tuning stability and projection for all cellists such as solists, concert players, beginners and cello makers
 EOD;
 
     $cmspage = array(

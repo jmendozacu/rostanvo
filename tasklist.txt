@@ -1,19 +1,19 @@
 1. home page : hard-coded link to shop (lead to 404 page) - done
 2. home page : 4 string blocks : hard-coded link - done
 3. footer : copyright to jimonearth.co.uk should be removed - pending
-4. footer : copy right 2011 should be changed to 2013
-5. footer : copyright of Turbo Cache … should be removed
+4. footer : copy right 2011 should be changed to 2013 - done (need to put it in deploy script)
+5. footer : copyright of Turbo Cache … should be removed - done (backlink ?)
 6. navigation bar (home | about | Resource | …) doesn't show current section highlighted. - done
-7. resource page : resources page block on left column has hard-coded links. it doesn't show current page highlighted.
+7. resource page : resources page block on left column has hard-coded links. it doesn't show current page highlighted. - done, now support multi languages
 8. resource page : how to string a cello - you should add picture to make it easier to understand. - will be carried out by Alex
-9. cello news : empty page - you can try to integrate a blog here.
-10. left bar : my cart block doesn't have a direct url to checkout page.
-11. checkout page : Facebook button is so big.
-12. checkout page : store pickup method have no payment method (disable module)
-13. my account section : there're many redundant component ( i think)
-14. my wish list : http://rostanvo.com/en/wishlist/ this page fail (remove this page)
-15. footer : sitemap is empty
+9. cello news : empty page - you can try to integrate a blog here. (later)
+10. left bar : my cart block doesn't have a direct url to checkout page. - done
+11. checkout page & new account page : Facebook button is so big. - done 
+12. checkout page : store pickup method have no payment method (disable module) - done
+13. my account section : there're many redundant component ( i think) - done
+14. my wish list : http://rostanvo.com/en/wishlist/ this page fail (remove this page) - done
+15. footer : sitemap is empty - generate site map later
 16. footer : search term is empty - done 
 17. footer : advanced search is empty - done 
 18. footer : remove search term & search advanced - done 
-19. footer : re-align newsletter box to the right, move clicky below of newsletter box
+19. footer : re-align newsletter box to the right, move clicky below of newsletter box - not really necessary
