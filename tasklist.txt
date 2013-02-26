@@ -5,14 +5,15 @@
 5. footer : copyright of Turbo Cache … should be removed
 6. navigation bar (home | about | Resource | …) doesn't show current section highlighted. - done
 7. resource page : resources page block on left column has hard-coded links. it doesn't show current page highlighted.
-8. resource page : how to string a cello - you should add picture to make it easier to understand.
+8. resource page : how to string a cello - you should add picture to make it easier to understand. - will be carried out by Alex
 9. cello news : empty page - you can try to integrate a blog here.
 10. left bar : my cart block doesn't have a direct url to checkout page.
 11. checkout page : Facebook button is so big.
-12. checkout page : store pickup method have no payment method.
+12. checkout page : store pickup method have no payment method (disable module)
 13. my account section : there're many redundant component ( i think)
-14. my wish list : http://rostanvo.com/en/wishlist/ this page fail
+14. my wish list : http://rostanvo.com/en/wishlist/ this page fail (remove this page)
 15. footer : sitemap is empty
-16. footer : search term is empty
-17. footer : advanced search is empty
-18. footer : remove search term & search advanced
+16. footer : search term is empty - done 
+17. footer : advanced search is empty - done 
+18. footer : remove search term & search advanced - done 
+19. footer : re-align newsletter box to the right, move clicky below of newsletter box

@@ -1841,3 +1841,9 @@ filter: progid:DXImageTransform.Microsoft.Shadow(color='#ebebeb', Direction=135,
 .siteNavigation ul > li.first{border-left:none}
 .siteNavigation ul > li.last{border-right:none;width:145px}
 .siteNavigation ul > li.last a{padding-right:80px}
+
+/*add by atheotsky to fix some display issue*/
+.footer address {
+    height: 15px;
+    overflow: hidden;
+}
