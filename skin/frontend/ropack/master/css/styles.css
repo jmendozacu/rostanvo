@@ -1864,3 +1864,7 @@ filter: progid:DXImageTransform.Microsoft.Shadow(color='#ebebeb', Direction=135,
 .cms-page-view .sidebar .selected {
 	color: #AF3209;
 }
+
+.block-related { border: none; margin-top: 30px; }
+.block-related .block-title { background: none; border-bottom: 2px solid #AF3209; }
+.block-related .block-content { background: none; }
