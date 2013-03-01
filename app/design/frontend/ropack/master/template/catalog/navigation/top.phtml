@@ -13,6 +13,8 @@
  * string If specified wraps children list in div with this class
  */
 ?>
+<?php
+/** originnal
 <?php $_menu = $this->renderCategoriesMenuHtml(0,'level-top') ?>
 <?php if($_menu): ?>
 <div class="nav-container">
@@ -21,4 +23,13 @@
     </ul>
 </div>
 <?php endif ?>
-
+ */
+?>
+<?php $_menu = $this->renderCategoriesMenuHtml(0,'level-top') ?>
+<?php if($_menu): ?>
+<div class="siteNavigation">
+    <ul id="nav">
+        <?php echo $_menu ?>
+    </ul>
+</div>
+<?php endif ?>
