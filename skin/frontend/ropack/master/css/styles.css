@@ -1868,3 +1868,4 @@ filter: progid:DXImageTransform.Microsoft.Shadow(color='#ebebeb', Direction=135,
 .block-related { border: none; margin-top: 30px; }
 .block-related .block-title { background: none; border-bottom: 2px solid #AF3209; }
 .block-related .block-content { background: none; }
+.siteNavigation ul > li.last { border-left: 1px solid #F4F4F4; }

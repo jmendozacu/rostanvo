@@ -52,13 +52,13 @@ document.observe("dom:loaded", function() {
 		aElement = navObjs[i].down('a');
 		if (aElement.readAttribute('href').indexOf(document.URL) >= 0)
 		{
-			aElement.parentElement.addClassName('selected');
+			aElement.parentElement.addClassName('active');
 		}
 		else
 		{
-			if (aElement.parentElement.hasClassName('selected'));
+			if (aElement.parentElement.hasClassName('active'));
 			{
-				aElement.parentElement.removeClassName('selected');
+				aElement.parentElement.removeClassName('active');
 			}
 		}
 	}
