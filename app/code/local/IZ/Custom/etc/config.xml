@@ -20,6 +20,11 @@
 				</setup>
 			</iz_custom_setup>
 		</resources>
+		<models>
+			<izcustom>
+				<class>IZ_Custom_Model</class>
+			</izcustom>
+		</models>
 	</global>
 	
 	<frontend>
@@ -31,4 +36,11 @@
 			</updates>
 		</layout>
 	</frontend>
+	<default>
+		<cms>
+			<customization>
+				<additionalmenu>top_nav</additionalmenu>
+			</customization>
+		</cms>
+	</default>
 </config>

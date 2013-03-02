@@ -25,11 +25,42 @@
 <?php endif ?>
  */
 ?>
-<?php $_menu = $this->renderCategoriesMenuHtml(0,'level-top') ?>
-<?php if($_menu): ?>
 <div class="siteNavigation">
-    <ul id="nav">
-        <?php echo $_menu ?>
+    <ul id="nav-customized">
+		<?php
+			/*CALL ADDITIONAL MENU FOR NAVIGATION*/
+			if (Mage::getStoreConfig('cms/customization/additionalmenu'))
+			{
+				echo $this->getLayout()->createBlock('cms/block')->setBlockId(Mage::getStoreConfig('cms/customization/additionalmenu'))->toHtml();
+			}
+			/*CALL DEFAULT NAVIGATION MENU*/
+			$_menu = $this->renderCategoriesMenuHtml(0,'level-top');
+			if ($_menu)
+			{
+				echo $_menu;
+			}
+		?>
     </ul>
 </div>
-<?php endif ?>
+<script type="text/javascript">
+/*ENABLE MENU HIGHLIGHTING*/
+document.observe("dom:loaded", function() {
+	navObjs = $('nav-customized').children;
+	for (var i=0; i<navObjs.length; i++)
+	{
+		/*console.log(navObjs[i]);*/
+		aElement = navObjs[i].down('a');
+		if (aElement.readAttribute('href').indexOf(document.URL) >= 0)
+		{
+			aElement.parentElement.addClassName('selected');
+		}
+		else
+		{
+			if (aElement.parentElement.hasClassName('selected'));
+			{
+				aElement.parentElement.removeClassName('selected');
+			}
+		}
+	}
+});
+</script>
