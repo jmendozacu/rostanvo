@@ -32,7 +32,27 @@
                     <?php endif; ?>
                     <?php echo $this->getPriceHtml($_product, true) ?>
                     <?php if($_product->isSaleable()): ?>
-                        <p><button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $_product->getProductUrl() ?><?php //echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Select String Type') ?></span></span></button></p>
+						<?php
+						/* old add to cart url - replace with form
+                        <p><button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button></p>
+						 */
+						?>
+						<form action="<?php echo $this->getAddToCartUrl($_product) ?>" method="post" id="product_addtocart_form_<?php echo $_product->getId()?>"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+							 <?php if(!$_product->isGrouped()): ?>
+							 <label for="qty"><?php echo $this->__('Qty') ?>:</label>
+							<select name="qty" id="qty">
+							<?php for ($qtycoutner = 1; $qtycoutner < 5; $qtycoutner ++ ): ?>
+								<option value="<?php echo $qtycoutner?>"><?php echo $qtycoutner?></option>
+							<?php endfor; ?>
+							</select>
+							<?php
+							/* use select dropdown instead of textbox
+							 <input type="text" name="qty" id="qty" maxlength="12" value="<?php echo ($this->getMinimalQty($_product)?$this->getMinimalQty($_product):1) ?>" />
+							 */
+							?>
+							 <?php endif; ?>
+							 <button type="button" onclick="this.form.submit()" class="button btn-cart"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+						 </form>
                     <?php else: ?>
                         <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
                     <?php endif; ?>

@@ -21,7 +21,7 @@
 ====
 phase 2 : buying usability changes
 1. product page:  disable string versions / have all strings default to "medium" - we will only sell one version of each product for the next 6months at least
-2. main shop page:  change "select string type" button to the "add to cart" button & box (see screenshot)
+2. main shop page:  change "select string type" button to the "add to cart" button & box (see screenshot) - done
 3. Ajax add to cart, mini basket update & my cart url update
 4. home page change (1) navigation bar highlights current page user is on (see screenshot) - done
 5. home page change (2) addition of price, quantity, "add to cart" box found on the product pages. (see screenshot)
