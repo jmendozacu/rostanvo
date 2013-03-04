@@ -27,4 +27,4 @@ phase 2 : buying usability changes
 5. home page change (2) addition of price, quantity, "add to cart" box found on the product pages. (see screenshot) - done
 6. i'll add related products block to left side bar of product detail page - done
 7. fix top navigation menu, convert hard code to good code (so enable magento default function like manage static blocks, categories...) - done 
-8. add ajax global messsage
+8. add ajax global messsage - done

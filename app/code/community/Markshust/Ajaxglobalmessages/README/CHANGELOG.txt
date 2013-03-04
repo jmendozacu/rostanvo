@@ -1,0 +1,12 @@
+MarkShust_Ajaxglobalmessages
+----------------------------
+CHANGELOG
+----------------------------
+1.0.0 (Released MAY-17-2012)
+- Initial release
+
+1.1.0 (Released MAY-29-2012)
+- Add support for Magento EE
+
+1.1.1 (Released JUN-05-2012)
+- Fix problem with base images already existing
