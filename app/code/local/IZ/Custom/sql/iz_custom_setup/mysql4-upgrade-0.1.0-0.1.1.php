@@ -17,6 +17,7 @@ try{
         losing the sound's clarity.<br />
         <a href="{{store url='buy/cello-a-string.html'}}">Read more</a>
     </div>
+	{{block type="core/template" key="block1" template="iz/custom_buy_form.phtml"}}
 </div>
 
 <div class="home-string dstring">
@@ -30,6 +31,7 @@ try{
         your cello.<br />
         <a href="{{store url='buy/cello-d-string.html'}}">Read more</a>
     </div>
+	{{block type="core/template" key="block2" template="iz/custom_buy_form.phtml"}}
 </div>
 
 <div class="home-string gstring">
@@ -43,6 +45,7 @@ try{
         clearest sound possible.<br />
         <a href="{{store url='buy/cello-g-string.html'}}">Read more</a>
     </div>
+	{{block type="core/template" key="block3" template="iz/custom_buy_form.phtml"}}
 </div>
 
 <div class="home-string cstring">
@@ -56,6 +59,7 @@ try{
         the string you need.<br />
         <a href="{{store url='buy/cello-c-string.html'}}">Read more</a>
     </div>
+	{{block type="core/template" key="block4" template="iz/custom_buy_form.phtml"}}
 </div>
 EOD;
 

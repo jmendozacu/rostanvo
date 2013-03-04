@@ -41,6 +41,12 @@
 			<customization>
 				<additionalmenu>top_nav</additionalmenu>
 			</customization>
+			<customblocks>
+				<block1>cello-A-string-medium</block1>
+				<block2>cello-D-string-medium</block2>
+				<block3>cello-G-string-nickel</block3>
+				<block4>cello-C-string-nickel</block4>
+			</customblocks>
 		</cms>
 	</default>
 </config>

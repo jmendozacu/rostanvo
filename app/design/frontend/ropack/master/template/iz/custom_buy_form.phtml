@@ -1,0 +1,32 @@
+<?php
+$sku = Mage::getStoreConfig('cms/customblocks/'.$this->getKey());
+$_product = Mage::getModel('catalog/product')->loadByAttribute('sku',$sku);
+if ($_product && $_product->getId()):
+?>
+<div class="product-options-bottom">
+	<div class="price-box">
+		<span class="regular-price">
+			<span class="price">
+				<?php
+					$_coreHelper = Mage::helper('core');
+				$_taxHelper = Mage::helper('tax');
+				$_finalPriceInclTax = $_taxHelper->getPrice($_product, $_product->getFinalPrice(), true);
+				$_finalPriceInclTaxNicelyFormated = $_coreHelper->currency($_finalPriceInclTax,true,false);
+				echo $_finalPriceInclTaxNicelyFormated;
+				?>
+			</span>
+		</span>
+	</div>
+	<form action="<?php echo Mage::helper('checkout/cart')->getAddUrl($_product); ?>" method="post" id="product_addtocart_form_<?php echo $_product->getId()?>"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+		 <?php if(!$_product->isGrouped()): ?>
+		 <label for="qty"><?php echo $this->__('Qty') ?>:</label>
+		<select name="qty" id="qty">
+		<?php for ($qtycoutner = 1; $qtycoutner < 5; $qtycoutner ++ ): ?>
+			<option value="<?php echo $qtycoutner?>"><?php echo $qtycoutner?></option>
+		<?php endfor; ?>
+		</select>
+		 <?php endif; ?>
+		 <button type="button" onclick="this.form.submit()" class="button btn-cart"><span><span><?php echo $this->__('Buy') ?></span></span></button>
+	 </form>
+</div>
+<?php endif; ?>

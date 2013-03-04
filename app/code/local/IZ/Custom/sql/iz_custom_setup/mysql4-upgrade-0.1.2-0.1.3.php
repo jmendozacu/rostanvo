@@ -22,6 +22,15 @@ document.observe("dom:loaded", function() {
 	$$('.cmsurl').each(function(link){
 		if (link.readAttribute('href').indexOf(document.URL) >= 0) {
 			link.addClassName('selected');
+			/*set current page on navigation to resource*/
+			var navsize = $('nav-customized').children.length;
+			for (var i=0; i < navsize; i++)
+			{
+				if ($('nav-customized').children[i].down('a').readAttribute('href').indexOf('resource/history-of-the-cello-string') > 0)
+				{
+					$('nav-customized').children[i].addClassName('active');
+				}
+			}
 		}
 		else
 		{

@@ -24,6 +24,51 @@
 					</fields>
 				</customization>
 			</groups>
+			<groups>
+				<customblocks translate="label">
+					<label>Custom Product Blocks</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>190</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<block1 translate="label">
+							<label>Block#1</label>
+							<comment><![CDATA[Order from left to right]]></comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</block1>
+						<block2 translate="label">
+							<label>Block#2</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</block2>
+						<block3 translate="label">
+							<label>Block#3</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</block3>
+						<block4 translate="label">
+							<label>Block#4</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</block4>
+					</fields>
+				</customblocks>
+			</groups>
 		</cms>
 	</sections>
 </config>
