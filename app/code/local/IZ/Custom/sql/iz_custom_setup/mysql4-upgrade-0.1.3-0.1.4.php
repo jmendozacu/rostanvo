@@ -6,7 +6,7 @@ try{
     // Create global top navigation menu
     $content =
 <<<EOD
-<li class = "first"><a href ="{{store url=''}}">home</a></li>
+<li class = "first"><a href ="{{config path="web/unsecure/base_url"}}">home</a></li>
 <li class = ""><a href ="{{store url='about-us'}}">about</a></li>
 <li class = "">
 <a href = "{{store url='resource/history-of-the-cello-string'}}">Resource</a>

@@ -7,7 +7,7 @@ try{
     $content =
 <<<EOD
 <p>
-	<a title="Buy Cello Strings" href="{{store url='shop'}}">
+	<a title="Buy Cello Strings" href="{{store url='shop.html'}}">
 		<img src="{{skin url='images/headline-banner.jpg'}}" alt="Buy Cello Strings" width="919" height="256" border="0" />
 	</a>
 </p>

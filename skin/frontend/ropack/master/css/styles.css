@@ -1872,3 +1872,5 @@ filter: progid:DXImageTransform.Microsoft.Shadow(color='#ebebeb', Direction=135,
 .add-to-cart select#qty { float: left; margin: 0 10px; }
 .cms-index-index .product-options-bottom { float: none; margin: 30px 0 0; width: 80%; }
 .cms-index-index .regular-price .price { margin-right: 5px; font-size: 18px; line-height: 25px; }
+.quick-access .form-language { float:right; position: relative; top: 10px; }
+.success-msg { border-color:#AF3209; background-color:#B9861B; color:#600000;}

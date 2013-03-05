@@ -28,3 +28,19 @@ phase 2 : buying usability changes
 6. i'll add related products block to left side bar of product detail page - done
 7. fix top navigation menu, convert hard code to good code (so enable magento default function like manage static blocks, categories...) - done 
 8. add ajax global messsage - done
+
+feedback
+1.I love the the notification, but the colour isn’t right.... - done 
+2.The “buy cello strings” button on the right drops off the end of the navigation bar ... - done
+3.The link on the banner “Visit our shop now!” is broken.... - done
+4.The translation language option has moved into a strange place? - done
+5.Remove “QTY”.  I think it’s not really required.... - keeping it is ok, because i built many sites have it
+6.Changing the language seems to create problems with the formatting.  Also these buttons seem to move when viewed on a smart phone.  Anyway we can fix them? - yes, if we have responsive design ( support many displays, from computer to ipad, iphone - i can do it)
+7.Can you change the backend up and this page,.. - done 
+8.One of the duplicates is missing the picture
+9.Something strange happening here.  I try select a version (medium), and “buy”, but I still get the “please specify the product’s option”.  Either way, like I said earlier – I don’t want anymore options/versions.  We only have 1 string of each for sale - done
+10.I don’t actually see the option to add to cart/buy other strings anywhere.. if you haven’t done this, don’t bother.  I think I have changed my mind.  We don’t want “BUY” on every single page, people might think we are too pushy - done
+11.The images are missing on the cart summary - done
+12.When you change the language you get a message asking you to select a string type.. - it's ok , message remain from previous page
+13.Page link broken - done
+=====

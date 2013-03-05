@@ -17,9 +17,13 @@
 		?>
     </div>
     <div class="quick-access">
-        <?php echo $this->getChildHtml('store_language') ?>
-        <p class="welcome-msg"><?php echo $this->getWelcome()?></p>
         <?php echo $this->getChildHtml('topLinks') ?>
+        <?php echo $this->getChildHtml('store_language') ?>
+		<?php
+		/**
+        <p class="welcome-msg"><?php echo $this->getWelcome()?></p>
+		 */
+		?>
     </div>
 	 
 <?php
@@ -28,8 +32,12 @@ $activeSite=$this->helper('core/url')->getCurrentUrl();
 <!--Call customized top navigation menu-->
 <?php echo $this->getChildHtml('topMenu') ?>
 <!--End of customized top navigation menu-->
+<?php
+/**
 <?php echo $this->getChildHtml('topBar') ?>
 <?php echo $this->getChildHtml('topContainer'); ?>
+ */
+?>
 </div>
 
 
