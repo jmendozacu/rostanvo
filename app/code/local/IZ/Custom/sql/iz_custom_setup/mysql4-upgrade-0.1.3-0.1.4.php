@@ -6,20 +6,20 @@ try{
     // Create global top navigation menu
     $content =
 <<<EOD
-<li class = "first"><a href ="{{config path="web/unsecure/base_url"}}">home</a></li>
-<li class = ""><a href ="{{store url='about-us'}}">about</a></li>
+<li class = "first"><a href ="{{config path="web/unsecure/base_url"}}">Home</a></li>
+<li class = ""><a href ="{{store url='about-us'}}">About</a></li>
 <li class = "">
 <a href = "{{store url='resource/history-of-the-cello-string'}}">Resource</a>
 <ul>
-	<li><a href = "{{store url='resource/history-of-the-cello-string'}}">history of the cello string</a></li>
-	<li><a href = "{{store url='resource/how-to-choose-cello-strings'}}">how to choose cello strings</a></li>
-	<li><a href = "{{store url='resource/why-the-best-strings-are-important'}}">why the best strings are important</a></li>
-	<li><a href = "{{store url='resource/how-to-string-a-cello'}}">how to string a cello</a></li>
+	<li><a href = "{{store url='resource/history-of-the-cello-string'}}">History of the cello string</a></li>
+	<li><a href = "{{store url='resource/how-to-choose-cello-strings'}}">How to choose cello strings</a></li>
+	<li><a href = "{{store url='resource/why-the-best-strings-are-important'}}">Why the best strings are important</a></li>
+	<li><a href = "{{store url='resource/how-to-string-a-cello'}}">How to string a cello</a></li>
 </ul>
 </li>
-<li class = ""><a href ="{{store url='cello-news'}}">cello news</a></li>
-<li class = ""><a href ="{{store url='events'}}">events</a></li>
-<li class = ""><a href ="{{store url='testimonials'}}">testimonials</a></li>
+<li class = ""><a href ="{{store url='cello-news'}}">Cello news</a></li>
+<li class = ""><a href ="{{store url='events'}}">Events</a></li>
+<li class = ""><a href ="{{store url='testimonials'}}">Testimonials</a></li>
 EOD;
 
 	$title = 'Top navigation';
