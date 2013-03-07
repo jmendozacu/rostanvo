@@ -13,7 +13,7 @@ try{
 <ul>
 	<li><a href = "{{store url='resource/history-of-the-cello-string'}}">History of the cello string</a></li>
 	<li><a href = "{{store url='resource/how-to-choose-cello-strings'}}">How to choose cello strings</a></li>
-	<li><a href = "{{store url='resource/why-the-best-strings-are-important'}}">Why the best strings are important</a></li>
+	<li><a href = "{{store url='resource/best-strings'}}">Why the best strings are important</a></li>
 	<li><a href = "{{store url='resource/how-to-string-a-cello'}}">How to string a cello</a></li>
 </ul>
 </li>
