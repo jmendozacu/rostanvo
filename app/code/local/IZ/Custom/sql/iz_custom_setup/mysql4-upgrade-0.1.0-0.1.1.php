@@ -7,7 +7,7 @@ try{
     $content =
 <<<EOD
 <div class="home-string astring">
-    <a href="{{store url='buy/cello-a-string.html'}}"><img height=
+    <a href="{{block type="core/template" key="block1" template="iz/link_to_product.phtml"}}"><img height=
     "180" src="{{skin url='images/home-A.png'}}" width=
     "220" /></a>
 
@@ -15,13 +15,13 @@ try{
         Huge dynamicly ranged A string, delivering the largest forte unlike any
         you have heard before, as well as the quietest pianissimo without
         losing the sound's clarity.<br />
-        <a href="{{store url='buy/cello-a-string.html'}}">Read more</a>
+        <a href="{{block type="core/template" key="block1" template="iz/link_to_product.phtml"}}">Read more</a>
     </div>
 	{{block type="core/template" key="block1" template="iz/custom_buy_form.phtml"}}
 </div>
 
 <div class="home-string dstring">
-    <a href="{{store url='buy/cello-d-string.html'}}"><img height=
+    <a href="{{block type="core/template" key="block2" template="iz/link_to_product.phtml"}}"><img height=
     "180" src="{{skin url='images/home-D.png'}}" width=
     "230" /></a>
 
@@ -29,13 +29,13 @@ try{
         Our groundbreaking D string is able to project like the A while
         producing rich, deeper tones normally associated with the G string on
         your cello.<br />
-        <a href="{{store url='buy/cello-d-string.html'}}">Read more</a>
+        <a href="{{block type="core/template" key="block2" template="iz/link_to_product.phtml"}}">Read more</a>
     </div>
 	{{block type="core/template" key="block2" template="iz/custom_buy_form.phtml"}}
 </div>
 
 <div class="home-string gstring">
-    <a href="{{store url='buy/cello-g-string.html'}}"><img height=
+    <a href="{{block type="core/template" key="block3" template="iz/link_to_product.phtml"}}"><img height=
     "180" src="{{skin url='images/home-G.png'}}" width=
     "230" /></a>
 
@@ -43,13 +43,13 @@ try{
         An immensely easy G string to play at all volumes. Similar to our D, it
         is extremely responsive even during fast passages maintaining the
         clearest sound possible.<br />
-        <a href="{{store url='buy/cello-g-string.html'}}">Read more</a>
+        <a href="{{block type="core/template" key="block3" template="iz/link_to_product.phtml"}}">Read more</a>
     </div>
 	{{block type="core/template" key="block3" template="iz/custom_buy_form.phtml"}}
 </div>
 
 <div class="home-string cstring">
-    <a href="{{store url='buy/cello-c-string.html'}}"><img height=
+    <a href="{{block type="core/template" key="block4" template="iz/link_to_product.phtml"}}"><img height=
     "180" src="{{skin url='images/home-C.png'}}" width=
     "220" /></a>
 
@@ -57,7 +57,7 @@ try{
         Our powerful C String, with rich and deep tones. A new standard for
         clarity and responsiveness. If you want big, open cello sounds, this is
         the string you need.<br />
-        <a href="{{store url='buy/cello-c-string.html'}}">Read more</a>
+        <a href="{{block type="core/template" key="block4" template="iz/link_to_product.phtml"}}">Read more</a>
     </div>
 	{{block type="core/template" key="block4" template="iz/custom_buy_form.phtml"}}
 </div>

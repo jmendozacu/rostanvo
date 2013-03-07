@@ -1,0 +1,12 @@
+<?php
+$sku = Mage::getStoreConfig('cms/customblocks/'.$this->getKey());
+$_product = Mage::getModel('catalog/product')->loadByAttribute('sku',$sku);
+if ($_product && $_product->getId())
+{
+	echo $_product->getProductUrl();
+}
+else
+{
+	echo '';
+}
+?>

@@ -19,7 +19,11 @@ if ($_product && $_product->getId()):
 	</div>
 	<form action="<?php echo Mage::helper('checkout/cart')->getAddUrl($_product); ?>" method="post" id="product_addtocart_form_<?php echo $_product->getId()?>"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
 		 <?php if(!$_product->isGrouped()): ?>
+		 <?php
+		 /*
 		 <label for="qty"><?php echo $this->__('Qty') ?>:</label>
+		  */
+		 ?>
 		<select name="qty" id="qty">
 		<?php for ($qtycoutner = 1; $qtycoutner < 5; $qtycoutner ++ ): ?>
 			<option value="<?php echo $qtycoutner?>"><?php echo $qtycoutner?></option>

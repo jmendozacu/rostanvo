@@ -1874,3 +1874,4 @@ filter: progid:DXImageTransform.Microsoft.Shadow(color='#ebebeb', Direction=135,
 .cms-index-index .regular-price .price { margin-right: 5px; font-size: 18px; line-height: 25px; }
 .quick-access .form-language { float:right; position: relative; top: 10px; }
 .success-msg { border-color:#AF3209; background-color:#B9861B; color:#600000;}
+.home-string .btn-cart { margin-left: 10px; }
