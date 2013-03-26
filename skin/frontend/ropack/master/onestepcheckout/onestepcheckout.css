@@ -847,7 +847,7 @@ a#onestepcheckout-login-link span span { background-color: #A14823; border: 1px 
 a#onestepcheckout-login-link span { background-color: #A14823; float: left; padding: 1px; }
 div.checkoutcontainer { overflow: visible; }
 p.onestepcheckout-login-link { float: left; width: 100%; }
-p.onestepcheckout-numbers { font-size:13px; text-align: center; background: url("../images/header-bg.png") no-repeat scroll center center transparent; height: auto; color: #FFFFFF; position: relative; top: 12px; }
+p.onestepcheckout-numbers { font-size:12px; text-align: center; background: url("../images/header-bg.png") no-repeat scroll center center transparent; height: auto; color: #FFFFFF; position: relative; top: 12px; }
 div.onestepcheckout-threecolumns div.onestepcheckout-column-right { padding-top: 19px; }
 .onestepcheckout-index-index .title { margin-bottom: 15px; height: 21px; border-bottom: 1px solid #A14823; }
 .payment-methods dd { padding: 0; }
