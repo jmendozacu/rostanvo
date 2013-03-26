@@ -869,3 +869,5 @@ p.onestepcheckout-login-link { padding-top: 0; }
 #onestepcheckout-toc-popup p.close a,
 #onestepcheckout-toc-popup p.close a:link,
 #onestepcheckout-toc-popup p.close a:visited { font-family: times; font-size: 12px; font-weight: bold; }
+div.onestepcheckout-place-order-wrapper { margin-top: 0; }
+div.onestepcheckout-place-order-wrapper .payment-methods { margin-bottom: 5px; }
