@@ -811,7 +811,7 @@ div.onestepcheckout-comments textarea {
 
 /*added by atheotsky*/
 #onestepcheckout-form .group-select { padding: 0 !important; }
-fieldset.group-select { padding: 0; }
+.onestepcheckout-index-index fieldset.group-select { padding: 0; }
 div.onestepcheckout-threecolumns div.onestepcheckout-column-left { width: 50%; }
 div.onestepcheckout-threecolumns div.onestepcheckout-column-right { width: 48%; float: right; }
 table.onestepcheckout-summary td.name { width: 60%; }
