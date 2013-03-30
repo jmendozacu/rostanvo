@@ -34,7 +34,8 @@ $helper = Mage::helper('onestepcheckout/checkout');
 		<a id="onestepcheckout-login-link" href="javascript:void(0);">
 			<span>
 				<span>
-					<?php echo $this->__('Already registered? Click here to login.'); ?>
+					<?php //echo $this->__('Already registered? Click here to login.'); ?>
+					<?php echo $this->__('Login / existing customers'); ?>
 				</span>
 			</span>
 		</a>
@@ -94,16 +95,36 @@ $helper = Mage::helper('onestepcheckout/checkout');
                     </div>
                 </li>
                 <li>
+					<div class="title">
+						<p class="onestepcheckout-numbers">
+							<?php echo $this->__('Shipping address'); ?>
+						</p>
+					</div>
                     <?php $uncheck = (!empty($_POST['billing']) && empty($_POST['billing']['use_for_shipping']));?>
                     <?php if($this->differentShippingAvailable()): ?>
                         <div class="input-box input-different-shipping">
                             <input type="checkbox" name="billing[use_for_shipping]" id="billing:use_for_shipping_yes" value="1" <?php echo (($this->sameAsBilling() && !$uncheck) ? 'checked="checked" ':'')?>/>
-                            <label for="billing:use_for_shipping_yes"><?php echo $this->__('Ship to the same address')?></label>
+							<label for="billing:use_for_shipping_yes">
+								<?php //echo $this->__('Ship to the same address')?>
+								<?php echo $this->__('Use My Billing Address Above')?>
+							</label>
                         </div>
                     <?php else: ?>
                         <input type="hidden" name="billing[use_for_shipping]" id="billing:use_for_shipping_yes" value="1" />
                     <?php endif; ?>
                 </li>
+				<!--ADDTIONAL DELIVERY CHARGE SECTION-->
+				<li>
+					<div class="title">
+						<p class="onestepcheckout-numbers">
+							<?php echo $this->__('Delivery Charge'); ?>
+						</p>
+					</div>
+					<div class="delivery-cost">
+						<?php echo $this->__('Worldwide delivery : ').Mage::helper('core')->currency(Mage::getStoreConfig('carriers/flatrate/price')); ?>
+					</div>
+				</li>
+				<!--END OF DELIVERY CHARGE SECTION-->
             </ul>
         </div>
     <?php if($this->differentShippingAvailable()): ?>
@@ -183,33 +204,35 @@ $helper = Mage::helper('onestepcheckout/checkout');
             <?php endif; ?>
             <?php echo $this->getChildHtml('choose-payment-method'); ?>
         <?php else: ?>
-			<div class="title">
-				<p class="onestepcheckout-numbers onestepcheckout-numbers-<?php echo $step_counter++; ?>">
-					<?php echo $this->__('Payment method'); ?>
-				</p>
+			<div class="payment-wrapper">
+				<div class="title">
+					<p class="onestepcheckout-numbers onestepcheckout-numbers-<?php echo $step_counter++; ?>">
+						<?php echo $this->__('Payment method'); ?>
+					</p>
+				</div>
+				<?php if(isset($this->formErrors['payment_method']) && $this->formErrors['payment_method']): ?>
+					<div class="onestepcheckout-error onestepcheckout-payment-method-error">
+						<?php echo $this->__('Please choose a payment method.'); ?>
+					</div>
+				<?php else: ?>
+					<?php if(isset($this->formErrors['payment_method_error'])): ?>
+						<div class="onestepcheckout-error onestepcheckout-payment-method-error">
+							<?php echo $this->__('Please enter valid details below.'); ?>
+						</div>
+					<?php endif; ?>
+				<?php endif; ?>
+
+				<?php echo $this->getChildHtml('choose-payment-method'); ?>
+
+				<div class="tool-tip" id="payment-tool-tip" style="display:none;">
+					<div class="btn-close">
+						<a href="javascript:void(0);" id="payment-tool-tip-close"><img src="<?php echo $this->getSkinUrl('images/btn_window_close.gif') ?>" alt="<?php echo $this->__('Close') ?>" /></a>
+					</div>
+					<div class="block-content">
+					<img src="<?php echo $this->getSkinUrl('images/cvv.gif') ?>" alt="<?php echo $this->__('Card Verification Number Visual Reference') ?>" />
+					</div>
+				</div>
 			</div>
-            <?php if(isset($this->formErrors['payment_method']) && $this->formErrors['payment_method']): ?>
-                <div class="onestepcheckout-error onestepcheckout-payment-method-error">
-                    <?php echo $this->__('Please choose a payment method.'); ?>
-                </div>
-            <?php else: ?>
-                <?php if(isset($this->formErrors['payment_method_error'])): ?>
-                    <div class="onestepcheckout-error onestepcheckout-payment-method-error">
-                        <?php echo $this->__('Please enter valid details below.'); ?>
-                    </div>
-                <?php endif; ?>
-            <?php endif; ?>
-
-            <?php echo $this->getChildHtml('choose-payment-method'); ?>
-
-            <div class="tool-tip" id="payment-tool-tip" style="display:none;">
-                <div class="btn-close">
-                    <a href="javascript:void(0);" id="payment-tool-tip-close"><img src="<?php echo $this->getSkinUrl('images/btn_window_close.gif') ?>" alt="<?php echo $this->__('Close') ?>" /></a>
-                </div>
-                <div class="block-content">
-                <img src="<?php echo $this->getSkinUrl('images/cvv.gif') ?>" alt="<?php echo $this->__('Card Verification Number Visual Reference') ?>" />
-                </div>
-            </div>
         <?php endif; ?>
 <!--END OF MIDDLE COLUMN-->
     
@@ -219,7 +242,8 @@ $helper = Mage::helper('onestepcheckout/checkout');
 
 		<div class="title">
 			<p class="onestepcheckout-numbers onestepcheckout-numbers-4">
-				<?php echo $this->__('Review your order'); ?>
+				<?php //echo $this->__('Review your order'); ?>
+				<?php echo $this->__('Summary'); ?>
 			</p>
 		</div>
 
@@ -831,7 +855,14 @@ $helper = Mage::helper('onestepcheckout/checkout');
 
         <div class="onestepcheckout-place-order-wrapper">
 			<div class="payment-methods"><img src="<?php echo $this->getSkinUrl('images/checkout-methods.jpg')?>" width="220px"></div>
-            <button type="button" title="<?php echo $this->__('Place order now'); ?>" id="onestepcheckout-place-order" class="large orange onestepcheckout-button onestepcheckout-place-order" onclick="javascript:void(0);"><span><span><?php echo $this->__('Place order now'); ?></span></span></button>
+			<button type="button" title="<?php echo $this->__('Place order now'); ?>" id="onestepcheckout-place-order" class="large orange onestepcheckout-button onestepcheckout-place-order" onclick="javascript:void(0);">
+				<span>
+					<span>
+						<?php //echo $this->__('Place order now'); ?>
+						<?php echo $this->__('Card payment'); ?>
+					</span>
+				</span>
+			</button>
         </div>
     </div>
     <div style="clear: both;">&nbsp;</div>

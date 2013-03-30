@@ -846,8 +846,7 @@ div.checkoutcontainer div.input-password { width: 50%; }
 a#onestepcheckout-login-link span span { background-color: #A14823; border: 1px solid white; color: white; float: left; padding: 3px 9px; text-transform: uppercase; }
 a#onestepcheckout-login-link span { background-color: #A14823; float: left; padding: 1px; }
 div.checkoutcontainer { overflow: visible; }
-p.onestepcheckout-login-link { float: left; width: 100%; }
-p.onestepcheckout-numbers { font-size:12px; text-align: center; background: url("../images/header-bg.png") no-repeat scroll center center transparent; height: auto; color: #FFFFFF; position: relative; top: 12px; }
+p.onestepcheckout-numbers { font-size:12px; text-align: center; background: url("../images/header-bg2.png") no-repeat scroll center center transparent; height: auto; color: #FFFFFF; position: relative; top: 12px; }
 div.onestepcheckout-threecolumns div.onestepcheckout-column-right { padding-top: 19px; }
 .onestepcheckout-index-index .title { margin-bottom: 15px; height: 21px; border-bottom: 1px solid #A14823; }
 .payment-methods dd { padding: 0; }
@@ -860,7 +859,6 @@ div.onestepcheckout-threecolumns div.onestepcheckout-column-right { padding-top:
 .onestepcheckout-totals .title { border-top: 0; }
 .onestepcheckout-popup-wrapper { background-color: #FFFFFF; }
 .orange.onestepcheckout-button, .orange.onestepcheckout-button:visited { background-color: #A14823; }
-div.checkoutcontainer { background:url("../images/checkout-logo.jpg") no-repeat scroll center top transparent; padding-top: 33px; }
 p.onestepcheckout-login-link { padding-top: 0; }
 #onestepcheckout-login-popup button { border: 1px solid #A14823; background: none repeat scroll 0 0 #A14823; color: white; font-weight: bold; }
 #onestepcheckout-login-popup p.close a,
@@ -871,3 +869,12 @@ p.onestepcheckout-login-link { padding-top: 0; }
 #onestepcheckout-toc-popup p.close a:visited { font-family: times; font-size: 12px; font-weight: bold; }
 div.onestepcheckout-place-order-wrapper { margin-top: 0; }
 div.onestepcheckout-place-order-wrapper .payment-methods { margin-bottom: 5px; }
+.checkoutcontainer { background:url("../images/checkout-logo2.jpg") no-repeat scroll center top transparent; padding-top: 105px; }
+.payment-wrapper {}
+.onestepcheckout-index-index .page { margin: 0 auto; width: 100%; }
+.onestepcheckout-index-index .main { border: 0; padding: 0 55px 40px; }
+.onestepcheckout-index-index .col-main { padding-right: 0; }
+.onestepcheckout-index-index .wrapper { border-top: 25px solid #A34923; }
+p.onestepcheckout-login-link { float: left; width: 100%; position: relative; padding-top: 50px; }
+.delivery-cost { font-weight: bold; }
+div.onestepcheckout-enable-newsletter { text-align: right; }
