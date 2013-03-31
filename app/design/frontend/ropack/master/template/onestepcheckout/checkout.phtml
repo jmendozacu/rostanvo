@@ -859,36 +859,21 @@ $helper = Mage::helper('onestepcheckout/checkout');
 			//pre-select method for adyens
 			document.observe('dom:loaded', function() {
 				if ($('hpp_type_visa')) {
-					$('hpp_type_visa').setAttribute('checked', 'checked');
+					$('hpp_type_visa').click();
 				}
 			});
 
 			//restore default payment method trigger
 			function restoredefaultpaymentmethod() {
-				if ($('p_method_adyen_hpp')) {
-					if ($('p_method_paypal_standard')) {
-						$('p_method_paypal_standard').removeAttribute('checked');
-					};
-					$('p_method_adyen_hpp').setAttribute('checked', 'checked')
-				};
-
 				if ($('hpp_type_visa')) {
-					$('hpp_type_visa').setAttribute('checked', 'checked');
+					$('hpp_type_visa').click();
 				}
 			}
 			
 			//checkout with paypal trigger
 			function checkoutwithpaypal() {
 				if ($('p_method_paypal_standard')) {
-					//remove selected radio
-					if ($('p_method_adyen_hpp')) {
-						$('p_method_adyen_hpp').removeAttribute('checked');
-					};
-					if ($('hpp_type_visa')) {
-						$('hpp_type_visa').removeAttribute('checked');
-					}
-
-					$('p_method_paypal_standard').setAttribute('checked', 'checked')
+					$('p_method_paypal_standard').click();
 				};
 			}
 		</script>
