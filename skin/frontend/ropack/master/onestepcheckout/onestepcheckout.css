@@ -870,11 +870,16 @@ p.onestepcheckout-login-link { padding-top: 0; }
 div.onestepcheckout-place-order-wrapper { margin-top: 0; }
 div.onestepcheckout-place-order-wrapper .payment-methods { margin-bottom: 5px; }
 .checkoutcontainer { background:url("../images/checkout-logo2.jpg") no-repeat scroll center top transparent; padding-top: 105px; }
-.payment-wrapper {}
+.payment-wrapper { display: none; }
 .onestepcheckout-index-index .page { margin: 0 auto; width: 100%; }
 .onestepcheckout-index-index .main { border: 0; padding: 0 55px 40px; }
 .onestepcheckout-index-index .col-main { padding-right: 0; }
 .onestepcheckout-index-index .wrapper { border-top: 25px solid #A34923; }
 p.onestepcheckout-login-link { float: left; width: 100%; position: relative; padding-top: 50px; }
 .delivery-cost { font-weight: bold; }
+ol.checkout-agreements,
 div.onestepcheckout-enable-newsletter { text-align: right; }
+.paypal-checkout-wrapper { text-align: right; margin: 35px 0 0; }
+.onestepcheckout-paypal-button { background:url("../images/paypal-checkout.png") no-repeat transparent; cursor: pointer;  border: 0; width: 160px; height:39px; text-indent: -9999px;}
+.adyen-flags { cursor: pointer; }
+ol.checkout-agreements { margin-top: 0; }

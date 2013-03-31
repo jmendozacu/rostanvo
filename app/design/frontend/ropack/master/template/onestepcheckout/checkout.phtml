@@ -659,6 +659,67 @@ $helper = Mage::helper('onestepcheckout/checkout');
             </div>
         <?php endif; ?>
 
+        <?php
+        /**
+         * Default magento agreements
+         */
+        ?>
+        <?php if($this->settings['enable_default_terms']): ?>
+            <?php if(!empty($this->formErrors['agreements_error'])):?>
+            <div class="onestepcheckout-error onestepcheckout-terms-error">
+                <?php echo $this->__('Please agree to all the terms and conditions before placing the order.'); ?>
+            </div>
+            <?php endif;?>
+            <?php echo $this->getChildHtml('agreements') ?>
+            <script type="text/javascript">
+
+                    var termsmodals = new Object;
+
+                    document.observe('dom:loaded', function() {
+                        $$('.checkout-agreements li p input').each(
+                            function(elem){
+                                elem.addClassName('required-entry');
+                            }
+                        );
+                    });
+
+                    <?php if($this->settings['enable_textarea']):?>
+                    document.observe('dom:loaded', function() {
+                        $$('.checkout-agreements li p label').each(
+                            function(elem){
+                                elem.up().insert('<a href="javascript:void(0);" onclick="termsmodals[\'' + elem.htmlFor + '\'].open();">' + elem.innerHTML + '</a>');
+                                elem.hide();
+                            }
+                        );
+                        $$('div.agreement-content').each(
+                            function(element){
+                                element.id = 'agreement-div-' + element.up('li').down('input').id;
+                                $$('body')[0].insert(element);
+                            }
+                        );
+                        $$('.checkout-agreements li p input').each(
+                            function(elem){
+                                window.termsmodals[elem.id] = new Control.Modal($('agreement-div-' + elem.id),{
+                                    overlayOpacity: 0.75,
+                                    className: 'modal',
+                                    fade: true,
+                                    closeOnClick: true,
+                                    height: 400,
+                                    width: 700
+                                });
+                            }
+                        );
+                    });
+                    <?php endif;?>
+
+            </script>
+        <?php endif;?>
+        <?php
+        /**
+         * Default magento agreements end
+         */
+        ?>
+
         <?php $customerEmail = (($this->isCustomerLoggedIn())) ? $this->getQuote()->getCustomer()->getEmail() : false ;?>
         <?php if($this->settings['enable_newsletter'] && !$this->isSubScribed($customerEmail)): ?>
             <div class="onestepcheckout-enable-newsletter">
@@ -792,70 +853,47 @@ $helper = Mage::helper('onestepcheckout/checkout');
             </div>
         <?php endif; ?>
 
-        <?php
-        /**
-         * Default magento agreements
-         */
-        ?>
-        <?php if($this->settings['enable_default_terms']): ?>
-            <?php if(!empty($this->formErrors['agreements_error'])):?>
-            <div class="onestepcheckout-error onestepcheckout-terms-error">
-                <?php echo $this->__('Please agree to all the terms and conditions before placing the order.'); ?>
-            </div>
-            <?php endif;?>
-            <?php echo $this->getChildHtml('agreements') ?>
-            <script type="text/javascript">
+		<script type="text/javascript">
+			//pre-select method for adyens
+			document.observe('dom:loaded', function() {
+				if ($('hpp_type_visa')) {
+					$('hpp_type_visa').setAttribute('checked', 'checked');
+				}
+			});
 
-                    var termsmodals = new Object;
+			//restore default payment method trigger
+			function restoredefaultpaymentmethod() {
+				if ($('p_method_adyen_hpp')) {
+					if ($('p_method_paypal_standard')) {
+						$('p_method_paypal_standard').removeAttribute('checked');
+					};
+					$('p_method_adyen_hpp').setAttribute('checked', 'checked')
+				};
 
-                    document.observe('dom:loaded', function() {
-                        $$('.checkout-agreements li p input').each(
-                            function(elem){
-                                elem.addClassName('required-entry');
-                            }
-                        );
-                    });
+				if ($('hpp_type_visa')) {
+					$('hpp_type_visa').setAttribute('checked', 'checked');
+				}
+			}
+			
+			//checkout with paypal trigger
+			function checkoutwithpaypal() {
+				if ($('p_method_paypal_standard')) {
+					//remove selected radio
+					if ($('p_method_adyen_hpp')) {
+						$('p_method_adyen_hpp').removeAttribute('checked');
+					};
+					if ($('hpp_type_visa')) {
+						$('hpp_type_visa').removeAttribute('checked');
+					}
 
-                    <?php if($this->settings['enable_textarea']):?>
-                    document.observe('dom:loaded', function() {
-                        $$('.checkout-agreements li p label').each(
-                            function(elem){
-                                elem.up().insert('<a href="javascript:void(0);" onclick="termsmodals[\'' + elem.htmlFor + '\'].open();">' + elem.innerHTML + '</a>');
-                                elem.hide();
-                            }
-                        );
-                        $$('div.agreement-content').each(
-                            function(element){
-                                element.id = 'agreement-div-' + element.up('li').down('input').id;
-                                $$('body')[0].insert(element);
-                            }
-                        );
-                        $$('.checkout-agreements li p input').each(
-                            function(elem){
-                                window.termsmodals[elem.id] = new Control.Modal($('agreement-div-' + elem.id),{
-                                    overlayOpacity: 0.75,
-                                    className: 'modal',
-                                    fade: true,
-                                    closeOnClick: true,
-                                    height: 400,
-                                    width: 700
-                                });
-                            }
-                        );
-                    });
-                    <?php endif;?>
-
-            </script>
-        <?php endif;?>
-        <?php
-        /**
-         * Default magento agreements end
-         */
-        ?>
+					$('p_method_paypal_standard').setAttribute('checked', 'checked')
+				};
+			}
+		</script>
 
         <div class="onestepcheckout-place-order-wrapper">
-			<div class="payment-methods"><img src="<?php echo $this->getSkinUrl('images/checkout-methods.jpg')?>" width="220px"></div>
-			<button type="button" title="<?php echo $this->__('Place order now'); ?>" id="onestepcheckout-place-order" class="large orange onestepcheckout-button onestepcheckout-place-order" onclick="javascript:void(0);">
+			<div class="payment-methods adyen-flags onestepcheckout-place-order" onclick="restoredefaultpaymentmethod(); javascript:void(0);"><img src="<?php echo $this->getSkinUrl('images/checkout-methods.jpg')?>" width="220px"></div>
+			<button type="button" title="<?php echo $this->__('Place order now'); ?>" id="onestepcheckout-place-order" class="large orange onestepcheckout-button onestepcheckout-place-order" onclick="restoredefaultpaymentmethod(); javascript:void(0);">
 				<span>
 					<span>
 						<?php //echo $this->__('Place order now'); ?>
@@ -864,6 +902,15 @@ $helper = Mage::helper('onestepcheckout/checkout');
 				</span>
 			</button>
         </div>
+		<div class="paypal-checkout-wrapper" id="paypal-checkout-wrapper">
+			<button type="button" title="<?php echo $this->__('Place order now'); ?>" class="onestepcheckout-paypal-button onestepcheckout-place-order" onclick="checkoutwithpaypal(); alert('test'); javascript:void(0);">
+				<span>
+					<span>
+						<?php echo $this->__('Checkout with paypal'); ?>
+					</span>
+				</span>
+			</button>
+		</div>
     </div>
     <div style="clear: both;">&nbsp;</div>
 </div>
@@ -1066,7 +1113,7 @@ Event.observe(window, 'load', function() {
                     <?php endif;?>
                         already_placing_order = true;
 
-                        var submitelement = $('onestepcheckout-place-order');
+                        var submitelement = $('paypal-checkout-wrapper');
 
                         var loaderelement = new Element('div').
                             addClassName('onestepcheckout-place-order-loading').
