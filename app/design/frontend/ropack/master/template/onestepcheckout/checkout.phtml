@@ -875,11 +875,6 @@ $helper = Mage::helper('onestepcheckout/checkout');
 				if ($('hpp_type_visa')) {
 					$('hpp_type_visa').setAttribute('checked', 'checked');
 				}
-
-				//make sure shipping methods is checked
-				if ($('s_method_flatrate_flatrate')) {
-					$('s_method_flatrate_flatrate').setAttribute('checked', 'checked');
-				}
 			}
 			
 			//checkout with paypal trigger
@@ -895,11 +890,6 @@ $helper = Mage::helper('onestepcheckout/checkout');
 
 					$('p_method_paypal_standard').setAttribute('checked', 'checked')
 				};
-
-				//make sure shipping methods is checked
-				if ($('s_method_flatrate_flatrate')) {
-					$('s_method_flatrate_flatrate').setAttribute('checked', 'checked');
-				}
 			}
 		</script>
 		<!--TEMPORARY HARD CODE BLOCK FOR FIXED LOGIC-->

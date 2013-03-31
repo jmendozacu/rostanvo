@@ -883,3 +883,4 @@ div.onestepcheckout-enable-newsletter { text-align: right; }
 .onestepcheckout-paypal-button { background:url("../images/paypal-checkout.png") no-repeat transparent; cursor: pointer;  border: 0; width: 160px; height:39px; text-indent: -9999px;}
 .adyen-flags { cursor: pointer; }
 ol.checkout-agreements { margin-top: 0; }
+.onestepcheckout-shipping-method { display: none; }
