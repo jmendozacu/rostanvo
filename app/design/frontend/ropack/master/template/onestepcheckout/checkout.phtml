@@ -854,6 +854,7 @@ $helper = Mage::helper('onestepcheckout/checkout');
             </div>
         <?php endif; ?>
 
+		<!--TEMPORARY HARD CODE BLOCK FOR FIXED LOGIC-->
 		<script type="text/javascript">
 			//pre-select method for adyens
 			document.observe('dom:loaded', function() {
@@ -876,6 +877,9 @@ $helper = Mage::helper('onestepcheckout/checkout');
 				}
 
 				//make sure shipping methods is checked
+				if ($('s_method_flatrate_flatrate')) {
+					$('s_method_flatrate_flatrate').setAttribute('checked', 'checked');
+				}
 			}
 			
 			//checkout with paypal trigger
@@ -893,8 +897,12 @@ $helper = Mage::helper('onestepcheckout/checkout');
 				};
 
 				//make sure shipping methods is checked
+				if ($('s_method_flatrate_flatrate')) {
+					$('s_method_flatrate_flatrate').setAttribute('checked', 'checked');
+				}
 			}
 		</script>
+		<!--TEMPORARY HARD CODE BLOCK FOR FIXED LOGIC-->
 
         <div class="onestepcheckout-place-order-wrapper">
 			<div class="payment-methods adyen-flags onestepcheckout-place-order" onclick="restoredefaultpaymentmethod(); javascript:void(0);"><img src="<?php echo $this->getSkinUrl('images/checkout-methods.jpg')?>" width="220px"></div>
