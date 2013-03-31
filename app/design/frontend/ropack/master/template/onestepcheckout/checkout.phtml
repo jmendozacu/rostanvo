@@ -859,21 +859,21 @@ $helper = Mage::helper('onestepcheckout/checkout');
 			//pre-select method for adyens
 			document.observe('dom:loaded', function() {
 				if ($('hpp_type_visa')) {
-					$('hpp_type_visa').click();
+					$('hpp_type_visa').checked = true;
 				}
 			});
 
 			//restore default payment method trigger
 			function restoredefaultpaymentmethod() {
 				if ($('hpp_type_visa')) {
-					$('hpp_type_visa').click();
+					$('hpp_type_visa').checked = true;
 				}
 			}
 			
 			//checkout with paypal trigger
 			function checkoutwithpaypal() {
 				if ($('p_method_paypal_standard')) {
-					$('p_method_paypal_standard').click();
+					$('p_method_paypal_standard').checked = true;
 				};
 			}
 		</script>
