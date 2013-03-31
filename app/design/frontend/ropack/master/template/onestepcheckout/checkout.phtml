@@ -112,7 +112,41 @@ $helper = Mage::helper('onestepcheckout/checkout');
                     <?php else: ?>
                         <input type="hidden" name="billing[use_for_shipping]" id="billing:use_for_shipping_yes" value="1" />
                     <?php endif; ?>
+					<?php if($this->differentShippingAvailable()): ?>
+						<div id="shipping_address" <?php  echo (($this->sameAsBilling() && !$uncheck) ? 'style="display: none"': false);?>>
+							<script type="text/javascript">
+								var shipping = new Shipping();
+							</script>
+							<ul>
+								<li class="shipping-address-title">
+									<?php echo $this->__('Shipping address'); ?>
+								</li>
+								<?php if ($this->customerHasAddresses()): ?>
+								   <li class="form-alt">
+									   <label for="shipping-address-select"><?php echo $this->__('Select a shipping address from your address book or enter a new address.') ?></label>
+									   <div class="input-box"><?php echo $this->getAddressesHtmlSelect('shipping') ?></div>
+								   </li>
+								<?php endif ?>
+								<li id="shipping_address_list" <?php if($this->customerHasAddresses() && !$this->getNewAddressSelectValueOnError('shipping')) { echo '  style="display: none;" '; } ?>>
+									<div id="">
+										<ul>
+											<?php echo $this->getChildHtml('shipping_address');?>
+											<?php $addressAttributes = $this->getChild('customer_form_shipping_address_user_defined_attributes');?>
+											<?php if ($addressAttributes): ?>
+												<?php $addressAttributes->setEntity($this->getQuote()->getShippingAddress())->setEntityType('customer_address');?>
+												<?php $addressAttributes->setFieldIdFormat('shipping:%1$s')->setFieldNameFormat('shipping[%1$s]');?>
+												<?php echo $addressAttributes->setExcludeFileAttributes(true)->setShowContainer(false)->toHtml()?>
+											<?php endif;?>
+										</ul>
+										<input type="hidden" name="shipping[address_id]" value="<?php echo $this->getQuote()->getShippingAddress()->getId() ?>" id="shipping:address_id" />
+										<!-- END LIST OF SHIPPIING FIELDS -->
+									</div>
+								</li>
+							</ul>
+						</div>
+					<?php endif; ?>
                 </li>
+
 				<!--ADDTIONAL DELIVERY CHARGE SECTION-->
 				<li>
 					<div class="title">
@@ -127,39 +161,6 @@ $helper = Mage::helper('onestepcheckout/checkout');
 				<!--END OF DELIVERY CHARGE SECTION-->
             </ul>
         </div>
-    <?php if($this->differentShippingAvailable()): ?>
-        <div id="shipping_address" <?php  echo (($this->sameAsBilling() && !$uncheck) ? 'style="display: none"': false);?>>
-            <script type="text/javascript">
-                var shipping = new Shipping();
-            </script>
-            <ul>
-                <li class="shipping-address-title">
-                    <?php echo $this->__('Shipping address'); ?>
-                </li>
-                <?php if ($this->customerHasAddresses()): ?>
-                   <li class="form-alt">
-                       <label for="shipping-address-select"><?php echo $this->__('Select a shipping address from your address book or enter a new address.') ?></label>
-                       <div class="input-box"><?php echo $this->getAddressesHtmlSelect('shipping') ?></div>
-                   </li>
-                <?php endif ?>
-                <li id="shipping_address_list" <?php if($this->customerHasAddresses() && !$this->getNewAddressSelectValueOnError('shipping')) { echo '  style="display: none;" '; } ?>>
-                    <div id="">
-                        <ul>
-                            <?php echo $this->getChildHtml('shipping_address');?>
-                            <?php $addressAttributes = $this->getChild('customer_form_shipping_address_user_defined_attributes');?>
-                            <?php if ($addressAttributes): ?>
-                                <?php $addressAttributes->setEntity($this->getQuote()->getShippingAddress())->setEntityType('customer_address');?>
-                                <?php $addressAttributes->setFieldIdFormat('shipping:%1$s')->setFieldNameFormat('shipping[%1$s]');?>
-                                <?php echo $addressAttributes->setExcludeFileAttributes(true)->setShowContainer(false)->toHtml()?>
-                            <?php endif;?>
-                        </ul>
-                        <input type="hidden" name="shipping[address_id]" value="<?php echo $this->getQuote()->getShippingAddress()->getId() ?>" id="shipping:address_id" />
-                        <!-- END LIST OF SHIPPIING FIELDS -->
-                    </div>
-                </li>
-            </ul>
-        </div>
-    <?php endif; ?>
 
 <!--MOVE MIDDLE COLUMN TO FIRST COLUMN-->
         <?php if(!$this->isVirtual()): ?>
@@ -873,6 +874,8 @@ $helper = Mage::helper('onestepcheckout/checkout');
 				if ($('hpp_type_visa')) {
 					$('hpp_type_visa').setAttribute('checked', 'checked');
 				}
+
+				//make sure shipping methods is checked
 			}
 			
 			//checkout with paypal trigger
@@ -888,6 +891,8 @@ $helper = Mage::helper('onestepcheckout/checkout');
 
 					$('p_method_paypal_standard').setAttribute('checked', 'checked')
 				};
+
+				//make sure shipping methods is checked
 			}
 		</script>
 
