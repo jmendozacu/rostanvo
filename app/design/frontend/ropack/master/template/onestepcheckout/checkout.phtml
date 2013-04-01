@@ -859,29 +859,25 @@ $helper = Mage::helper('onestepcheckout/checkout');
 			//pre-select method for adyens
 			document.observe('dom:loaded', function() {
 				if ($('hpp_type_visa')) {
-					$('hpp_type_visa').checked = true;
+					$('hpp_type_visa').click();
 				}
 			});
-
-			//restore default payment method trigger
-			function restoredefaultpaymentmethod() {
-				if ($('hpp_type_visa')) {
-					$('hpp_type_visa').checked = true;
-				}
-			}
 			
-			//checkout with paypal trigger
+			//checkout with paypal trigger - need to replace timeout 3000 later
 			function checkoutwithpaypal() {
 				if ($('p_method_paypal_standard')) {
-					$('p_method_paypal_standard').checked = true;
+					$('p_method_paypal_standard').click();
+					setTimeout(function(){
+						$('onestepcheckout-place-order').click()
+					},3000);
 				};
 			}
 		</script>
 		<!--TEMPORARY HARD CODE BLOCK FOR FIXED LOGIC-->
 
         <div class="onestepcheckout-place-order-wrapper">
-			<div class="payment-methods adyen-flags onestepcheckout-place-order" onclick="restoredefaultpaymentmethod(); javascript:void(0);"><img src="<?php echo $this->getSkinUrl('images/checkout-methods.jpg')?>" width="220px"></div>
-			<button type="button" title="<?php echo $this->__('Place order now'); ?>" id="onestepcheckout-place-order" class="large orange onestepcheckout-button onestepcheckout-place-order" onclick="restoredefaultpaymentmethod(); javascript:void(0);">
+			<div class="payment-methods adyen-flags onestepcheckout-place-order" onclick="javascript:void(0);"><img src="<?php echo $this->getSkinUrl('images/checkout-methods.jpg')?>" width="220px"></div>
+			<button type="button" title="<?php echo $this->__('Place order now'); ?>" id="onestepcheckout-place-order" class="large orange onestepcheckout-button onestepcheckout-place-order" onclick="javascript:void(0);">
 				<span>
 					<span>
 						<?php //echo $this->__('Place order now'); ?>
