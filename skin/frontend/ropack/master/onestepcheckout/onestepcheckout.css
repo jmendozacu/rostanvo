@@ -872,7 +872,7 @@ div.onestepcheckout-place-order-wrapper .payment-methods { margin-bottom: 5px; }
 .checkoutcontainer { background:url("../images/checkout-logo2.jpg") no-repeat scroll center top transparent; padding-top: 105px; }
 .payment-wrapper { display: none; }
 .onestepcheckout-index-index .page { margin: 0 auto; width: 100%; }
-.onestepcheckout-index-index .main { border: 0; padding: 0 55px 40px; }
+.onestepcheckout-index-index .main { border: 0; padding: 0 55px 40px; background: #FFFFFF; }
 .onestepcheckout-index-index .col-main { padding-right: 0; }
 .onestepcheckout-index-index .wrapper { border-top: 25px solid #A34923; }
 p.onestepcheckout-login-link { float: left; width: 100%; position: relative; padding-top: 50px; }
