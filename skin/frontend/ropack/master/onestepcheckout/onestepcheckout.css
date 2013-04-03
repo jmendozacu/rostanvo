@@ -843,12 +843,12 @@ div.checkoutcontainer div.input-company,
 div.checkoutcontainer div.input-fax,
 div.checkoutcontainer div.input-password { width: 50%; }
 .checkoutcontainer input { padding: 5px; border: 1px solid #E5E5E5; padding: 5px; }
-a#onestepcheckout-login-link span span { background-color: #A14823; border: 1px solid white; color: white; float: left; padding: 3px 9px; text-transform: uppercase; }
-a#onestepcheckout-login-link span { background-color: #A14823; float: left; padding: 1px; }
+a#onestepcheckout-login-link span span { background-color: #AF3209; border: 1px solid white; color: white; float: left; padding: 3px 9px; text-transform: uppercase; }
+a#onestepcheckout-login-link span { background-color: #AF3209; float: left; padding: 1px; }
 div.checkoutcontainer { overflow: visible; }
 p.onestepcheckout-numbers { font-size:12px; text-align: center; background: url("../images/header-bg2.png") no-repeat scroll center center transparent; height: auto; color: #FFFFFF; position: relative; top: 12px; }
 div.onestepcheckout-threecolumns div.onestepcheckout-column-right { padding-top: 19px; }
-.onestepcheckout-index-index .title { margin-bottom: 15px; height: 21px; border-bottom: 1px solid #A14823; }
+.onestepcheckout-index-index .title { margin-bottom: 15px; height: 21px; border-bottom: 1px solid #AF3209; }
 .payment-methods dd { padding: 0; }
 .onestepcheckout-totals td,
 .onestepcheckout-summary td,
@@ -858,9 +858,9 @@ div.onestepcheckout-threecolumns div.onestepcheckout-column-right { padding-top:
 .onestepcheckout-totals td,
 .onestepcheckout-totals .title { border-top: 0; }
 .onestepcheckout-popup-wrapper { background-color: #FFFFFF; }
-.orange.onestepcheckout-button, .orange.onestepcheckout-button:visited { background-color: #A14823; }
+.orange.onestepcheckout-button, .orange.onestepcheckout-button:visited { background-color: #AF3209; }
 p.onestepcheckout-login-link { padding-top: 0; }
-#onestepcheckout-login-popup button { border: 1px solid #A14823; background: none repeat scroll 0 0 #A14823; color: white; font-weight: bold; }
+#onestepcheckout-login-popup button { border: 1px solid #AF3209; background: none repeat scroll 0 0 #AF3209; color: white; font-weight: bold; }
 #onestepcheckout-login-popup p.close a,
 #onestepcheckout-login-popup p.close a:link,
 #onestepcheckout-login-popup p.close a:visited,
@@ -871,16 +871,23 @@ div.onestepcheckout-place-order-wrapper { margin-top: 0; }
 div.onestepcheckout-place-order-wrapper .payment-methods { margin-bottom: 5px; }
 .checkoutcontainer { background:url("../images/checkout-logo2.jpg") no-repeat scroll center top transparent; padding-top: 105px; }
 .payment-wrapper { display: none; }
-.onestepcheckout-index-index .page { margin: 0 auto; width: 100%; }
+.onestepcheckout-index-index .page { margin: 0 auto; width: 1175px; } /* fix width */
+body.onestepcheckout-index-index { background: #FFFFFF; }
 .onestepcheckout-index-index .main { border: 0; padding: 0 55px 40px; background: #FFFFFF; }
 .onestepcheckout-index-index .col-main { padding-right: 0; }
-.onestepcheckout-index-index .wrapper { border-top: 25px solid #A34923; }
+/*.onestepcheckout-index-index .wrapper { border-top: 25px solid #AF3209; }*/
 p.onestepcheckout-login-link { float: left; width: 100%; position: relative; padding-top: 50px; }
 .delivery-cost { font-weight: bold; }
 ol.checkout-agreements,
-div.onestepcheckout-enable-newsletter { text-align: right; }
+div.onestepcheckout-enable-newsletter { text-align: left; padding-left: 320px; }
 .paypal-checkout-wrapper { text-align: right; margin: 35px 0 0; }
 .onestepcheckout-paypal-button { background:url("../images/paypal-checkout.png") no-repeat transparent; cursor: pointer;  border: 0; width: 160px; height:39px; text-indent: -9999px;}
 .adyen-flags { cursor: pointer; }
 ol.checkout-agreements { margin-top: 0; }
 .onestepcheckout-shipping-method { display: none; }
+.checkout-agreements .agree input.checkbox { margin-right: 0; }
+.onestepcheckout-index-index .checkout-top { width: 100%; background: #AF3209; height: 25px; }
+.checkout-top .navi-wrapper { margin: 0 auto; width: 1065px; height: 18px; padding-top: 5px; font-weight: bold; line-height: 25px; font-size: 13px; }
+.checkout-top .navi-wrapper img { width: 17px; }
+.checkout-top .navi-wrapper a,
+.checkout-top .navi-wrapper a:hover { color: #EFEFEF; text-decoration: none; }
