@@ -12,20 +12,20 @@
 <?php echo $this->getChildHtml('after_body_start') ?>
 <div class="wrapper">
     <?php echo $this->getChildHtml('global_notices') ?>
-    <div class="page">
-		<?php
-		/*ONLY FOR ONESTEPCHECKOUT*/
-		if (in_array('onestepcheckout_index_index', $this->getLayout()->getUpdate()->getHandles())):
-		?>
-		<div class="checkout-top">
-			<div class="navi-wrapper">
-				<a class="homeurl" href="<?php echo $this->getUrl(); ?>">
-					<img alt="Home Page" src="<?php echo $this->getSkinUrl('images/home.png')?>"/>
-					<span> <?php echo $this->__('HOMEPAGE'); ?> </span>
-				</a>
-			</div>
+	<?php
+	/*ONLY FOR ONESTEPCHECKOUT*/
+	if (in_array('onestepcheckout_index_index', $this->getLayout()->getUpdate()->getHandles())):
+	?>
+	<div class="checkout-top">
+		<div class="navi-wrapper">
+			<a class="homeurl" href="<?php echo $this->getUrl(); ?>">
+				<img alt="Home Page" src="<?php echo $this->getSkinUrl('images/home.png')?>"/>
+				<span> <?php echo $this->__('HOMEPAGE'); ?> </span>
+			</a>
 		</div>
-		<?php endif; ?>
+	</div>
+	<?php endif; ?>
+    <div class="page">
         <?php echo $this->getChildHtml('header') ?>
         <div class="main-container col1-layout">
             <div class="main">

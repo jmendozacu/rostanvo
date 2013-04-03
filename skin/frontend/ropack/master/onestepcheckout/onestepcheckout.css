@@ -887,7 +887,7 @@ ol.checkout-agreements { margin-top: 0; }
 .onestepcheckout-shipping-method { display: none; }
 .checkout-agreements .agree input.checkbox { margin-right: 0; }
 .onestepcheckout-index-index .checkout-top { width: 100%; background: #AF3209; height: 25px; }
-.checkout-top .navi-wrapper { margin: 0 auto; width: 1065px; height: 18px; padding-top: 5px; font-weight: bold; line-height: 25px; font-size: 13px; }
+.checkout-top .navi-wrapper { margin: 0 auto; width: 1065px; height: 18px; padding-top: 5px; font-weight: bold; line-height: 25px; font-size: 13px; text-align: left; }
 .checkout-top .navi-wrapper img { width: 17px; }
 .checkout-top .navi-wrapper a,
 .checkout-top .navi-wrapper a:hover { color: #EFEFEF; text-decoration: none; }
