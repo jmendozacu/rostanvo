@@ -1066,6 +1066,12 @@ Event.observe(window, 'load', function() {
 
                 if(!form.validator.validate())  {
                     Event.stop(e);
+					/*add notifier*/
+					if ($$('.validation-advice')) {
+						$$('.validation-advice').each(function(item){
+							item.shake();
+						});
+					}
                 } else {
 
                     if(!already_placing_order && $$('.loading-ajax').length <= 0 ) {

@@ -55,3 +55,8 @@ phase 3 : new checkout page
 7. home page button is ok, but how about a white home icon ? - done (rostanvo logo is a background, it's not a good idea to put backlink on checkout form. only 1 link on top is ok)
 8. make both cart and checkout link on top link to cart page - done
 9 - make sure the "Card Payment" button has capital letters for the first letter of each word.  Ie "Card Payment" and not "Card payment" - done
+
+update :
+6 - style adyen
+10 - If people don't tick the box, can you think of something more obvious rather than the very small error message which magento comes up with - done, added shake animation
+11 - Colour the boxes but when you click in the box you get an outline. - done
