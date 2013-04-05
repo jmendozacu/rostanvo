@@ -57,6 +57,6 @@ phase 3 : new checkout page
 9 - make sure the "Card Payment" button has capital letters for the first letter of each word.  Ie "Card Payment" and not "Card payment" - done
 
 update :
-6 - style adyen
+6 - style adyen - done
 10 - If people don't tick the box, can you think of something more obvious rather than the very small error message which magento comes up with - done, added shake animation
 11 - Colour the boxes but when you click in the box you get an outline. - done
