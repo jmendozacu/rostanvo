@@ -892,3 +892,4 @@ ol.checkout-agreements { margin-top: 0; }
 .checkout-top .navi-wrapper a,
 .checkout-top .navi-wrapper a:hover { color: #EFEFEF; text-decoration: none; }
 .onestepcheckout-index-index input:focus { border: 1px solid #545454; }
+.onestepcheckout-index-index input { background: #FFF2D0; }
