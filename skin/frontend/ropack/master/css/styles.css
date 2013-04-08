@@ -1821,7 +1821,7 @@ filter: progid:DXImageTransform.Microsoft.Shadow(color='#ebebeb', Direction=135,
 /* Added Code From Navigation Redesign============================================================================== */
 .header-container .quick-access{margin-top:-75px; }
 
-.siteNavigation{margin:15px auto -8px;display:block;padding:0px;background: none ;height:40px;line-height:40px;width:915px;overflow:hidden;}
+.siteNavigation{margin:15px auto 0;display:block;padding:0px;background: none ;height:40px;line-height:40px;width:915px;overflow:hidden;}
 .siteNavigation{overflow:hidden !important}
 .siteNavigation ul > li{float:left;}
 .siteNavigation > ul{width:960px}
@@ -1868,10 +1868,27 @@ filter: progid:DXImageTransform.Microsoft.Shadow(color='#ebebeb', Direction=135,
 .block-related { border: none; margin-top: 30px; }
 .block-related .block-title { background: none; border-bottom: 2px solid #AF3209; }
 .block-related .block-content { background: none; }
-.siteNavigation ul > li.last { border-left: 1px solid #F4F4F4; }
+.siteNavigation ul > li.last { border-left: 1px solid #F4F4F4; max-height: 41px; }
 .add-to-cart select#qty { float: left; margin: 0 10px; }
 .cms-index-index .product-options-bottom { float: none; margin: 30px 0 0; width: 80%; }
 .cms-index-index .regular-price .price { margin-right: 5px; font-size: 18px; line-height: 25px; }
 .quick-access .form-language { float:right; position: relative; top: 10px; }
 .success-msg { border-color:#AF3209; background-color:#B9861B; color:#600000;}
 .home-string .btn-cart { margin-left: 10px; }
+
+.siteNavigation{ background: #FFF2D0; height: 40px; line-height: 40px; }
+.siteNavigation ul > li a { text-transform: uppercase; font-size: 12px; }
+.block .block-title strong { color: #FFFFFF; }
+.block .block-title { background: #AF3209; }
+.block-account .block-title { background: #AF3209; }
+.header-stripe { border-top: 1px solid #CECECE; border-bottom: 1px solid #CECECE; width: 915px; margin: 10px auto 0; line-height: 22px; padding: 2px 0; height: 22px;  }
+.header-stripe ul { height: 20px; font-weight: bold; }
+.header-stripe li {
+    float: left;
+    text-align: center;
+    width: 305px;
+}
+.header-stripe a { color: #FFFFFF; }
+.header-stripe .stripe1 { background: url("../images/stripe1.png") no-repeat scroll right top / 15px 22px #F39B39; }
+.header-stripe .stripe2 { background: url("../images/stripe2.png") no-repeat scroll right top / 15px 22px #F4722F; }
+.header-stripe .stripe3 { background: #D43925; }

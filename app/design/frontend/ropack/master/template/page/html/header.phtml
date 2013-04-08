@@ -31,6 +31,7 @@ $activeSite=$this->helper('core/url')->getCurrentUrl();
 ?>
 <!--Call customized top navigation menu-->
 <?php echo $this->getChildHtml('topMenu') ?>
+<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('header_stripe')->toHtml(); ?>
 <!--End of customized top navigation menu-->
 <?php
 /**

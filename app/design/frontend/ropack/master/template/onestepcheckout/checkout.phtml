@@ -854,6 +854,8 @@ $helper = Mage::helper('onestepcheckout/checkout');
             </div>
         <?php endif; ?>
 
+		<?php
+		/*
 		<!--TEMPORARY HARD CODE BLOCK FOR FIXED LOGIC-->
 		<script type="text/javascript">
 			//pre-select method for adyens
@@ -874,6 +876,8 @@ $helper = Mage::helper('onestepcheckout/checkout');
 			}
 		</script>
 		<!--TEMPORARY HARD CODE BLOCK FOR FIXED LOGIC-->
+		 */
+		?>
 
         <div class="onestepcheckout-place-order-wrapper">
 			<div class="payment-methods adyen-flags onestepcheckout-place-order" onclick="javascript:void(0);"><img src="<?php echo $this->getSkinUrl('images/checkout-methods.jpg')?>" width="220px"></div>
@@ -886,6 +890,8 @@ $helper = Mage::helper('onestepcheckout/checkout');
 				</span>
 			</button>
         </div>
+		<?php
+		/*
 		<div class="paypal-checkout-wrapper" id="paypal-checkout-wrapper">
 			<button type="button" title="<?php echo $this->__('Place order now'); ?>" class="onestepcheckout-paypal-button onestepcheckout-place-order" onclick="checkoutwithpaypal(); javascript:void(0);">
 				<span>
@@ -895,6 +901,8 @@ $helper = Mage::helper('onestepcheckout/checkout');
 				</span>
 			</button>
 		</div>
+		  */
+		?>
     </div>
     <div style="clear: both;">&nbsp;</div>
 </div>
