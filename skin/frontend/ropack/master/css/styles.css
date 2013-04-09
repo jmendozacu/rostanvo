@@ -1889,10 +1889,11 @@ filter: progid:DXImageTransform.Microsoft.Shadow(color='#ebebeb', Direction=135,
     width: 305px;
 }
 .header-stripe a { color: #FFFFFF; }
-.header-stripe .stripe1 { background: url("../images/stripe1.png") no-repeat scroll right top / 15px 22px #F39B39; }
-.header-stripe .stripe2 { background: url("../images/stripe2.png") no-repeat scroll right top / 15px 22px #F4722F; }
+.header-stripe .stripe1 { background: url("../images/stripe1.png") no-repeat scroll right top; background-color: #F39B39; background-size: 15px 22px; }
+.header-stripe .stripe2 { background: url("../images/stripe2.png") no-repeat scroll right top; background-color: #F4722F; background-size: 15px 22px; }
 .header-stripe .stripe3 { background: #D43925; }
 .cms-home .main { padding:0 0 0 10px; }
 .block-related { margin-top: 0; }
 
 .stext { min-height: 290px; }
+.block-cart .summary { background: #FFFAEB; }
