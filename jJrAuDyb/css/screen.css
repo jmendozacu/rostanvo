@@ -848,3 +848,7 @@ div.pmOcPay {
 .receiptPrint {
 	display: none;
 }
+
+#pmcontent { width: 500px; border: 0; margin: 5px auto 0; }
+#footerb1div { position: relative; margin: 8px 0 0 0; width: 50%; text-align: right; right: 60px; }
+#footerb2div { position: relative; margin: 8px 0 0 0; width: 50%; text-align: left; left: 60px; }

@@ -60,3 +60,16 @@ update :
 6 - style adyen - done
 10 - If people don't tick the box, can you think of something more obvious rather than the very small error message which magento comes up with - done, added shake animation
 11 - Colour the boxes but when you click in the box you get an outline. - done
+
+====
+pase 4 : Stage A
+1 - update the letters used on the navigation bar to CAPITAL LETTERS ;) Additionally make the background to the navigation bar be cream in colour - done
+2 - Just below the navigation bar I want a thin banner with clickable text links to other pages on the site - done 
+3 – Shipping will be free for all orders when this development cycle is put into the live site - won't fix, setup in magento admin
+4 – On the product page I want to include some artwork to emphasize the guarantee - done , allow config link in backend (configuration>general>content management>Customization>Guarentee block link)
+5 – update the text for the 4 strings on the home page - done
+6 – include the logo in places which are currently missing any branding - done, favicon updated
+7 – as mentioned before ... - will dump db from live site and deploy on test site later
+8 - the "previous" & "pay"/"next" buttons are very far apart.  Maybe it would be best to bring everything more centred - done 
+9 - once payment is taken, it does not redirect back to the home page. - won't fix, config in adyen backoffice
+10 - once payment is taken, it does not redirect back to the home page. - won't fix, config in magento backend

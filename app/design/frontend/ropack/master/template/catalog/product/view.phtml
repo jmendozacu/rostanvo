@@ -55,7 +55,7 @@
 
 	<div class="product-right">
 		 <div class="product-img-box">
-		            <?php echo $this->getChildHtml('media') ?>
+			<?php echo $this->getChildHtml('media') ?>
 		 </div>
 		<?php if (!$this->hasOptions()):?>
 			<div class="product-options-bottom">
@@ -79,7 +79,7 @@
 		<?php if ($_product->isSaleable() && $this->hasOptions()):?>
             <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
         <?php endif;?>
-
+		<?php echo $this->getChildHtml('guarentee.callout'); ?>
 	</div>
 
 		<div class="no-display">
