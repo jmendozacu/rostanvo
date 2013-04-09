@@ -1894,3 +1894,5 @@ filter: progid:DXImageTransform.Microsoft.Shadow(color='#ebebeb', Direction=135,
 .header-stripe .stripe3 { background: #D43925; }
 .cms-home .main { padding:0 0 0 10px; }
 .block-related { margin-top: 0; }
+
+.stext { min-height: 290px; }

@@ -62,7 +62,7 @@ update :
 11 - Colour the boxes but when you click in the box you get an outline. - done
 
 ====
-pase 4 : Stage A
+phase 4 : Stage A
 1 - update the letters used on the navigation bar to CAPITAL LETTERS ;) Additionally make the background to the navigation bar be cream in colour - done
 2 - Just below the navigation bar I want a thin banner with clickable text links to other pages on the site - done 
 3 – Shipping will be free for all orders when this development cycle is put into the live site - won't fix, setup in magento admin
