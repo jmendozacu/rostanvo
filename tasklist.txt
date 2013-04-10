@@ -73,3 +73,11 @@ phase 4 : Stage A
 8 - the "previous" & "pay"/"next" buttons are very far apart.  Maybe it would be best to bring everything more centred - done 
 9 - once payment is taken, it does not redirect back to the home page. - won't fix, config in adyen backoffice
 10 - once payment is taken, it does not redirect back to the home page. - won't fix, config in magento backend
+
+update:
+6 – show favicon - done
+13 - PayPal & Adyen - need adyen enable paypal
+15 - home page button on navigation bar not highlighted when user is on home page.  Please fix.
+16 - also unable to go back to "home" from another page by clicking "home"
+17 - please remove "calculate shipping & taxes" box on shopping cart screen - done
+18 - please remove "Checkout with Multiple Addresses" from the shopping cart - done 
