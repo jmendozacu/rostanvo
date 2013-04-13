@@ -77,7 +77,7 @@ phase 4 : Stage A
 update:
 6 – show favicon - done
 13 - PayPal & Adyen - need adyen enable paypal
-15 - home page button on navigation bar not highlighted when user is on home page.  Please fix.
-16 - also unable to go back to "home" from another page by clicking "home"
+15 - home page button on navigation bar not highlighted when user is on home page.  Please fix. - done
+16 - also unable to go back to "home" from another page by clicking "home" - done
 17 - please remove "calculate shipping & taxes" box on shopping cart screen - done
 18 - please remove "Checkout with Multiple Addresses" from the shopping cart - done 

@@ -9,7 +9,7 @@ try{
 <div class="header-stripe">
 	<ul>
 		<li class="stripe stripe1"><a href = "{{store url='#'}}">FREE SHIPPING WORLDWIDE</a></li>
-		<li class="stripe stripe2"><a href = "{{store url='#'}}">100% GUARENTEED SATISFACTION</a></li>
+		<li class="stripe stripe2"><a href = "{{store url='#'}}">100% GUARANTEED SATISFACTION</a></li>
 		<li class="stripe stripe3"><a href = "{{store url='#'}}">NO ADDED IMPORT / SALES TAX</a></li>
 	</ul>
 </div>
