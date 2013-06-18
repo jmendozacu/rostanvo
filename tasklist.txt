@@ -81,3 +81,22 @@ update:
 16 - also unable to go back to "home" from another page by clicking "home" - done
 17 - please remove "calculate shipping & taxes" box on shopping cart screen - done
 18 - please remove "Checkout with Multiple Addresses" from the shopping cart - done 
+
+====
+phase 5 : Various fixes and internationlization
+
+Small fixes
+1.       Users should be able to complete “pending” transactions.  If a user has a pending transaction in their account, there is no option to complete once returning back to it. - cancel order button
+2.       Notification of completed (invoiced) transactions – I am not receiving any, please turn it on
+3.       When I mark the item as shipped for the customer to receive an email to confirm the item has been sent
+4.       I want to create pages for the guarantee banner you made.  Eg, in order:
+ 
+Shipping to link to:http://rostanvo.com/en/delivery
+Guarantee to link to: http://rostanvo.com/en/guarantee/
+Customs to link to: http://rostanvo.com/en/customs
+ 
+Bigger update
+5.       Change account/basket links at the top right of the page.  I have referencedwww.northface.com.  See attached, top right corner with only “my account”, number of items selected, and checkout button highlighted in red when items have been added to cart
+6.       Update for additional currencies:  I need GBP, USD, EUR, JPY, KRW, AUD
+7.       Geo-IP the site for it to reference respective language versions.  Eg USA, Canada, UK, and Australian versions will be all in English.  But USA and Canada will use USD, while the UK will use GBP, and Australia will use AUD.  Let us start with these versions of the site first (as the content will be identical for all of them).  I will supply you other language versions within a week but these non-English versions will be based on a smaller site design
+8.       Wordpress Blog for the Cello News section.  I like the blog on www.eoshd.comandwww.wistia.com/blog  ie two columns

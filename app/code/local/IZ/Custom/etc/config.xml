@@ -35,6 +35,15 @@
 				</iz_custom>
 			</updates>
 		</layout>
+        <routers>
+            <izcustom>
+                <use>standard</use>
+                <args>
+                    <module>IZ_Custom</module>
+                    <frontName>izcustom</frontName>
+                </args>
+            </izcustom>
+        </routers>
 	</frontend>
 	<default>
 		<cms>
