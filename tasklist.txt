@@ -86,10 +86,10 @@ update:
 phase 5 : Various fixes and internationlization
 
 Small fixes
-1.       Users should be able to complete “pending” transactions.  If a user has a pending transaction in their account, there is no option to complete once returning back to it. - cancel order button
-2.       Notification of completed (invoiced) transactions – I am not receiving any, please turn it on
-3.       When I mark the item as shipped for the customer to receive an email to confirm the item has been sent
-4.       I want to create pages for the guarantee banner you made.  Eg, in order:
+1.       Users should be able to complete “pending” transactions.  If a user has a pending transaction in their account, there is no option to complete once returning back to it. - cancel order button - done
+2.       Notification of completed (invoiced) transactions – I am not receiving any, please turn it on - done
+3.       When I mark the item as shipped for the customer to receive an email to confirm the item has been sent - done
+4.       I want to create pages for the guarantee banner you made.  Eg, in order: - done
  
 Shipping to link to:http://rostanvo.com/en/delivery
 Guarantee to link to: http://rostanvo.com/en/guarantee/
