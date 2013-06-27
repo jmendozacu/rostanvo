@@ -97,6 +97,6 @@ Customs to link to: http://rostanvo.com/en/customs
  
 Bigger update
 5.       Change account/basket links at the top right of the page.  I have referencedwww.northface.com.  See attached, top right corner with only “my account”, number of items selected, and checkout button highlighted in red when items have been added to cart
-6.       Update for additional currencies:  I need GBP, USD, EUR, JPY, KRW, AUD
+6.       Update for additional currencies:  I need GBP, USD, EUR, JPY, KRW, AUD - inprogress
 7.       Geo-IP the site for it to reference respective language versions.  Eg USA, Canada, UK, and Australian versions will be all in English.  But USA and Canada will use USD, while the UK will use GBP, and Australia will use AUD.  Let us start with these versions of the site first (as the content will be identical for all of them).  I will supply you other language versions within a week but these non-English versions will be based on a smaller site design
-8.       Wordpress Blog for the Cello News section.  I like the blog on www.eoshd.comandwww.wistia.com/blog  ie two columns - done
+8.       Wordpress Blog for the Cello News section.  I like the blog on www.eoshd.comandwww.wistia.com/blog  ie two columns - inprogress
