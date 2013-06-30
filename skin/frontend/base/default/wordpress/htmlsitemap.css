@@ -1,0 +1,14 @@
+/**
+ * FishPig_WordPress
+ * WordPress Integration for Magento eCommerce
+ * by FishPig
+ *
+ */
+
+#htmlsitemap {}
+#htmlsitemap ul { font-weight: bold; }
+#htmlsitemap ul a { text-decoration: none; }
+#htmlsitemap ul a:hover { text-decoration: underline; }
+#htmlsitemap li.level0 {}
+#htmlsitemap li a.level0 {}
+#htmlsitemap ul ul { margin: 0 15px 4px; font-weight: normal; }

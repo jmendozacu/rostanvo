@@ -6,3 +6,4 @@ var/
 *.swp
 tags
 .htaccess
+wp/wp-config.php
