@@ -1897,3 +1897,24 @@ filter: progid:DXImageTransform.Microsoft.Shadow(color='#ebebeb', Direction=135,
 
 .stext { min-height: 290px; }
 .block-cart .summary { background: #FFFAEB; }
+
+/*change cart into button with style*/
+.quick-access ul a { color: black; font-weight: bold; font-size: 13px; }
+a.top-link-cart {
+	background: url('../images/cartactive.png') no-repeat !important;
+	display: block;
+	float: right;
+	text-align: left;
+	text-indent: 7px;
+	width: 168px;
+	font-size: 12px !important;
+	line-height: 18px !important;
+}
+a.top-link-cart:hover { text-decoration: none; cursor:: pointer; }
+
+.top-link-cart.inactive {
+	background: url('../images/cartinactive.png') no-repeat !important;
+}
+
+.quick-access ul.links { line-height: 22px; }
+.quick-access .links a { background: none; }
