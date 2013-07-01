@@ -9,6 +9,7 @@
 		<reference name="head">
 			<block type="core/text" name="google.jquery"><action method="setText"><text><![CDATA[<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>]]></text></action></block>
 			<block type="core/text" name="google.jquery.noconflict" after="google.jquery"><action method="setText"><text><![CDATA[<script type="text/javascript">var $j = jQuery.noConflict(); </script>]]></text></action></block>
+			<action method="addJs"><script>jquery.ddslick.min.js</script></action>
 		</reference>
 	</default>
 	<catalog_product_view>
