@@ -4,6 +4,7 @@
  *
  * @see Mage_Page_Block_Switch
  */
+$currentUrl = null;
 ?>
 <?php if(count($this->getStores())>1): ?>
 <div class="form-language">
@@ -11,7 +12,8 @@
     <select id="select-language" title="<?php echo $this->__('Your Language') ?>" onchange="window.location.href=this.value">
     <?php foreach ($this->getStores() as $_lang): ?>
 		<?php $_selected = ($_lang->getId() == $this->getCurrentStoreId()) ? ' selected="selected"' : '' ?>
-		<option style="background-image:url('<?php echo $this->getSkinUrl('images/flags/'.$_lang->getCode(c).'.png')?>');" class="<?php echo $_lang->getCode()?>" value="<?php echo $_lang->getCurrentUrl() ?>"<?php echo $_selected ?>>
+		<?php if(!empty($_selected)) $currentUrl = $_lang->getCurrentUrl(); ?>
+		<option data-imagesrc="<?php echo $this->getSkinUrl('images/flags/'.$_lang->getCode(c).'.png')?>" data-description="<?php echo $_lang->getName()?>" class="<?php echo $_lang->getCode()?>" value="<?php echo $_lang->getCurrentUrl() ?>"<?php echo $_selected ?>>
 			<?php echo $this->htmlEscape($_lang->getName()) ?>
 		</option>
 	<?php endforeach; ?>
@@ -19,3 +21,14 @@
 </div>
 <?php endif; ?>
 
+<?php /*trigger ddslick jquery plugin, i did it after many tricks*/ ?>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+	jQuery('#select-language').ddslick({
+		onSelected: function(data){
+			if (data.selectedData.value != '<?php echo $currentUrl?>')
+				window.location = data.selectedData.value;
+		}
+	});
+});
+</script>

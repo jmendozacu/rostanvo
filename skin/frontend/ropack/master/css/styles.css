@@ -1923,8 +1923,6 @@ a.top-link-cart:hover { text-decoration: none; cursor:: pointer; }
 #select-language {
 	width: 160px;
 	text-align: left;
-	overflow: hidden;
-	background: url(new_arrow.png) no-repeat right #ddd;
 	border: 1px solid #ccc;
 }
 #select-language option {
