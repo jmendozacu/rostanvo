@@ -7,3 +7,4 @@ var/
 tags
 .htaccess
 wp/wp-config.php
+media/catalog/product/cache

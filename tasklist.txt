@@ -104,9 +104,9 @@ Bigger update
 
 phase 5 : fix
 
-1. I created a new test post, but it continually refreshes.  take a look: http://dev.rostanvo.com/en/news/?p=4&___from_store=en
-2. is there a way to separate the posts more clearly?  Wistia has these block titles.  We could use a line in between each post?
-3. the left hand bar has some sections that maybe we could remove?  ie please remove "Recent Comments" and "Meta".  Later when I have some important articles ready, I might want to have some "Featured Posts" in that space
+1. I created a new test post, but it continually refreshes.  take a look: http://dev.rostanvo.com/en/news/?p=4&___from_store=en - done
+2. is there a way to separate the posts more clearly?  Wistia has these block titles.  We could use a line in between each post? - done
+3. the left hand bar has some sections that maybe we could remove?  ie please remove "Recent Comments" and "Meta".  Later when I have some important articles ready, I might want to have some "Featured Posts" in that space - done, configured in admin
 
 Site updates
 

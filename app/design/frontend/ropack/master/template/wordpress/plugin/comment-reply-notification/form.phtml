@@ -1,0 +1,13 @@
+<?php
+/**
+ * @category    Fishpig
+ * @package     Fishpig_Wordpress
+ * @license     http://fishpig.co.uk/license.txt
+ * @author      Ben Tideswell <help@fishpig.co.uk>
+ */
+?>
+<?php if ($this->getIsEnabled()): ?>
+	<li class="control">
+		<input type="checkbox" class="checkbox" title="<?php echo $this->__('Receive Reply Notifications') ?>" value="1" id="notifications" name="extra[comment_mail_notify]"<?php if ($this->getOptInChecked()): ?> checked="checked"<?php endif; ?>> <label for="notifications"><?php echo $this->__('Notify me of follow-up comments via e-mail') ?></label>
+	</li>
+<?php endif; ?>

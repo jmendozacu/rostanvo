@@ -23,7 +23,7 @@ $currentStore = null;
 
 <?php /*trigger ddslick jquery plugin, i did it after many tricks*/ ?>
 <script type="text/javascript">
-Query(document).ready(function(){
+jQuery(document).ready(function(){
 	jQuery('#select-language').ddslick({
 		onSelected: function(data){
 			if (data.selectedData.text != '<?php echo $currentStore?>')
