@@ -98,6 +98,18 @@ Customs to link to: http://rostanvo.com/en/customs
 Bigger update
 5.       Change account/basket links at the top right of the page.  I have referencedwww.northface.com.  See attached, top right corner with only “my account”, number of items selected, and checkout button highlighted in red when items have been added to cart - done
 6.       Update for additional currencies:  I need GBP, USD, EUR, JPY, KRW, AUD - will be done on livesite
-7.       Geo-IP the site for it to reference respective language versions.  Eg USA, Canada, UK, and Australian versions will be all in English.  But USA and Canada will use USD, while the UK will use GBP, and Australia will use AUD.  Let us start with these versions of the site first (as the content will be identical for all of them).  I will supply you other language versions within a week but these non-English versions will be based on a smaller site design - will be done on live site
+7.       Geo-IP the site for it to reference respective language versions.  Eg USA, Canada, UK, and Australian versions will be all in English.  But USA and Canada will use USD, while the UK will use GBP, and Australia will use AUD.  Let us start with these versions of the site first (as the content will be identical for all of them).  I will supply you other language versions within a week but these non-English versions will be based on a smaller site design
 8.       Wordpress Blog for the Cello News section.  I like the blog on www.eoshd.comandwww.wistia.com/blog  ie two columns - done
 9.       change store selector to flag select style - done
+
+phase 5 : fix
+
+1. I created a new test post, but it continually refreshes.  take a look: http://dev.rostanvo.com/en/news/?p=4&___from_store=en
+2. is there a way to separate the posts more clearly?  Wistia has these block titles.  We could use a line in between each post?
+3. the left hand bar has some sections that maybe we could remove?  ie please remove "Recent Comments" and "Meta".  Later when I have some important articles ready, I might want to have some "Featured Posts" in that space
+
+Site updates
+
+a)  in the flag drop down, please change countries instead of languages.  Ie "English" to "United Kingdom", etc..
+b)  also update USA to "United States" (it's missing an S at the end)
+c)  the flag needs to be changed for the Germany line (it has the Japanese flag!)
